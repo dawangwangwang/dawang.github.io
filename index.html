@@ -326,8 +326,7 @@
 
       
         
-          
-            <p>  呃……做题遇到了一个叫做约束攻击的攻击方法，就深入了解了一下 ，貌似蛮有趣。</p>
+          <p>  呃……做题遇到了一个叫做约束攻击的攻击方法，就深入了解了一下 ，貌似蛮有趣。</p>
 <h1 id="part-one"><a href="#part-one" class="headerlink" title="part one"></a>part one</h1><p>  mysql&gt; desc liuyanban;</p>
 <p>+———-+——————+——+—–+———————+—————-+</p>
 <p>| Field    | Type             | Null | Key | Default             | Extra          |</p>
@@ -338,13 +337,14 @@
 <p>| content  | varchar(200)     | YES  |     | NULL                |                |</p>
 <p>| datetime | datetime         | NO   |     | 0000-00-00 00:00:00 |                |</p>
 <p>+———-+——————+——+—–+———————+—————-+</p>
-<p>5 rows in set (0.01 sec)</p>
-<p>可以看到id为该表的主键，主键具有唯一性，username字段没设置为主键或者UNIQUE约束，那就会造成可以以任意身份登陆。那这就说明我们可以从username下手约束攻击了。<br>在执行sql语句时候，字符串末尾的空格会被删除，也就是’wang’和’wang  ‘是一样的。注意，对尾部空白符的这种修剪操作，主要是在字符串比较期间进行的。mysql在储存的时候会默认把空格删除，原因是在执行where等需要字符串比较的时候，会使用空格填充字符串，长度保持一致后再进行对比。</p>
-<p>==<code>$query = “SELECT *FROM users WHERE username=’wang’”;</code><br><code>$query = “SELECT *FROM users WHERE username=’wang     ’”;</code>==<br>在本地cmd里使用了一下，两个查询语句结果一样。<br>那么可以使用wang登陆了！</p>
-<h4 id="ps：当然也有例外，在LIKE子句中，是不会删除空格的。"><a href="#ps：当然也有例外，在LIKE子句中，是不会删除空格的。" class="headerlink" title="ps：当然也有例外，在LIKE子句中，是不会删除空格的。"></a>ps：当然也有例外，在LIKE子句中，是不会删除空格的。</h4><h1 id="part-two"><a href="#part-two" class="headerlink" title="part two"></a>part two</h1><p>还有就是每个字段都会定义一个长度，例如char(5)，所以在执行Insert时，超过这个长度的都会被截断。</p>
-<p>“dawang”会被截断成“dawan”……<br>存进数据库的便是dawan<br>那么如果别人用dawan注册了一个账号，就可以登陆dawan了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">数据库中的约束：</span><br><span class="line"></span><br><span class="line">- NOT NULL //不接受NULL值</span><br><span class="line"></span><br><span class="line">- UNIQUE     //约束唯一标识数据库表中的每条记录</span><br><span class="line"></span><br><span class="line">- PRIMARY KEY  //主键约束唯一标识数据库表中的每条记录。</span><br><span class="line"></span><br><span class="line">- FOREIGN KEY  //外键约束用于预防破坏表之间连接的动作。</span><br><span class="line"></span><br><span class="line">- CHECK   //约束用于限制列中的值的范围。</span><br><span class="line"></span><br><span class="line">- DEFAULT  //约束用于向列中插入默认值。如果没有规定其他的值，那么会将默认值添加到所有的新记录。</span><br></pre></td></tr></table></figure></p>
-<h3 id="如何防御："><a href="#如何防御：" class="headerlink" title="如何防御："></a>如何防御：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将那些不允许有重复的字段例如‘username’加上UNIQUE约束，这样在INSERT在插入相同数据时就会提示失败。不会插入。</span><br><span class="line"></span><br><span class="line">2. 参数输入要限制长度。</span><br><span class="line"></span><br><span class="line">3. 一般应该id作为主键，身份验证等操作都应该以id进行查询。</span><br></pre></td></tr></table></figure>
-          
+<p>5 rows in set (0.01 sec)<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/11/SQL约束攻击/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -644,6 +644,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
