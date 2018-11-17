@@ -1935,7 +1935,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d1b161;
+  background: #60ff26;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3102,4 +3102,11 @@ img:hover {
   .post-body {
     text-align: justify;
   }
+}
+body {
+  background: url("/images/dawang.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
