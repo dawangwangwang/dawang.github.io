@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="PHP," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景当应用在调用一些能将字符串转化成代码的函数时(如PHP中的eval、assert)，没有考虑到用户是否能控制这个字符串，所以可能会造成执行漏洞。狭义的代码注入通常指将可执行代码注入到当前页面中，如php的eval函数，可以将字符串代表的代码作为php代码执行，当前用户能够控制这段字符串时，将产生代码注入漏洞（也称命令执行）。广义上的代码注入，可以覆盖大半安全漏洞的分类。 漏洞危害执行任意代码写">
+<meta name="keywords" content="PHP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码执行">
+<meta property="og:url" content="http://yoursite.com/2018/11/20/代码执行/index.html">
+<meta property="og:site_name" content="Da wang">
+<meta property="og:description" content="背景当应用在调用一些能将字符串转化成代码的函数时(如PHP中的eval、assert)，没有考虑到用户是否能控制这个字符串，所以可能会造成执行漏洞。狭义的代码注入通常指将可执行代码注入到当前页面中，如php的eval函数，可以将字符串代表的代码作为php代码执行，当前用户能够控制这段字符串时，将产生代码注入漏洞（也称命令执行）。广义上的代码注入，可以覆盖大半安全漏洞的分类。 漏洞危害执行任意代码写">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/11/20/代码执行/1.png">
+<meta property="og:updated_time" content="2018-11-20T16:40:45.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码执行">
+<meta name="twitter:description" content="背景当应用在调用一些能将字符串转化成代码的函数时(如PHP中的eval、assert)，没有考虑到用户是否能控制这个字符串，所以可能会造成执行漏洞。狭义的代码注入通常指将可执行代码注入到当前页面中，如php的eval函数，可以将字符串代表的代码作为php代码执行，当前用户能够控制这段字符串时，将产生代码注入漏洞（也称命令执行）。广义上的代码注入，可以覆盖大半安全漏洞的分类。 漏洞危害执行任意代码写">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/20/代码执行/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/20/代码执行/"/>
+
+
+
+
+
+  <title>代码执行 | Da wang</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/dawangwangwang" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Da wang</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/20/代码执行/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Da Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Da wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">代码执行</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T23:11:08+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>当应用在调用一些能将字符串转化成代码的函数时(如PHP中的eval、assert)，没有考虑到用户是否能控制这个字符串，所以可能会造成执行漏洞。狭义的代码注入通常指将可执行代码注入到当前页面中，如php的eval函数，可以将字符串代表的代码作为php代码执行，当前用户能够控制这段字符串时，将产生代码注入漏洞（也称命令执行）。广义上的代码注入，可以覆盖大半安全漏洞的分类。</p>
+<h1 id="漏洞危害"><a href="#漏洞危害" class="headerlink" title="漏洞危害"></a>漏洞危害</h1><p>执行任意代码<br>写入webshell<br>甚至控制服务器<br>……</p>
+<h1 id="常见代码执行的方式"><a href="#常见代码执行的方式" class="headerlink" title="常见代码执行的方式"></a>常见代码执行的方式</h1><ul>
+<li>${}执行代码</li>
+<li>eval()</li>
+<li>assert()</li>
+<li>preg_replace()</li>
+<li>create_function()</li>
+<li>array_map()</li>
+<li>call_user_func()/call_user_func_array()</li>
+<li>array_filter()</li>
+<li>usort(),uasort()</li>
+</ul>
+<a id="more"></a>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h2 id="执行代码"><a href="#执行代码" class="headerlink" title="${}执行代码"></a>${}执行代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$&#123;phpinfo()&#125;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h2><p>将字符串当成代码来执行。(合法的php代码)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">eval(&apos;echo 2;&apos;);</span><br><span class="line">eval($_GET[&apos;a&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="assert"><a href="#assert" class="headerlink" title="assert()"></a>assert()</h2><p>判断一个表达式是否成立。返回true or false。当参数为字符串时，会被当作php代码执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//a=phpinfo()</span><br><span class="line">&lt;?</span><br><span class="line">php assert($_POST[&apos;a&apos;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="assert-函数支持动态调用"><a href="#assert-函数支持动态调用" class="headerlink" title="assert 函数支持动态调用"></a>assert 函数支持动态调用</h3><p>php官方在 php7中更改了 assert函数。在 php7.0.29之后的版本不支持动态调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//?a=phpinfo() </span><br><span class="line">&lt;?php </span><br><span class="line">$a = &apos;assert&apos;; </span><br><span class="line">$a($_POST[&apos;a&apos;]);</span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure></p>
+<p> assert与eval的区别:assert把整个字符串参数当php代码执行，eval把合法的php代码执行。</p>
+<h2 id="preg-replace"><a href="#preg-replace" class="headerlink" title="preg_replace()"></a>preg_replace()</h2><p> 执行一个正则表达式的搜索和替换<br>执行代码需要使用/e 修饰符。如果不使用/e 修饰符，代码则不会执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$a = &apos;phpinfo()&apos;;</span><br><span class="line">$b = preg_replace(&quot;/abc/e&quot;,$a,&apos;abcd&apos;);</span><br><span class="line">?&gt;//将abcd里的abc换成$b,故而代码得以执行</span><br></pre></td></tr></table></figure></p>
+<h2 id="create-function"><a href="#create-function" class="headerlink" title="create_function()"></a>create_function()</h2><p>该函数用来创建匿名函数</p>
+<h3 id="函数实现："><a href="#函数实现：" class="headerlink" title="函数实现："></a>函数实现：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$b = create_function(&apos;$name&apos;,&apos;echo $name;&apos;);</span><br><span class="line">$b(wang);//页面输出wang</span><br><span class="line">function niming($name)&#123;</span><br><span class="line">echo $name;</span><br><span class="line">&#125;</span><br><span class="line">niming(&apos;wang&apos;);//页面同样输出wang</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4>可以看到两种方法实现的效果一样。<br>一般来说 第二个参数就是代码执行的地方，将payload放在第二个参数，再调用该函数就可以执行payload啦。</h4>
+
+<h3 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h3><h4 id="one"><a href="#one" class="headerlink" title="one:"></a>one:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$a = &apos;phpinfo();&apos;; </span><br><span class="line">$b = create_function(&quot; &quot;,$a); </span><br><span class="line">$b(); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="two"><a href="#two" class="headerlink" title="two:"></a>two:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = $_GET[&apos;id&apos;];</span><br><span class="line">$zhixing = &apos;echo $name&apos;.&apos;的家乡是&apos;.$id.&apos;;&apos;;</span><br><span class="line">$b = create_function(&apos;$name&apos;,$zhixing);</span><br><span class="line">//实现</span><br><span class="line">function niming($name)&#123;</span><br><span class="line">    echo $name.&quot;的家乡是&quot;.$id;</span><br><span class="line">&#125;</span><br><span class="line">$b(&apos;dawang&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4>要注意的是这里直接get过去一个phpinfo()并无法实现，payload应该这样：</h4>
+
+<h5 id="one-1"><a href="#one-1" class="headerlink" title="one"></a>one</h5><p></p><h3>?id=2;}phpinfo();/*  </h3><br>}与函数里的{闭合，;结束这段输出，后边phpinfo();执行，并把后边代码注释掉了，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">function niming($name)&#123;    </span><br><span class="line">echo $name.编号 2;          </span><br><span class="line">&#125;phpinfo();/*     </span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p></p>
+<h5 id="two-1"><a href="#two-1" class="headerlink" title="two"></a>two</h5><p></p><h3>?id=2|phpinfo(); </h3> 该方法用到了管道符|，管道符使前边的2失效，执行管道符后边的.<p></p>
+<h2 id="array-map-callable-callback-array-array1-array-…"><a href="#array-map-callable-callback-array-array1-array-…" class="headerlink" title="array_map ( callable $callback , array $array1 [, array $… ] )"></a>array_map ( callable $callback , array $array1 [, array $… ] )</h2><p>函数将用户自定义函数作用到数组(array1）中的每个值上，并返回用户自定义函数作用后的带有新值的数组。</p><br><p>回调函数接受的参数数目应该和传递给 array_map() 函数的数组数目一致（一个函数对应一组数组，俩函数就对应两组数组……）</p>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"> //?a=assert&amp;b=phpinfo(); </span><br><span class="line">$a = $_GET[&apos;a&apos;]; </span><br><span class="line">$b = $_GET[&apos;b&apos;]; </span><br><span class="line">$array[0] = $b; </span><br><span class="line">$c = array_map($a,$array); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="call-user-func-call-user-func-array"><a href="#call-user-func-call-user-func-array" class="headerlink" title="call_user_func()/call_user_func_array()"></a>call_user_func()/call_user_func_array()</h2><h3 id="call-user-func-callable-callback-mixed-parameter-mixed-…"><a href="#call-user-func-callable-callback-mixed-parameter-mixed-…" class="headerlink" title="call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )"></a><h2>call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )</h2></h3><p>第一个参数 callback 是被调用的回调函数，其余参数是回调函数的参数。调用一个回调函数处理<code>字符串</code><br>传递的第一个参数必须为函数名，或者匿名函数，或者类的方法。<br>用有名函数时，只需传函数的名称。<br>用类的方法时，要传类的名称和方法名</p>
+<h4 id="传递函数名："><a href="#传递函数名：" class="headerlink" title="传递函数名："></a>传递函数名：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// ?a=phpinfo(); </span><br><span class="line">call_user_func(assert,$_GET[&apos;a&apos;]); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="调用匿名函数传参："><a href="#调用匿名函数传参：" class="headerlink" title="调用匿名函数传参："></a>调用匿名函数传参：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">//先增加后引用</span><br><span class="line">call_user_func(function($call)&#123;</span><br><span class="line">    echo ++$call,&apos;&lt;br/&gt;&apos;;</span><br><span class="line">    echo ++$call,&apos;&lt;br/&gt;&apos;;</span><br><span class="line">&#125;,1);//传给匿名函数的参数为···1···，执行的结果为2,3</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="通过类名、对象的方式回调"><a href="#通过类名、对象的方式回调" class="headerlink" title="通过类名、对象的方式回调:"></a>通过类名、对象的方式回调:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">/*</span><br><span class="line">  用call_user_func()来调用一个类里面的方法</span><br><span class="line"> */</span><br><span class="line"> </span><br><span class="line">class myclass&#123;</span><br><span class="line">	static function hello()&#123;</span><br><span class="line">		echo &quot;Da wang!\n&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">$classname = &quot;myclass&quot;;</span><br><span class="line">//通过数组键值的方式，对类名进行回调，回调类名里面的，hello方法</span><br><span class="line">call_user_func(array($classname,&apos;hello&apos;));</span><br><span class="line"> </span><br><span class="line">//通过类名直接调用静态方法</span><br><span class="line">call_user_func($classname .&apos;::hello&apos;); </span><br><span class="line"> </span><br><span class="line">//通过对象的方式回调</span><br><span class="line">$myobject = new myclass();</span><br><span class="line">call_user_func(array($myobject, &apos;hello&apos;));</span><br><span class="line"> </span><br><span class="line"> ?&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="call-user-func-array-callable-callback-array-param-arr"><a href="#call-user-func-array-callable-callback-array-param-arr" class="headerlink" title="call_user_func_array ( callable $callback , array $param_arr )"></a>call_user_func_array ( callable $callback , array $param_arr )</h3><p></p><p>把第一个参数作为回调函数（callback）调用，把参数数组作（param_arr）为回调函数的的参数传入。利用回调函数处理数组</p><br>函数的调用和作用和call_user_func函数基本一样，不同的是，call_user_func_array函数只能传递两个参数，第一个是回调函数名，或者匿名函数，或者类方法，第二个参数则是数组，从这里也可以看出，其实call_user_func_array函数与call_user_func不同的是，call_user_func_array是利用回调函数处理数组，而call_user_func则是利用回调函数处理字符串，他们两个的根本差别就在这里。<p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line"> //?a=phpinfo(); $array[0] = $_GET[&apos;a&apos;]; </span><br><span class="line"> call_user_func_array(&quot;assert&quot;,$array); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="array-filter"><a href="#array-filter" class="headerlink" title="array_filter()"></a>array_filter()</h2><p>用回调函数过滤数组中的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">$array[0] = $_GET[&apos;a&apos;]; </span><br><span class="line">array_filter($array,&apos;assert&apos;); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="usort"><a href="#usort" class="headerlink" title="usort()"></a>usort()</h2><p>使用用户自定义的比较函数对数组中的值进行排序,如果要排序的数组需要用一种不寻常的标准进行排序，那么应该使用此函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php // ?1[]=test&amp;1[]=phpinfo();&amp;2=assert </span><br><span class="line">usort(...$_GET); </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>只有在 php5.6 以上环境才可使用<br>详细解释 <a href="https://www.leavesongs.com/PHP/bypass-eval-length-restrict.html" target="_blank" rel="noopener">https://www.leavesongs.com/PHP/bypass-eval-length-restrict.html</a><br>然后…$_GET 是 php5.6 引入的新特性。将数组展开成参数的形式。</p>
+<p></p><h6>下面这种写法只在 php5.6 版本以下可以使用。 </h6><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">// ?1=1+1&amp;2=phpinfo(); </span><br><span class="line">usort($_GET,&apos;asse&apos;.&apos;rt&apos;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p></p>
+<h2 id="uasort"><a href="#uasort" class="headerlink" title="uasort()"></a>uasort()</h2><p>使用用户自定义的比较函数对数组中的值进行排序并保持索引关联</p>
+<h1 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h1><p>对于eval()函数，一定要保证用户不能轻易接触eval的参数，如果接触一定要使用单引号包裹可控代码，并在插入前进行addslashes.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$data = addslashes($data);</span><br><span class="line">eval(&quot;$data = deal(&apos;$data&apos;)&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>对于preg_replace()函数，要放弃使用/e修饰符，也可以使用preg_replace_callback()函数代替。如果一定要使用该函数，请保证第二个参数中，对于正则匹配出的对象用单引号包裹。</p>
+<h1 id="真题测试"><a href="#真题测试" class="headerlink" title="真题测试"></a>真题测试</h1><p>这是学长根据lctf改的一道题，做了做，当时思路是对的，只不过没有用对函数哈哈哈。</p>
+<p>话不多说 ，上题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$b = &apos;implode&apos;;</span><br><span class="line">call_user_func($_GET[f],$_POST);</span><br><span class="line">session_start();</span><br><span class="line">if(isset($_GET[name]))&#123;</span><br><span class="line">    $_SESSION[name] = $_GET[name];</span><br><span class="line">&#125;</span><br><span class="line">var_dump($_SESSION);</span><br><span class="line">$a = reset($_SESSION),&apos;welcome_to_the_lctf2018&apos;;</span><br><span class="line">call_user_func($b,$a);</span><br><span class="line">?&gt;</span><br><span class="line">array(0) &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>审完代码 发现有几个函数不熟，于是百度了解一下。</p>
+<p>我们可以控制的变量有$f ,$name,还可以post过去一个值。看到$b=’implode’了之后，就晓得该post过去什么了~嘿嘿那就是post过去一个新的$b，覆盖掉旧的$b。</p>
+<p>再根据call_user_func函数的特性，$b应该是一个函数，$a应是我们想执行的代码。</p>
+<p>好了好了不墨迹了，上手。</p>
+<p><img src="/2018/11/20/代码执行/1.png" alt=""></p>
+<p>解密，得flag。</p>
+<p>ps:</p>
+<p>extract函数使post过去的b=assert 成为$b=assert<br>assert函数 执行system</p>
+
+      
+    </div>
+    
+    
+    
+   
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Da Wang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2018/11/20/代码执行/" title="代码执行">http://yoursite.com/2018/11/20/代码执行/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/20/BugkuCTF/" rel="next" title="BugkuCTF">
+                <i class="fa fa-chevron-left"></i> BugkuCTF
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Da Wang" />
+            
+              <p class="site-author-name" itemprop="name">Da Wang</p>
+              <p class="site-description motion-element" itemprop="description">向来拿不起，也放不下。QQ:1807801293</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/page.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/tags.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#漏洞危害"><span class="nav-number">2.</span> <span class="nav-text">漏洞危害</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见代码执行的方式"><span class="nav-number">3.</span> <span class="nav-text">常见代码执行的方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">4.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#执行代码"><span class="nav-number">4.1.</span> <span class="nav-text">${}执行代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval"><span class="nav-number">4.2.</span> <span class="nav-text">eval()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assert"><span class="nav-number">4.3.</span> <span class="nav-text">assert()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assert-函数支持动态调用"><span class="nav-number">4.3.1.</span> <span class="nav-text">assert 函数支持动态调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#preg-replace"><span class="nav-number">4.4.</span> <span class="nav-text">preg_replace()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-function"><span class="nav-number">4.5.</span> <span class="nav-text">create_function()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数实现："><span class="nav-number">4.5.1.</span> <span class="nav-text">函数实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.5.1.1.</span> <span class="nav-text">可以看到两种方法实现的效果一样。一般来说 第二个参数就是代码执行的地方，将payload放在第二个参数，再调用该函数就可以执行payload啦。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例："><span class="nav-number">4.5.2.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#one"><span class="nav-number">4.5.2.1.</span> <span class="nav-text">one:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#two"><span class="nav-number">4.5.2.2.</span> <span class="nav-text">two:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">4.5.2.3.</span> <span class="nav-text">要注意的是这里直接get过去一个phpinfo()并无法实现，payload应该这样：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#one-1"><span class="nav-number">4.5.2.3.1.</span> <span class="nav-text">one</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.5.3.</span> <span class="nav-text">?id=2;}phpinfo();/*  </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#two-1"><span class="nav-number">4.5.3.0.1.</span> <span class="nav-text">two</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.5.4.</span> <span class="nav-text">?id=2|phpinfo(); </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-map-callable-callback-array-array1-array-…"><span class="nav-number">4.6.</span> <span class="nav-text">array_map ( callable $callback , array $array1 [, array $… ] )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-user-func-call-user-func-array"><span class="nav-number">4.7.</span> <span class="nav-text">call_user_func()/call_user_func_array()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#call-user-func-callable-callback-mixed-parameter-mixed-…"><span class="nav-number">4.7.1.</span> <span class="nav-text">call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">4.8.</span> <span class="nav-text">call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传递函数名："><span class="nav-number">4.8.0.1.</span> <span class="nav-text">传递函数名：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用匿名函数传参："><span class="nav-number">4.8.0.2.</span> <span class="nav-text">调用匿名函数传参：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过类名、对象的方式回调"><span class="nav-number">4.8.0.3.</span> <span class="nav-text">通过类名、对象的方式回调:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-user-func-array-callable-callback-array-param-arr"><span class="nav-number">4.8.1.</span> <span class="nav-text">call_user_func_array ( callable $callback , array $param_arr )</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-filter"><span class="nav-number">4.9.</span> <span class="nav-text">array_filter()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#usort"><span class="nav-number">4.10.</span> <span class="nav-text">usort()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#undefined"><span class="nav-number">4.10.0.0.0.1.</span> <span class="nav-text">下面这种写法只在 php5.6 版本以下可以使用。 </span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uasort"><span class="nav-number">4.11.</span> <span class="nav-text">uasort()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修复方案"><span class="nav-number">5.</span> <span class="nav-text">修复方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#真题测试"><span class="nav-number">6.</span> <span class="nav-text">真题测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=572574343&auto=1&height=66"></iframe>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Da Wang</span>
+
+  
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共5.0k字</span>
+</div>
+</div>
+
+
+
+  <div class="powered-by">QQ:1807801293</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" >
+     <i class="fa fa-user"></i>	
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
