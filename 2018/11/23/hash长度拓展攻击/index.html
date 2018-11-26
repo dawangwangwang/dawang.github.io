@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MD5、密码学," />
+  <meta name="keywords" content="密码学," />
 
 
 
@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击 长度扩展攻击（length extension">
-<meta name="keywords" content="MD5、密码学">
+<meta name="description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击">
+<meta name="keywords" content="密码学">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hash长度拓展攻击">
+<meta property="og:title" content="hash长度扩展攻击">
 <meta property="og:url" content="http://yoursite.com/2018/11/23/hash长度拓展攻击/index.html">
 <meta property="og:site_name" content="Da wang">
-<meta property="og:description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击 长度扩展攻击（length extension">
+<meta property="og:description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/hash长度拓展攻击/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/hash长度拓展攻击/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/23/hash长度拓展攻击/3.png">
-<meta property="og:updated_time" content="2018-11-23T13:03:04.025Z">
+<meta property="og:updated_time" content="2018-11-23T13:18:46.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hash长度拓展攻击">
-<meta name="twitter:description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击 长度扩展攻击（length extension">
+<meta name="twitter:title" content="hash长度扩展攻击">
+<meta name="twitter:description" content="如果一个应用程序是这样操作的： 1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名） 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值 这个时候，该应用程序就易受长度扩展攻击">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/23/hash长度拓展攻击/1.png">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>hash长度拓展攻击 | Da wang</title>
+  <title>hash长度扩展攻击 | Da wang</title>
   
 
 
@@ -256,7 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hash长度拓展攻击</h1>
+          <h1 class="post-title" itemprop="name headline">hash长度扩展攻击</h1>
         
 
         <div class="post-meta">
@@ -338,6 +338,7 @@
 2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文
 3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值
 </code></pre><p>这个时候，该应用程序就易受长度扩展攻击</p>
+<a id="more"></a>
 <p>长度扩展攻击（length extension attack），是指针对某些允许包含额外信息的加密散列函数的攻击手段。对于满足以下条件的散列函数，都可以作为攻击对象：</p>
 <pre><code>   ① 加密前将待加密的明文按一定规则填充到固定长度（例如512或1024比特）的倍数；
 
@@ -374,7 +375,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/11/23/hash长度拓展攻击/" title="hash长度拓展攻击">http://yoursite.com/2018/11/23/hash长度拓展攻击/</a>
+    <a href="http://yoursite.com/2018/11/23/hash长度拓展攻击/" title="hash长度扩展攻击">http://yoursite.com/2018/11/23/hash长度拓展攻击/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -389,7 +390,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MD5、密码学/" rel="tag"># MD5、密码学</a>
+            <a href="/tags/密码学/" rel="tag"># 密码学</a>
           
         </div>
       
@@ -402,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/21/Jarvis-OJ-Web题部分记录/" rel="next" title="Jarvis OJ  Web题部分记录">
-                <i class="fa fa-chevron-left"></i> Jarvis OJ  Web题部分记录
+              <a href="/2018/11/21/LCTF签到题/" rel="next" title="LCTF签到题">
+                <i class="fa fa-chevron-left"></i> LCTF签到题
               </a>
             
           </div>
@@ -411,6 +412,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/25/NCTF2018/" rel="prev" title="NCTF2018">
+                NCTF2018 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -491,7 +496,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -513,7 +518,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/tags.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -579,7 +584,7 @@
   
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.2k字</span>
+  <span class="post-count">博客全站共6.7k字</span>
 </div>
 </div>
 
