@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。 如果一个应用程序是这样操作的： 准备了一个密文和一些数据构造成一个字符串里，并且">
+<meta name="description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hash长度扩展攻击利用工具——HashPump">
 <meta property="og:url" content="http://yoursite.com/2018/11/24/hash长度扩展攻击利用工具——HashPump/index.html">
 <meta property="og:site_name" content="Da wang">
-<meta property="og:description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。 如果一个应用程序是这样操作的： 准备了一个密文和一些数据构造成一个字符串里，并且">
+<meta property="og:description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-26T11:58:06.885Z">
+<meta property="og:updated_time" content="2018-12-05T14:48:55.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hash长度扩展攻击利用工具——HashPump">
-<meta name="twitter:description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。 如果一个应用程序是这样操作的： 准备了一个密文和一些数据构造成一个字符串里，并且">
+<meta name="twitter:description" content="哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。">
 
 
 
@@ -329,8 +329,7 @@
       
 
       
-        <p>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。</p>
-<p>如果一个应用程序是这样操作的：</p>
+        <p>哈希长度扩展攻击(hash length extension attacks)是指针对某些允许包含额外信息的加密散列函数的攻击手段。该攻击适用于在消息与密钥的长度已知的情形下，所有采取了 H(密钥 ∥ 消息) 此类构造的散列函数。MD5和SHA-1等基于Merkle–Damgård构造的算法均对此类攻击显示出脆弱性。<br><a id="more"></a><br>如果一个应用程序是这样操作的：</p>
 <p>准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）<br>让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文<br>服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值</p>
 <p>这个时候，该应用程序就易受长度扩展攻击，攻击者可以构造出{secret || data || attacker_controlled_data}的哈希值。</p>
 <h1 id="HashPump安装"><a href="#HashPump安装" class="headerlink" title="HashPump安装"></a>HashPump安装</h1><p>HashPump是一个借助于OpenSSL实现了针对多种散列函数的攻击的工具，支持针对MD5、CRC32、SHA1、SHA256和SHA512等长度扩展攻击。而MD2、SHA224和SHA384算法不受此攻击的影响，因其部分避免了对状态变量的输出，并不输出全部的状态变量。</p>
