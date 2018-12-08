@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://dawangwangwang.github.io/2018/11/25/NCTF2018/表.png">
 <meta property="og:image" content="http://dawangwangwang.github.io/2018/11/25/NCTF2018/字段名.png">
 <meta property="og:image" content="http://dawangwangwang.github.io/2018/11/25/NCTF2018/得flag.png">
-<meta property="og:updated_time" content="2018-12-08T02:44:33.424Z">
+<meta property="og:updated_time" content="2018-12-08T02:50:05.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NCTF2018">
 <meta name="twitter:description" content="签到题打开长这样……">
@@ -362,7 +362,7 @@
 <p><strong>nctf{this_1s_paocao_sqllllll}</strong></p>
 <p><img src="/2018/11/25/NCTF2018/得flag.png" alt="">  </p>
 <h1 id="Go-Lakers"><a href="#Go-Lakers" class="headerlink" title="Go Lakers"></a>Go Lakers</h1><p>这题比赛赛时没有做上，归结到底是我们仔细读代码（自罚一杯）。</p>
-<figure class="highlight plain"><figcaption><span>post me viewsource -->```。  </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](NCTF2018/2.png)</span><br><span class="line"></span><br><span class="line">用bp看一下返回包，往下翻，使劲翻。  </span><br><span class="line"></span><br><span class="line">![](NCTF2018/1.png)  </span><br><span class="line"></span><br><span class="line">意思是让post过去viewsource。  </span><br><span class="line"></span><br><span class="line">![](NCTF2018/3.png)   </span><br><span class="line">于是得到代码：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>post me viewsource -->。 </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">``` </span><br><span class="line"></span><br><span class="line">![](NCTF2018/2.png)</span><br><span class="line"></span><br><span class="line">用bp看一下返回包，往下翻，使劲翻。  </span><br><span class="line"></span><br><span class="line">![](NCTF2018/1.png)  </span><br><span class="line"></span><br><span class="line">意思是让post过去viewsource。  </span><br><span class="line"></span><br><span class="line">![](NCTF2018/3.png)   </span><br><span class="line">于是得到代码：</span><br></pre></td></tr></table></figure>
 <p>&lt;?php<br>error_reporting(0);<br>include ‘getip.php’;<br>ini_set(‘open_basedir’,’.’);<br>if(isset($_POST[‘viewsource’])){<br>    highlight_file(<strong>FILE</strong>);<br>    die();<br>} </p>
 <p>mt_srand(mktime()+$seed); </p>
 <p>function de_code($value){<br>    $value = base64_decode($value);<br>    $result = ‘’;<br>    for($i=0;$i&lt;strlen($value);$i++){<br>        $result .= chr(ord($value[$i])-$i*2);<br>    }<br>    return $result;<br>} </p>
