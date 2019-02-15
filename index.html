@@ -146,6 +146,55 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2019/02/16/关于抓肉鸡/">
+                关于抓肉鸡
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-02-16</span>
+            
+            
+                <a href="https://dawangwangwang.github.io/2019/02/16/关于抓肉鸡/#disqus_thread" class="comments article-comment-link">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/随笔/">随笔</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>‘抓鸡’抓的是可以背黑客控制的计算机，”肉鸡”可以是各种系统,如2003,2000,2008,xp,win7,win8,linux,unix等；更可以是一家公司\企业\学校甚至是政府军队的服务器。一旦成为了肉鸡之后黑客们就可以像操作自己的电脑那样来操作它而不被对方所发觉。<br>黑客们经常用80,8080,135,445,1433,1521,3306,3389 ,4899,5900之类的端口来抓鸡。现在许多人把有WEBSHELL 权限的机器也叫肉鸡。<br>黑客们利用工具就能抓到肉鸡。<br><a href="https://www.cnblogs.com/heikeboke/p/8043415.html" target="_blank" rel="noopener">https://www.cnblogs.com/heikeboke/p/8043415.html</a><br>这篇文章解释了3389“肉鸡”和“4489肉鸡”。  </p>
+<p>不过抓鸡是犯法的奥，如果是内部测试玩玩的话，还是可以的。</p>
+<p>抓鸡，常见的就是利用系统弱口令进行暴力破解，从而拿到系统权限的一个过程。新手就可以玩，不需要高深技术水平。</p>
+<p>通过扫描多个网段开放的下面这些端口，使用暴力破解软件进行破解:  </p>
+<ol>
+<li>远程桌面服务，默认3389端口</li>
+<li>MYSQL数据库，默认3306端口</li>
+<li>MSSQL数据库，默认1433端口</li>
+<li>FTP服务，默认端口21</li>
+<li>SSH服务，默认端口22<br>and so on………………</li>
+</ol>
+<p>首先呢要扫描ip，例如你想扫开启3306端口的主机，然后会扫到一批开启了3306端口的主机IP地址。扫ip的工具很多。网上都可以下载到。</p>
+<p><img src="/2019/02/16/关于抓肉鸡/ip扫描.png" alt=""></p>
+<p>然后将ip导入爆破工具里，导入用户字典和密码字典，从而成功登陆远程主机。DUbrute工具也是其一，这种爆破工具很多，功能也很多，掌握几个玩玩就可以了。</p>
+<p><img src="/2019/02/16/关于抓肉鸡/爆破.png" alt=""></p>
+<p>获得权限以后可以上传自己制作的木马或者其他操作。</p>
+<p>这方面我有教程视频，但是琢磨了一点觉得还是不太感兴趣，就先了解到这。有需要视频的可以联系我。QQ:1807801293</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2019/02/11/代码审计/">
                 代码审计
             </a>
@@ -450,44 +499,6 @@ HTML 被设计用来显示数据</code><br></p>
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2018/11/21/LCTF签到题/">
-                LCTF签到题
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2018-11-21</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2018/11/21/LCTF签到题/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/web/">web</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>emmmm……  菜的呀……   唉……</p>
-<p>给了个图片 还给了提示</p>
-<p><img src="/2018/11/21/LCTF签到题/1.jpg" alt="LCTF签到题"></p>
-<p>emmm肯定还有别的方法……<br>我是解出来了表达式的值得-2。</p>
-<p>然后写了一个小小得脚本，得到flag。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">#-*- coding:utf-8 -*-</span><br><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line">md5 = hashlib.md5()</span><br><span class="line">md5.update(&apos;-2&apos;.encode(&apos;utf-8&apos;))</span><br><span class="line">res = md5.hexdigest()</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure></p>
-<p>LCTF{5d7b9adcbe1c629ec722529dd12e5129}</p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -530,6 +541,10 @@ HTML 被设计用来显示数据</code><br></p>
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/02/16/关于抓肉鸡/">关于抓肉鸡</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/02/11/代码审计/">代码审计</a>
             </li>
             
@@ -539,10 +554,6 @@ HTML 被设计用来显示数据</code><br></p>
             
             <li>
                 <a class="footer-post" href="/2019/02/07/HEXO报错-TypeError-Cannot-read-property-replace-of-undefined/">HEXO报错:TypeError: Cannot </a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2018/12/05/文件泄露/">文件泄露</a>
             </li>
             
         </ul>
@@ -557,6 +568,10 @@ HTML 被设计用来显示数据</code><br></p>
         
         <li>
             <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
         </li>
         
         <li>
