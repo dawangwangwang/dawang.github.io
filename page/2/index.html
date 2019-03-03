@@ -146,6 +146,43 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2018/11/24/hash长度拓展攻击/">
+                hash长度扩展攻击
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018-11-24</span>
+            
+            
+                <a href="https://dawangwangwang.github.io/2018/11/24/hash长度拓展攻击/#disqus_thread" class="comments article-comment-link">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/web/">web</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>如果一个应用程序是这样操作的：</p>
+<pre><code>1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）
+2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文
+3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值
+</code></pre><p>这个时候，该应用程序就易受长度扩展攻击</p>
+        </div>
+        <a href="/2018/11/24/hash长度拓展攻击/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2018/11/22/Jarvis-OJ-Web题部分记录 /">
                 Jarvis OJ  Web题部分记录
             </a>
@@ -414,6 +451,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/03/04/同源策略/">同源策略</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/03/04/XSS漏洞/">XSS漏洞</a>
             </li>
             
@@ -423,10 +464,6 @@
             
             <li>
                 <a class="footer-post" href="/2019/02/11/代码审计/">代码审计</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/02/07/CSRF漏洞/">CSRF漏洞</a>
             </li>
             
         </ul>

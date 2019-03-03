@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="分类"/>
+        <meta property="og:title" content="同源策略"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>分类 - Yogurt</title>
+    <title>同源策略 - Yogurt</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -129,38 +129,87 @@
     <div class="col-sm-12">
 
         <!--Title and Logo-->
-        
-            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1317457541&auto=1&height=66"></iframe>
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1317457541&auto=1&height=66"></iframe>
 <header>
     <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-folder-open" aria-hidden="true"></i></a>
-        
-            <h1 id="main-title" class="title">分类</h1>
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
     </div>
 </header>
-            <section class="main archive-container">
-                
-                        <div class="archive-post">
-    <a href="/categories/web/">
-        web
-    </a>
-</div>
-                
-                        <div class="archive-post">
-    <a href="/categories/报错/">
-        报错
-    </a>
-</div>
-                
-                        <div class="archive-post">
-    <a href="/categories/随笔/">
-        随笔
-    </a>
-</div>
-                
-            </section>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/04/同源策略/">
+                同源策略
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-04</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/web/">web</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
         
+
+        <!-- Post Content -->
+        <h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h1><p>同源策略是一种约定，是浏览器最核心最基本的安全功能。如果缺少同源策略，浏览器的正常功能可能会被影响。可以说web是建立在同源策略的基础之上的。</p>
+<p>对于客户端Web安全的学习与研究，深入理解同源策略很重要。浏览器只是针对同源策略的一种实现。</p>
+<p>浏览器的同源策略限制了来自不同源的document或脚本，对当前的document读取或设置某些属性。<br><a id="more"></a></p>
+<h1 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h1><p>如果没有同源策略，可能a.com的一段js脚本，在b.com未加载此脚本时，也可以随意涂改b.com的页面，所以为了不让浏览器的页面行为发生混乱，浏览器提出Origin（源）这一概念，来自不同源的对象无法互相干扰。举个实例就是如果不存在同源策略，等你登陆你的网站时又打开了另一个带有恶意js脚本的页面，那么这个恶意脚本就可以获取你的账号密码cookie，也就没隐私 了。</p>
+<h1 id="判断同源"><a href="#判断同源" class="headerlink" title="判断同源"></a>判断同源</h1><p>通常我们认为页面之间的端口，协议，主机名一样的话，那么就是同源的。  </p>
+<p>以<a href="http://abc.com/为例" target="_blank" rel="noopener">http://abc.com/为例</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url	                  是否跨域	 原因</span><br><span class="line">http://abc.com/other	 否	 协议、端口、主机相同</span><br><span class="line">https://abc.com	         是	 不同的协议(https)</span><br><span class="line">http://abc.com:81	     是	 端口不用（81）</span><br><span class="line">http://news.abc.com/	 是	 不同的主机（news）</span><br><span class="line">http://www.abc.com/	     是	 域名不用，顶级域名与www子域名不是一个概念</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>对于脚本来说，存放脚本的域不重要，脚本的域。<br>例如在a.com的代码：<br><code>&lt;script src=http://b.com/b.js&gt;&lt;/script&gt;</code><br><strong>b.js的源是a.com</strong>  </p>
+</blockquote>
+<p><img src="/2019/03/04/同源策略/tongyuan.png" alt=""></p>
+<p>在浏览器中阿，<code>&lt;script&gt;、&lt;img&gt;、&lt;iframe&gt;、&lt;link&gt;</code>等标签都可以跨域加载资源，不受同源策略的影响。虽然可以通过src属性加载资源，但是浏览器限制了js的权限，使它不能读，写返回的内容。但是XMLHttpResquest可以访问来自同源对象的内容。胆XMLHttpResquest受到同源策略的约束，不能跨域访问资源。如果XMLHttpResquest不被限制，会导致一些敏感数据泄露，比如CSRF的token等。但是应日益复杂的业务要求，现在可以通过设置HTTP Header :Access-Control-Allow-Origin来实现XMLHttpRequest的跨域访 问。</p>
+<blockquote>
+<p>浏览器的同源策略是浏览器安全的基础。</p>
+</blockquote>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/浏览器安全/">#浏览器安全</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
     </div>
 </div>
 
