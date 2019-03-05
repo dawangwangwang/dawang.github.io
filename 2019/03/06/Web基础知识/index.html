@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="hash长度扩展攻击"/>
+        <meta property="og:title" content="Web基础知识"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>hash长度扩展攻击 - Yogurt</title>
+    <title>Web基础知识 - Yogurt</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -143,13 +143,13 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2018/11/24/hash长度拓展攻击/">
-                hash长度扩展攻击
+            <a href="/2019/03/06/Web基础知识/">
+                Web基础知识
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2018-11-24</span>
+                <span class="date">2019-03-06</span>
             
             
                 <a href="#disqus_thread" class="comments">Comments</a>
@@ -168,28 +168,57 @@
         
 
         <!-- Post Content -->
-        <p>如果一个应用程序是这样操作的：</p>
-<pre><code>1.准备了一个密文和一些数据构造成一个字符串里，并且使用了MD5之类的哈希函数生成了一个哈希值（也就是所谓的signature/签名）
-2.让攻击者可以提交数据以及哈希值，虽然攻击者不知道密文
-3.服务器把提交的数据跟密文构造成字符串，并经过哈希后判断是否等同于提交上来的哈希值
-</code></pre><p>这个时候，该应用程序就易受长度扩展攻击</p>
-<a id="more"></a>
-<p>长度扩展攻击（length extension attack），是指针对某些允许包含额外信息的加密散列函数的攻击手段。对于满足以下条件的散列函数，都可以作为攻击对象：</p>
-<pre><code>   ① 加密前将待加密的明文按一定规则填充到固定长度（例如512或1024比特）的倍数；
-
-② 按照该固定长度，将明文分块加密，并用前一个块的加密结果，作为下一块加密的初始向量（Initial Vector）。
-</code></pre><p>满足上述要求的散列函数称为<strong>Merkle–Damgård</strong>散列函数（Merkle–Damgård hash function），下列散列函数都属于Merkle–Damgård散列函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MD4</span><br><span class="line">MD5</span><br><span class="line">RIPEMD-160</span><br><span class="line">SHA-0</span><br><span class="line">SHA-1</span><br><span class="line">SHA-256</span><br><span class="line">SHA-512</span><br><span class="line">WHIRLPOOL</span><br></pre></td></tr></table></figure></p>
-<p>对于H(salt+data)形式的加密，在以下条件满足的情况下，攻击者可以通过该方法获取H(salt+一定规则构造的data)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 知道密文的加密算法且该算法满足Merkle–Damgård散列函数特征；</span><br><span class="line">2. 不知道salt，但知道salt的长度，并可控制data的值；</span><br><span class="line">3. 可以得到一个H(salt+data)的值。</span><br></pre></td></tr></table></figure></p>
-<p>其实我们并不需要知道MD5具体的算法是怎么回事，只需要知道它的实现是满足上面所说的Merkle–Damgård散列函数的两个条件的。</p>
-<p></p><h4>填充</h4><br>拿到明文后，MD5现将明文转为二进制文件，先将其字节长度整除64，取得余数。如果该余数正好等于56，那么就在该字符串最后添加上8个字节的长度描述符（具体用bit表示）。如果不等于56，就先对字符串进行长度填充，填充时第一个字节为hex(80)[即1]，其他字节均用hex(00)填充，填充至余数为56后，同样增加8个字节的长度描述符（该长度描述符为需要被hash的字符串的长度，不是填充之后整个字符串的长度）。以上过程，称之为补位。<br>长度是使用大端序（big Endian）来存储，即低字节放在高地址位上。MD5中存储的都是小端方式！举个例子：假如我们这一块值为0x12345678<br>那么在MD5运算时候存储的顺序是 0x78563412<br>这也是之所以后8字节为长度，而第1字节先有数据的原因 。<p></p>
-<p>MD5不管怎么加密，每一块加密得到的密文作为下一次加密的初始向量IV，这一点很关键！</p>
-<p>比如加密的明文是admin，其二进制文件以16进制表示是0x61646d696e，长度是40比特（5字节），那么需要补充408比特（51字节）的填充符，填充内容第一位是1，其余全部是0。16进制表示是0x800000000000000000000000000000000000000000000000000。然后再添加8个字节的长度标识，admin长度为40比特，16进制是0x28，这个28要放在高位，就是0x280000000000000。结果如下所示：</p>
-<p><img src="/2018/11/24/hash长度拓展攻击/1.png" alt=""></p>
-<h2 id="分块运算"><a href="#分块运算" class="headerlink" title="分块运算"></a>分块运算</h2><p>填充完毕后，函数就将填充后的明文以512比特的长度分块，进行运算。在运算中会用到四个初始向量（MD5中称作链变量，Chaining Variable），分别是A=0x67452301，B=0xefcdab89，C=0x98badcfe，D=0x10325476。经过一系列复杂的数学运算，函数会得到第一块的MD5值，然后将该MD5值分成四块，以大端序形成新的链变量，投入到第二块的运算，形成新的MD5值……以此类推，直到算出最后一块的MD5值，就是整个数据块的MD5值。</p>
-<p>例如加密的明文是adminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadminadmin，首先根据算法填充后，分成两块进行运算，第一块是adminadminadminadminadminadminadminadminadminadminadminadminadmi，其MD5码是e7d6ca05773d038378f5e2674850be25，分成四块并以大端序存储，则A=0x05cad6e7，B=0x83033d77，C=0x76e2f578，D=0x25be5048。将这四个变量作为链变量投入运算，再将第二部分加密，得到最终的MD5值是9ea2d490481dbcdadf61e7e404b99585。</p>
-<p>借用大佬的图解。</p>
-<p><img src="/2018/11/24/hash长度拓展攻击/2.png" alt=""></p>
-<p><img src="/2018/11/24/hash长度拓展攻击/3.png" alt=""></p>
+        <h1 id="web简介"><a href="#web简介" class="headerlink" title="web简介"></a>web简介</h1><blockquote>
+<p>本文只记录部分web知识，只为记录一下。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="web介绍"><a href="#web介绍" class="headerlink" title="web介绍"></a>web介绍</h2><h3 id="什么是web？"><a href="#什么是web？" class="headerlink" title="什么是web？"></a>什么是web？</h3><p>万维网<br>World Wide Web<br>由许多互相链接的超文本组成的<br>非常普遍的互联网应用<br>每天都有数以亿万计的Web资源传输：图片 html 音频 视频 快速传到浏览器上<br>我们平时通过浏览器上网都属于web，生活在web之中</p>
+<h3 id="web发展史"><a href="#web发展史" class="headerlink" title="web发展史"></a>web发展史</h3><blockquote>
+<p><strong>web1.0</strong>   初期<br>个人网站、门户网站   如<a href="http://www.163.com" target="_blank" rel="noopener">www.163.com</a> 提供信息给用户  但是不能添加修改</p>
+</blockquote>
+<p><img src="/2019/03/06/Web基础知识/1.png" alt=""></p>
+<blockquote>
+<p><strong>web2.0</strong><br>微博、博客  如<a href="http://www.lofter.com" target="_blank" rel="noopener">www.lofter.com</a>  <a href="http://www.weibo.com" target="_blank" rel="noopener">www.weibo.com</a>   可以人与人互动了</p>
+</blockquote>
+<p><img src="/2019/03/06/Web基础知识/2.png" alt=""></p>
+<p><strong>不同web时代  web安全问题也在变 web1.0时代主要针对web服务器，2.0时代逐渐针对web用户，且以XSS，CSRF为主</strong> </p>
+<p><img src="/2019/03/06/Web基础知识/3.png" alt=""></p>
+<h3 id="web流程"><a href="#web流程" class="headerlink" title="web流程"></a>web流程</h3><p><img src="/2019/03/06/Web基础知识/4.png" alt="">  </p>
+<p><img src="/2019/03/06/Web基础知识/5.png" alt=""></p>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><p>浏览器得到域名后，需要向DNS服务器发出DNS请求去解析域名，DNS服务器接到域名后返回ip地址。这时浏览器可以找到web服务器。  </p>
+<p>通过http协议找web服务器，向服务器发送http请求，服务器处理完后会返回一个http<br>响应。</p>
+<h2 id="web通信"><a href="#web通信" class="headerlink" title="web通信"></a>web通信</h2><h3 id="URL是什么？"><a href="#URL是什么？" class="headerlink" title="URL是什么？"></a>URL是什么？</h3><ul>
+<li>统一资源定位符  </li>
+<li>Uniform Resource Locator  </li>
+<li>支持多种协议：HTTP、FTP……<h3 id="URL有什么用？"><a href="#URL有什么用？" class="headerlink" title="URL有什么用？"></a>URL有什么用？</h3><strong>定位服务器的资源</strong>  </li>
+</ul>
+<p>如何定位网站资源？<br>url就相当于网购的时候的收货地址，地址有一定的格式：省份/区市/道路/门牌号。URL同样有一定的格式。</p>
+<p><img src="/2019/03/06/Web基础知识/6.png" alt=""><br><img src="/2019/03/06/Web基础知识/7.png" alt=""></p>
+<h3 id="什么是HTTP？"><a href="#什么是HTTP？" class="headerlink" title="什么是HTTP？"></a>什么是HTTP？</h3><ul>
+<li>超文本传输协议</li>
+<li>Hyper Text Transfer Protocol</li>
+<li>web通信时使用的协议</li>
+<li>web的基础</li>
+<li>互联网应用最广的协议<h3 id="HTTP流程，请求，响应，报文"><a href="#HTTP流程，请求，响应，报文" class="headerlink" title="HTTP流程，请求，响应，报文"></a>HTTP流程，请求，响应，报文</h3><img src="/2019/03/06/Web基础知识/8.png" alt=""><h3 id="HTTP到底报文长啥样？HTTP报文结构"><a href="#HTTP到底报文长啥样？HTTP报文结构" class="headerlink" title="HTTP到底报文长啥样？HTTP报文结构"></a>HTTP到底报文长啥样？HTTP报文结构</h3>要注意头部和数据体直接有一个空行的。  </li>
+</ul>
+<p><img src="/2019/03/06/Web基础知识/9.png" alt=""></p>
+<h3 id="HTTP的其他请求方式："><a href="#HTTP的其他请求方式：" class="headerlink" title="HTTP的其他请求方式："></a>HTTP的其他请求方式：</h3><ul>
+<li>HEAD  与GET请求类似，不同在与服务器只返回HTTP头部信息，没有页面内容</li>
+<li>PUT  上传指定URL的描述</li>
+<li>DELETE 删除指定资源</li>
+<li>OPTIONS 返回服务器支持的HTTP方法</li>
+<li>Referer 也很重要，告诉服务器我们从哪里来 也就是 告知服务器该请求的来源  还可以用来判断来源合法性：防止盗链，防止CSRF漏洞<h1 id="web开发基础知识"><a href="#web开发基础知识" class="headerlink" title="web开发基础知识"></a>web开发基础知识</h1><h2 id="前端开发基础—HTML、JavaScript"><a href="#前端开发基础—HTML、JavaScript" class="headerlink" title="前端开发基础—HTML、JavaScript"></a>前端开发基础—HTML、JavaScript</h2>html太过基础，不细写了  <h3 id="通常我们见到的js都是掺在html种的，那么哪些地方可以运行js？"><a href="#通常我们见到的js都是掺在html种的，那么哪些地方可以运行js？" class="headerlink" title="通常我们见到的js都是掺在html种的，那么哪些地方可以运行js？"></a>通常我们见到的js都是掺在html种的，那么哪些地方可以运行js？</h3></li>
+</ul>
+<p>在HTML的<script></script>、html的事件属性种，如onclick，浏览器的js控制台</p>
+<h3 id="JavaScript-BOM-（操作浏览器）"><a href="#JavaScript-BOM-（操作浏览器）" class="headerlink" title="JavaScript BOM （操作浏览器）"></a>JavaScript BOM （操作浏览器）</h3><ul>
+<li>在控制台输入document.cookie可以获得cookie，document.cookie=“<em>**</em>”可以修改cookie</li>
+<li>在控制台输入(window.)screen，获取浏览器屏幕信息</li>
+<li>在控制台输入(window.)location，获取/控制用户页面URL</li>
+<li>在控制台输入(window.)navigator 获取访问者浏览器信息</li>
+<li>在控制台输入window open,close  可以操作浏览器窗口  例如：window.open(“<a href="http://www.baidu.com&quot;" target="_blank" rel="noopener">http://www.baidu.com&quot;</a>)<h2 id="web服务端环境"><a href="#web服务端环境" class="headerlink" title="web服务端环境"></a>web服务端环境</h2><h3 id="web静态页面时期"><a href="#web静态页面时期" class="headerlink" title="web静态页面时期"></a>web静态页面时期</h3>浏览器请求html，web服务端去相应的服务器找到html ，发送给浏览器<h3 id="web动态页面时期"><a href="#web动态页面时期" class="headerlink" title="web动态页面时期"></a>web动态页面时期</h3>不同的是，动态页面由脚本驱动的，脚本文件（例如php文件）通过服务端的语言解释器的解析执行，最后解析成html文件，其他流程都跟静态一样了。在浏览器上时，不是html文件，而是后缀名为php的文件了。</li>
+</ul>
+<p><img src="/2019/03/06/Web基础知识/10.png" alt=""></p>
+<h2 id="目前流行的架构"><a href="#目前流行的架构" class="headerlink" title="目前流行的架构"></a>目前流行的架构</h2><p><img src="/2019/03/06/Web基础知识/11.png" alt=""></p>
+<h2 id="后端开发基础"><a href="#后端开发基础" class="headerlink" title="后端开发基础"></a>后端开发基础</h2><p>SQL<br>PHP</p>
 
     </div>
 
@@ -198,7 +227,7 @@
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/密码学/">#密码学</a>
+            <a href="/tags/理论知识/">#理论知识</a>
         </div>
     
 
