@@ -225,7 +225,7 @@
 <blockquote>
 <p>通常当用户输入某个参数的全部或其中一部分，原封不动的在源代码里出现时，我们就 可以认为这个参数存在XSS漏洞</p>
 </blockquote>
-</script></p>
+<h1 id="常见XSS测试代码"><a href="#常见XSS测试代码" class="headerlink" title="常见XSS测试代码"></a>常见XSS测试代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- &lt;script&gt;alert(&apos;test&apos;);&lt;script&gt;</span><br><span class="line">- &lt;svg onload=alert(&apos;test&apos;)&gt;</span><br><span class="line">- &lt;img src=&quot;javas&amp;#99;ript:alert(&apos;test&apos;)&quot;&gt;</span><br><span class="line">- &lt;IMG SRC=# onerror=alert(&apos;test&apos;)&gt;</span><br><span class="line">- &lt;BODY ONLOAD=alert(&apos;test&apos;)&gt;</span><br><span class="line">- &lt;DIV STYLE=&quot;width:expression(alert(&apos;test&apos;));&quot;&gt;</span><br><span class="line">- &lt;BASE HREF=&quot;javascript:alert(&apos;test&apos;);//&quot;&gt;</span><br></pre></td></tr></table></figure></script></p>
     </div>
 
     
@@ -277,6 +277,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/03/09/逻辑漏洞/">逻辑漏洞</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/03/06/Web基础知识/">Web基础知识</a>
             </li>
             
@@ -286,10 +290,6 @@
             
             <li>
                 <a class="footer-post" href="/2019/03/04/XSS漏洞/">XSS漏洞</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/02/16/关于抓肉鸡/">关于抓肉鸡</a>
             </li>
             
         </ul>
