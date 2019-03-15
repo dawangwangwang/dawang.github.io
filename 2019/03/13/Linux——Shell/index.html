@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Linux——Shell"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Linux——Shell - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/13/Linux——Shell/">
+                Linux——Shell
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-13</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/Linux/">Linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="初识shell"><a href="#初识shell" class="headerlink" title="初识shell"></a>初识shell</h1><p>shell是系统的用户界面，提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。实际上shell是一个命令解释器，它解释由用户输入的命令并且把它们送到内核。不仅如此，shell有自己的编程语言用于对命令的编辑，它允许用户编写由shell命令组成的程序。shell编程语言具有普遍编程语言的很多特点，比如它也有循环结构和分支控制结构等，用这种编程语言编写的shell程序与其他应用程序具有同样的效果。  </p>
+<a id="more"></a>
+<p><strong>我们可以使用shell实现对Linux系统的大部分管理例如：</strong>  </p>
+<ul>
+<li>文件管理</li>
+<li>用户管理</li>
+<li>权限管理</li>
+<li>磁盘管理</li>
+<li>软件管理</li>
+<li>网络管理</li>
+<li>……  </li>
+</ul>
+<p><strong>使用shell的两种方式：</strong><br>输入命令   效率低  适合少量的工作  </p>
+<p>shell script  效率高  适合完成复杂，重复性的工作  </p>
+<h1 id="bash-shell-提示符"><a href="#bash-shell-提示符" class="headerlink" title="bash shell 提示符"></a>bash shell 提示符</h1><blockquote>
+<p>bash是众多shell的一种</p>
+</blockquote>
+<p>[root@localhost ~]# date<br>2019年 03月 12日 星期二 03:18:44 CST<br>[root@localhost ~]# whoami<br>root<br>[root@localhost ~]# useradd yogurt<br>[root@localhost ~]# passwd yogurt<br>新的 密码：<br>重新输入新的 密码：<br>passwd：<br>有的身份验证令牌已经成功更新。  </p>
+<h1 id="shell语法"><a href="#shell语法" class="headerlink" title="shell语法"></a>shell语法</h1><blockquote>
+<p>命令   选项   参数  （要有空格）  </p>
+</blockquote>
+<p>[root@localhost ~]# ls<br>[root@localhost ~]# ls -a<br>[root@localhost ~]# ls -a /home<br>命令：整条shell命令的主体<br>选项：会影响会微调命令的行为    //通常以-，–<br>参数：命令作用的对象  </p>
+<h1 id="bash基本特性"><a href="#bash基本特性" class="headerlink" title="bash基本特性"></a>bash基本特性</h1><p>==1.自动补全<tab>== </tab></p>
+<p> ls  或 cat什么文件  只需打出前几个字符  即可补全文件名字</p>
+<p> ls /etc/sysconfig/network-script/       （网卡配置文件）<br>==2.快捷键==</p>
+<p> ^C   终止前台运行的程序    //ping  10.18.40.100<br>  ^D   退出  等价exit<br>  ^L    清屏<br>^A    光标移动到命令行的最前端     //编辑命令<br>^E     光标移动到命令行的后端       //编辑命令<br>^U    删除光标前所有字符               //编辑命令<br>^K    删除光标后所有字符               //编辑命令<br> ^R    搜索历史使命，利用关键词</p>
+<p>Alt+.引用上一个命令的最后一个参数，等价于!$<br>ESC.引用上一个命令的最后一个参数，等价于!$  </p>
+<p>例如我上一个命令是：<br>ls /etc/sysconfig/network-script/ifcfg-eth0<br>那么当我：<br>    <code>cat ESC</code></p>
+<p>就相当于cat  /etc/sysconfig/network-script/ifcfg-eth0</p>
+<p>==3.历史命令==<br>[root@localhost ~]# history<br>光标上下键  </p>
+<p>^R                  //搜索历史命令（输入一段某条命令的关键字：必须是连续的）  </p>
+<p>!220            //执行历史命令中第220条命令  </p>
+<p>!字符串        //搜索历史命令中最近一个以xx字符开头的命令，例如!ser  </p>
+<p>!$            //引用上一个命令的最后一个参数</p>
+<p>例：<br>[root@localhost etc]# cat passwd  </p>
+<p>[root@localhost etc]# cat !$<br>cat passwd  </p>
+<p>[root@localhost etc]# cat !pa<br>==4.命令别名==<br>[root@localhost etc]# alias dawang=’ls’     //建立别名（临时的，仅在当前shell生效）  </p>
+<p>[root@localhost etc]# unalias dawang       //取消dawang这个别名  </p>
+<p>[root@localhost etc]# alias               //查看系统当前的别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alias cp=&apos;cp -i&apos;</span><br><span class="line">alias dawang=&apos;ls&apos;</span><br><span class="line">alias l.=&apos;ls -d .* --color=auto&apos;</span><br><span class="line">alias ll=&apos;ls -l --color=auto&apos;</span><br><span class="line">alias ls=&apos;ls --color=auto&apos;</span><br><span class="line">alias mv=&apos;mv -i&apos;</span><br><span class="line">alias rm=&apos;rm -i&apos;</span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost etc]# type -a ls              //查看命令类型<br>ls is aliased to `ls –color=auto’<br>ls is /bin/ls</p>
+<p>[root@localhost etc]# ls            //别名优先<br>[root@localhost etc]# \ls            //跳过别名</p>
+<p>关于别名还有一点：   </p>
+<p>[root@localhost html]# cp -rf 11.php 111.php    //第一次拷贝  </p>
+<p>[root@localhost html]# cp -rf 11.php 111.php   //第二次拷贝  </p>
+<p>cp：是否覆盖”111.php”？  </p>
+<p>这里第二次拷贝会提醒说是否覆盖，如果是拷贝文件夹的话，里面有数不清的文件，岂不是要确定覆盖无数次？  </p>
+<p>-i  interactive  交互<br>-f  force  强制<br>虽然我们用了-rf   但是  不妨看一下<br>[root@localhost etc]# type -a cp<br>cp is aliased to ‘cp -i’<br>cp is /bin/cp<br>可见优先是 cp -i的<br>加不加-i   都是优先按照<code>cp -i</code>命令执行<br>如果非得要覆盖 不后悔 那就跳过别名<br>[root@localhost html]# \cp -rf 11.php 111.php<br>[root@localhost html]# /bin/cp -rf 11.php 111.php<br>其实系统这样设计是防止管理员在操作数据时不小心犯错，所以会一再让你确定</p>
+<p>==永久别名==：<br>/etc/bashrc   shell配置文件<br>[root@localhost html]# gedit /etc/bashrc   //添加如下行<br>alias wang=’ls’</p>
+<h1 id="Linux获得帮助"><a href="#Linux获得帮助" class="headerlink" title="Linux获得帮助"></a>Linux获得帮助</h1><p>==1.–help==  </p>
+<p>[root@localhost html]# ls –help  </p>
+<p>用法:  ls [选项]…[文件]…   []是可选的意思，可以没有的   …是多个 也就是可以操作多个目录</p>
+<p><strong>ls常见选项</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-a   all，查看目录下的所有文件，包括隐藏文件</span><br><span class="line">-l    长列表显示</span><br><span class="line">-h   human以人性化方式显示出来</span><br><span class="line">-d   只列出目录名，不列出其他内容   ls -l -d www</span><br><span class="line">-t   按修改时间排序      ls -l -t www</span><br><span class="line">-S 按文件的size 排序     ls -l -S www</span><br><span class="line">-r   逆序排列reverse</span><br><span class="line">-i   显示文件的inode号（索引号）</span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost html]# date –help</p>
+<p>创建一个文件：[root@localhost html]# touch ‘date+%F’_file.txt</p>
+<p>两种时间：<br>硬件时间，即主板BIOS时间<br>系统时间，即Linux系统时间</p>
+<p>==2.man手册==（针对命令帮助，针对配置文件帮助，针对函数帮助）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">       部分    Man手册的类型</span><br><span class="line">1		用户命令</span><br><span class="line">2		内核系统调用（从用户空间到内核的进入点）</span><br><span class="line">3		库函数</span><br><span class="line">4		特殊文件和设备</span><br><span class="line">5		文件格式和规范</span><br><span class="line">6		游戏</span><br><span class="line">7		规范、标准和其他页面</span><br><span class="line">8		系统管理命令</span><br><span class="line">9		Linux内核API（内核调用）</span><br><span class="line">10 		Tcl或Tk指令</span><br></pre></td></tr></table></figure></p>
+<p>[root@localhost ~]# man ls<br>[root@localhost ~]# man 1 ls<br>[root@localhost ~]# man 8 ls<br>No entry for ls in section 8 of the manual<br>ls命令位于第1节中，若是  到第8节中找则找不到  </p>
+<p>[root@localhost ~]# man setfacl    (/EXAMPLES)</p>
+<p><em>技巧1</em>：按章节查询<br>/usr/bin/passwd       一个命令，修改用户口令命令<br>/etc/passwd             包含用户信息的配置文件</p>
+<p><em>技巧2</em>：在所有章节中查询<br>[root@localhost ~]# man -a passwd</p>
+<p>==3.官方手册==</p>
+<p><a href="http://docs.redhat.com" target="_blank" rel="noopener">http://docs.redhat.com</a>            Enterprise  Linux(5/6/7)       系统相关帮助指南<br><a href="http://www.mysql.com" target="_blank" rel="noopener">http://www.mysql.com</a>        docs</p>
+<p>一般找官网的  documentation就是帮助页面</p>
+<p>==4.baidu、google==</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Linux系统操作/">#Linux系统操作</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/16/Linux——文件管理/">Linux——文件管理</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/13/Linux——Shell/">Linux——Shell</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/09/逻辑漏洞/">逻辑漏洞</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/06/Web基础知识/">Web基础知识</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/web/">web</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
