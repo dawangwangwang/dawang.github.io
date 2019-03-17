@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Linux——文件管理"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Linux——文件管理 - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/15/Linux——文件管理/">
+                Linux——文件管理
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-15</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/Linux/">Linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p><strong>文件管理</strong><br>主要还是用shell命令对文件操作<br>创建、复制、删除、移动、查看、编辑、压缩、查找  <a id="more"></a></p>
+<h1 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h1><p>Windows：以多根的方式组织文件  C:\  D:\  E:\<br>Linux：以单根的方式组织文件   /<br>[root@localhost ~]# ls /  </p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-2.png" alt=""></p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-1.png" alt="">   </p>
+<p>根下的bin搬到usr下的bin里了  </p>
+<h2 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h2><p>/bin/ls,/bin/date</p>
+<h2 id="sbin"><a href="#sbin" class="headerlink" title="sbin"></a>sbin</h2><p>管理员使用的命令<br>/sbin/service</p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-3.png" alt="">  </p>
+<blockquote>
+<p>由此图可以看出来  ls是普通用户的命令，所以在bin里，而useradd是管理员才能操作的命令，所以该命令在sbin里  </p>
+</blockquote>
+<h2 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h2><p>设备文件 /dev/sda,/dev/sda1,/dev/tty1,/dev/tty2,/dev/pts/1,/dev/zero,/dev/null,/dev/random  </p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-4.png" alt=""><br><img src="/2019/03/15/Linux——文件管理/3-12-5.png" alt=""></p>
+<h2 id="root"><a href="#root" class="headerlink" title="root"></a>root</h2><p>root用户的HOME  </p>
+<h2 id="home"><a href="#home" class="headerlink" title="home"></a>home</h2><p>存储普通用户家目录<br><code>ls /home/</code> 可以看到普通用户的家(Base)**  </p>
+<h2 id="proc"><a href="#proc" class="headerlink" title="proc"></a>proc</h2><p>虚拟的文件系统，反映出来的是内核，进程信息或实时状态  **  </p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-6.png" alt="">  </p>
+<p>查看除sshd以外的进程：<br><img src="/2019/03/15/Linux——文件管理/3-12-7.png" alt=""></p>
+<h2 id="usr"><a href="#usr" class="headerlink" title="usr"></a>usr</h2><p>系统文件，相当于C:\Windows</p>
+<p> <code>/usr/local</code>  软件安装的目录，相当于C:\Program</p>
+<p><code>/usr/bin</code> 普通用户使用的应用程序</p>
+<p> <code>/usr/sbin</code>  管理员使用的应用程序</p>
+<p> <code>/usr/lib</code>   库文件Glibc 32bit</p>
+<p> <code>/usr/lib64</code>  库文件Glibc 64bit</p>
+<h2 id="boot"><a href="#boot" class="headerlink" title="boot"></a>boot</h2><p> 存放的系统启动相关的文件，例如Kernel，grub（引导装载程序）<br> <img src="/2019/03/15/Linux——文件管理/3-12-8.png" alt="内核-灵魂"></p>
+<blockquote>
+<p>grub  开机的时候负责把系统启动的</p>
+</blockquote>
+<h2 id="etc-重头戏-配置文件"><a href="#etc-重头戏-配置文件" class="headerlink" title="etc(重头戏)配置文件"></a>etc(重头戏)配置文件</h2><p> 系统相关如网络  ：<br> /etc/sysconfig/network<br> /etc/hostname    主机名<br>  应用相关配置文件如：<br>  /etc/ssh/sshd_config…</p>
+<h2 id="tmp-临时文件"><a href="#tmp-临时文件" class="headerlink" title="tmp 临时文件"></a>tmp 临时文件</h2><p>  全局可写，进程运行产生的临时文件</p>
+<h2 id="var"><a href="#var" class="headerlink" title="var"></a>var</h2><p>  存放的是一些变化文件，比如数据库，日志，邮件……<br>  mysql：   /var/lib/mysql<br>  vsftpd:   /var/ftp<br>  mail:     /var/spool/mail<br>  cron:     /var/spool/cron<br>  log:      /var/log<br>  临时文件:     /var/tmp(进程产生的临时文件)</p>
+<h1 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h1><p>  路径的作用：定位文件</p>
+<p>  有一个命令：tree<br>  tree -L 2 /etc    可以查看/etc下的文件的两级  </p>
+<p>  /home/abc/file1  和/home/def/file1   不一样！<br>  /abc/file1  和abc/file1 可能不一样  </p>
+<p>  <strong>绝对路径:</strong><br>  从/开始的路径，文件完整的路径  /home/abc/file1<br>  ~表示/home  我家</p>
+<p>  <strong>相对路径:</strong><br>  相对于当前目录开始，不是完整的路径，从此时所在目录为起点  a.txt    ./a.txt    ../bob/b.txt</p>
+<p>  <strong>cd 改变目录</strong><br>  cd  -    返回<br>  cd  .<br> cd  ..</p>
+<h1 id="文件管理之：创建-复制-移动-删除"><a href="#文件管理之：创建-复制-移动-删除" class="headerlink" title="文件管理之：创建/复制/移动/删除"></a>文件管理之：创建/复制/移动/删除</h1><h2 id="创建文件-touch"><a href="#创建文件-touch" class="headerlink" title="创建文件 touch"></a>创建文件 touch</h2><p> touch file.txt       //无则创建，有则修改时间<br> touch file3  file4<br> touch  /home/file.txt<br> touch /home/{hhhhh,hehehe}<br> touch file{1..20}<br> touch wang{a,b,c}//{}集合，等价touch wanga wangb wangc</p>
+<h2 id="目录mkdir"><a href="#目录mkdir" class="headerlink" title="目录mkdir"></a>目录mkdir</h2><p> mkdir dir1<br> mkdir /home/dir2  /home/dir3<br> mkdir /home/{dir3,dir4}<br> mkdir -v /home/{dir3,dir4}<br>  mkdir -pv /home/dir3/dir4/111   //如果该路径中有的目录不存在 即父母目录，则一键创建了。不会有任何消息输出。</p>
+<h2 id="cp-复制"><a href="#cp-复制" class="headerlink" title="cp 复制"></a>cp 复制</h2><p> 格式：<br> 单源复制：<br>  cp [OPTION]… [-T] SOURCE DEST（如果DEST不存在则创建，存在则覆盖）<br>  多源复制：<br>  cp [OPTION]… SOURCE… DIRECTORY（DEST必须为directory）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　　-i：交互式复制，即覆盖前提醒用户确认</span><br><span class="line">　　　-f：强制覆盖目标文件</span><br><span class="line">　　　-r,-R：递归复制目录</span><br></pre></td></tr></table></figure>
+<p>示例：<br>cp -if /data/[1-3].txt /data/test –test必须为目录，把三个文件一起复制到test中<br>cp -rf /data /practice –把data目录及目录下的内容一起复制到practice中</p>
+<h2 id="mv-移动"><a href="#mv-移动" class="headerlink" title="mv  移动"></a>mv  移动</h2><p>移动就是剪切。<br>mv file1 /home/dir3    将file1移动到/home/dir3<br>mv file2 /home/dir3/file20  将file2移动到dir3并改名字为file20<br>mv file4 file5    将file4重命名    当前位置的移动就是重命名</p>
+<h2 id="rm-删除"><a href="#rm-删除" class="headerlink" title="rm 删除"></a>rm 删除</h2><p>删除/home/dir<br>cd /home<br>rm -rf dir<br>-r    递归<br>-f    force强制<br>-v    详细过程  </p>
+<p>当使用脚本删除的时候要使绝对路径：rm -rf /home/dir       </p>
+<p>rm -rf <em>.pdf<br>rm -rf file</em><br>rm -rf *      //不包含隐藏文件</p>
+<h1 id="文件管理之——查看文件内容"><a href="#文件管理之——查看文件内容" class="headerlink" title="文件管理之——查看文件内容"></a>文件管理之——查看文件内容</h1><p>文本文件（cat less head tail tailf grep……）  </p>
+<h2 id="cat-etc-hosts"><a href="#cat-etc-hosts" class="headerlink" title="cat /etc/hosts"></a>cat /etc/hosts</h2><p>-n         显示行号<br>-A         包括控制字符（换行符/制表符）<br>Linux $<br>windows ^M$<br>例：当b.txt被windows记事本修改后，在Linux打开本应$会是^M$，所以需要下载东西，转换文档格式</p>
+<pre><code>yum -y install dos2unix  
+dos2unix b.txt  
+cat -A b.txt  
+</code></pre><h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>head /etc/passwd    默认看前10行<br>head -2 /etc/passwd</p>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><p>tail /etc/passwd   尾部后十行<br>tail -1 /etc/passwd<br>tail /var/log/messages        查看日志后十行，也就是最新日志<br>tail -f /var/log/messages   一直动态监控文件尾部变化   </p>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p>可以分页显示<br>less /var/  </p>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>grep ‘root’ /etc/passwd     搜索文件中带root的行<br>grep ‘^root’ /etc/passwd<br>grep ‘root$’ /etc/passwd </p>
+<h1 id="vi编辑器（可视化编辑器）"><a href="#vi编辑器（可视化编辑器）" class="headerlink" title="vi编辑器（可视化编辑器）"></a>vi编辑器（可视化编辑器）</h1><p>文件编辑器    gedit（图形化编辑器）<br>文件编辑器    vi，vim，nano<br>[root@localhost ~]# vim  1.txt<br>刚打开是，命令模式<br>按i可以进入编辑模式<br>按v、V、^v进入可视化编辑模式<br>按:进入扩展命令模式<br>查看完以后按Esc+:w   保存<br>查看完以后按Esc+:wq  即可保存并退出</p>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><ol>
+<li><strong>光标定位</strong><br>h(左) j(下) k(上) l(右)<br>0（移到行首）   $（移到行尾）<br>gg (移到第一行的第一个)  G(移动到最后一行)<br>3G(移动到第三行)<br>/string  (n往后找，N往前找)<br>/^字母     找以哪个字母为开头的<br>/字母$     找以哪个字母为结尾的</li>
+<li><strong>文本编辑（少量）</strong>  </li>
+</ol>
+<p>y   复制<br>yy（复制一行）3yy（复制三行） ygg（从光标位置复制到第一行）  yG(从光标位置复制到最后一行)  </p>
+<p>d     删除<br>dd  3dd  dgg   dG（以行为单位）  </p>
+<p>p     粘贴  </p>
+<p>x       删除光标所在的字符  </p>
+<p>D       从光标处删除到行尾  </p>
+<p>u         undo撤销  </p>
+<p>^r       redo重做（反撤销）  </p>
+<p>r           可以用来修改一个字符（不用进入编辑模式了）  </p>
+<p>3.<strong>进入其他模式</strong><br>a                   进入插入模式  </p>
+<p>i<br>o           另起一行进入插入模式<br>A           进入到行末进入插入模式   </p>
+<p>:        进入末行模式（扩展命令模式）<br>v           进入看视模式<br>^v          进入可视块模式<br>V           进入可视行模式<br>R           进入替换模式</p>
+<h2 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h2><p>^p</p>
+<h2 id="可视块模式"><a href="#可视块模式" class="headerlink" title="可视块模式"></a>可视块模式</h2><p>块插入（在指定块前加入字符串）：选择块，I 在块前插入字符，ESC  </p>
+<p>块替换：        选择块，r  输入替换的字符  </p>
+<p>块删除：        选择块，d|x  </p>
+<p>块复制：        选择块，y  </p>
+<h2 id="扩展命令模式"><a href="#扩展命令模式" class="headerlink" title="扩展命令模式"></a>扩展命令模式</h2><p><strong>a.保存退出</strong>  </p>
+<p>:10         进入第十行<br>:w          保存<br>:q          退出<br>:wq         保存并退出<br>:w!         强制保存<br>:q!         强制退出，不保存<br>:wq!        强制保存并退出<br>:x          保存并退出<br>:X          设置密码 （若第二个人不知道密码，还可以给文件加第二次密，导致第一个人也打不开） shift+zz也可以在命令模式保存</p>
+<p><strong>b.查找替换</strong><br><em>:范围 s/old/new/选项</em>  </p>
+<p><em>:1,5  s/root/wang</em><br>从1-5行的root替换成wang  </p>
+<p><em>:5,$  s/root/wang/g</em><br>$表示最后一行  </p>
+<p><em>:1,$  s/root/wang/g</em><br>=: s/root/yang/g   %表示全文   g表示全局  </p>
+<p><em>:% s#/dev/abc#/var/ccc#g</em><br>这次以#代替/，而/是为了表达路径</p>
+<p><em>:,6 s/root/wang/</em><br>当前行到第6行，root替换为wang  </p>
+<p><em>:4,9 s/^#//</em><br>4-9行的开头#替换为空  </p>
+<p><em>:2,10 s/.*/#&amp;/</em><br>2-10前加入#字符（.*整行，&amp;引用查找的内容）  </p>
+<p><strong>c.读入文件/写文件（另存为）</strong><br>:w<br>存储到当前文件夹  </p>
+<p>:w  /tmp/a.txt<br>另存为/tmp/a.txt  </p>
+<p>:1,3 w /tmp/b.txt<br>1-3行存到/tmp/b.txt  </p>
+<p>:r /etc/hosts<br>读入文件到当前行后  </p>
+<p>:5 r /etc/hosts<br>读入文件到第5行后  </p>
+<p><strong>d.设置环境</strong><br>临时设置：<br>:set nu<br>设置行号  </p>
+<p>:set  ic<br>不区分大小写  </p>
+<p>:set  ai<br>自动缩进  </p>
+<p>:set list<br>显示控制字符  </p>
+<p>:set  nonu<br>取消设置行号  </p>
+<p>:set  noic  </p>
+<p>永久的环境：修改vim环境配置文件<br>/etc/vimrc<br>影响所有系统用户  </p>
+<p>~/.vimrc<br>影响某一个用户  </p>
+<p>打开文件：<br>vim ~/.vimrc<br>    set ic<br>    set nu</p>
+<p>补充：</p>
+<p>vim -O 1.php  1.txt<br>同时打开两个文件，横向展示，^ww切换 </p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-9.png" alt=""><br>vim -O 1.php  1.txt<br>同时打开两个文件，竖向展示，^ww切换<br><img src="/2019/03/15/Linux——文件管理/3-12-10.png" alt="">  </p>
+<p>vimdiff 1.php 1.txt<br>打开两个文件，找不同  </p>
+<p><img src="/2019/03/15/Linux——文件管理/3-12-11.png" alt=""></p>
+<h1 id="文件时间"><a href="#文件时间" class="headerlink" title="文件时间"></a>文件时间</h1><p>ls  -l  1.php  //仅看的是文件修改时间  </p>
+<h2 id="Linux文件有四种时间"><a href="#Linux文件有四种时间" class="headerlink" title="Linux文件有四种时间"></a>Linux文件有四种时间</h2><p>stat  1.php<br>//查看文件的详细属性（其中包括文件时间属性）  </p>
+<p>访问时间：atime，查看内容  </p>
+<p>修改时间：mtime，修改内容  </p>
+<p>改变时间：ctime，文件属性，比如权限   </p>
+<p>删除时间：dtime，文件被删除的时间  </p>
+<p>从企业版6开始relatime，atime延迟修改，必须满足其中一个条件：1.自上次atime修改后，已达到86400秒；2.发生写操作时；</p>
+<h1 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h1><p>通过颜色判断文件类型不一定对<br>Linux扩展名改变不了文件本质  </p>
+<h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><p> ls  -l    文件名    //看第一个字符<br> <code>-</code>  普通文件（文本，二进制，压缩文件，电影，图片……）  </p>
+<p> <code>d</code>    目录文件（蓝色）  </p>
+<p><code>b</code>     设备文件（块设备）存储设备硬盘，U盘 /dev/sda,/dev/sda1  </p>
+<p><code>c</code>     设备文件（字符设备）打印机，终端 /dev/tty1  </p>
+<p><code>s</code>   套接字文件  </p>
+<p><code>p</code>   管道文件  </p>
+<p><code>l</code>   链接文件（淡蓝色）</p>
+<p>  du  -sh  /etc          //查看etc大小  </p>
+<h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p>  <strong>file</strong> /etc/hosts   查看host文件类型  </p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>  <strong>type  查看命令类型类型，是alias呢还是内置命令呢，还是某个文件</strong><br>  type ls<br>  type  1.php<br>  type  -a  ls//-a列出该命令所有类型  </p>
+<p> <strong>file查看文件类型，例如文本文件还是二进制文件，管道文件，设备文件，链接文件</strong><br> file /dev/sda  </p>
+<p> <strong>stat  文件的属性，例如文件的名称，大小，权限，atime，ctime，mtime</strong><br> stat /etc/hostname </p>
+<h1 id="文档的权限"><a href="#文档的权限" class="headerlink" title="文档的权限"></a>文档的权限</h1><p> <img src="/2019/03/15/Linux——文件管理/1.png" alt=""></p>
+<p> 三个字母为一组，前三个是档案拥有者的权限，中间三个是档案所属群组的权限，最后三个是其他人的权限<br>【r】 代表可读（read）</p>
+<p>【w】代表可写（write）  </p>
+<p> 【x】代表可执行（execute）<br> 这三个权限的位置丌<br>会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<h2 id="如何改变文件属性与权限"><a href="#如何改变文件属性与权限" class="headerlink" title="如何改变文件属性与权限"></a>如何改变文件属性与权限</h2><ul>
+<li>chgrp：改变档案所属群组</li>
+<li>chown：改变档案拥有着</li>
+<li>chmod：改变档案的权限，SUID, SGID, SBIT 等等的特性。  </li>
+</ul>
+<p><em>改变权限，chmod</em>  </p>
+<p>档案权限的改变使用的是 chmod 这个挃令，但是，权限的讴定方法有两种， 分别可以使用数字戒者是<br>符号来迚行权限的变更。  </p>
+<ul>
+<li>数字类型改变档案权限</li>
+</ul>
+<p>Linux 档案的基本权限就有九个，分别是 owner/group/others 三种身份各有自己的<br>read/write/execute 权限，用数字来代表各个权限的话，如下：<br>【r】：4<br>【w】：2<br>【x】：1</p>
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的.  </p>
+<p>owner = rwx = 4+2+1 = 7<br>group = rwx = 4+2+1 = 7<br>others= — = 0+0+0 = 0  </p>
+<p>[root@localhost ~]# chmod 777 1.php  </p>
+<ul>
+<li>符号类型改变档案权限<br>我们用u,g,o来代替三种身份的权限。a代表all全部的身份。  </li>
+</ul>
+<p>[root@localhost ~]# chmod u=rwx,g=rmx,o=rx 1.php  </p>
+<h2 id="权限对档案的重要性"><a href="#权限对档案的重要性" class="headerlink" title="权限对档案的重要性"></a>权限对档案的重要性</h2><ul>
+<li> r (read)：可读取此一档案的实际内容，如读取文本文件的文字内容等；</li>
+<li> w (write)：可以编辑、新增戒者是修改该档案的内容(但不能删除该档案)；</li>
+<li> x (eXecute)：该档案具有可以被系统执行的权限。</li>
+</ul>
+<p>通常Windows底下一个档案是否具有执行的能力取决于扩展名，而在linux中，我们的档案能否被执行要看档案是否有x权限，跟扩展名没关系！  </p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>因为根目彔不开机有关，开机过程中仅有根目彔会被挂<br>载， 其他分割槽则是在开机完成乀后才会持续的迚行挂载的行为。就是因为如此，因此根目彔下不开<br>机过程有关的目彔， 就丌能够不根目彔放到丌同的分割槽去！那哪些目彔丌可不根目彔分开呢？有底<br>下这些：</p>
+<ul>
+<li>/etc：配置文件</li>
+<li>/bin：重要执行档</li>
+<li>/dev：所需要的装置档案</li>
+<li>/lib：执行档所需的函式库不核心所需的模块</li>
+<li>/sbin：重要的系统执行文件</li>
+</ul>
+<blockquote>
+<p>这五个目彔千万不能与根目彔分开在不同的分割槽！</p>
+</blockquote>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Linux系统操作/">#Linux系统操作</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/16/Linux——用户管理/">Linux——用户管理</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/15/Linux——文件管理/">Linux——文件管理</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/13/Linux——Shell/">Linux——Shell</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/09/逻辑漏洞/">逻辑漏洞</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/web/">web</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
