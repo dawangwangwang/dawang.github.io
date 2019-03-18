@@ -146,16 +146,16 @@
 
     <div class="post-header index">
         <h1 class="title">
-            <a href="/2019/03/16/Linux——用户管理/">
-                Linux——用户管理
+            <a href="/2019/03/19/Linux——文件的权限/">
+                Linux——文件的权限
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2019-03-16</span>
+                <span class="date">2019-03-19</span>
             
             
-                <a href="https://dawangwangwang.github.io/2019/03/16/Linux——用户管理/#disqus_thread" class="comments article-comment-link">Comments</a>
+                <a href="https://dawangwangwang.github.io/2019/03/19/Linux——文件的权限/#disqus_thread" class="comments article-comment-link">Comments</a>
             
             
                 <span class="category">
@@ -167,75 +167,10 @@
 
     
         <div class="content">
-            <h1 id="用户-组基本概念"><a href="#用户-组基本概念" class="headerlink" title="用户/组基本概念"></a>用户/组基本概念</h1><p><img src="/2019/03/16/Linux——用户管理/1.png" alt="">  </p>
-<p>users  and  groups:  </p>
-<ul>
-<li>系统上每个进程（运行的程序）都是特定用户运行的</li>
-<li>每个文件都是由一个特定的用户拥有</li>
-<li>访问文件和目录是由用户限制的，特定文件是只能特定用户访问（用户访问文件其实是某一个进程在访问，并不是用户）</li>
-<li>与运行的进程相关联的用户确定该进程可访问的文件和目录<h2 id="查看当前登陆的用户信息"><a href="#查看当前登陆的用户信息" class="headerlink" title="查看当前登陆的用户信息"></a>查看当前登陆的用户信息</h2>[root@localhost ~]# id  </li>
-</ul>
-<p><img src="/2019/03/16/Linux——用户管理/2.png" alt=""></p>
-<h2 id="查看文件的owner"><a href="#查看文件的owner" class="headerlink" title="查看文件的owner"></a>查看文件的owner</h2><p>[root@localhost ~]# ls -l /var/www/html<br><img src="/2019/03/16/Linux——用户管理/3.png" alt=""></p>
-<h2 id="查看运行进程的username"><a href="#查看运行进程的username" class="headerlink" title="查看运行进程的username"></a>查看运行进程的username</h2><p>[root@localhost ~]# ps aux |less<br><img src="/2019/03/16/Linux——用户管理/4.png" alt="">  </p>
-<h2 id="和用户组相关的一些文件"><a href="#和用户组相关的一些文件" class="headerlink" title="和用户组相关的一些文件"></a>和用户组相关的一些文件</h2><p><strong>/etc/passwd</strong><br>root:x:0:0:root:/root:/bin/bash<br>x密码占位符<br>//用户信息——用户名：x：uid：gid：描述：HOME：shell<br><strong>/etc/shadow</strong><br>root:$6$tbAERIQbGq/FtNN9$ZdB6KM.HW02JDLqqWc.xoBENWfgBSxiSYoUTz3SCy5/1DfWTaTlUNCqvmRsOdbbOgvZ2UbRIhDi6tEnj2F8gj0:17672:0:99999:7:::<br>//密码信息——$id$salt$encrypted  </p>
-<p><strong>/etc/group</strong><br>root:x:0:<br>组信息  </p>
-<p><strong>加密算法$id</strong>:<br>$1:MD5<br>$5:SHA-256<br>$6:SHA-512  </p>
-<p><strong>系统约定:</strong> centos6<br>uid:0       特权用户<br>uid:1~499   系统用户<br>uid:500+    普通用户  </p>
-<blockquote>
-<p>大多数设备只能root控制，有权力覆盖系统上的普通权限，安装删除软件。</p>
-</blockquote>
-<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><blockquote>
-<p>groupadd,groupdel,useradd,usermod,userdel,passwd,chage</p>
-</blockquote>
-<p>[root@localhost ~]# groupadd wang       //创建wang组<br>[root@localhost ~]# tail /etc/group     //查看组，可以看见刚刚新建的wang组  </p>
-<p><img src="/2019/03/16/Linux——用户管理/5.png" alt="">   </p>
-<p>[root@localhost ~]# groupadd wang -g 520<br>//可以自定义gid 为520<br>//yang:x:520:  </p>
-<p>[root@localhost ~]# groupdel wang    //删除组  </p>
-<h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p>[root@localhost ~]# useradd yogurt<br>[root@localhost ~]# grep ‘yogurt’ /etc/passwd /etc/shadow /etc/group  //过滤yogurt用户的信息 </p>
-<pre><code>/etc/passwd:yogurt:x:500:500::/home/yogurt:/bin/bash
-/etc/shadow:yogurt:$6$G.Bp3shG$2kpG4fswPs4QsSAZicTNe/g5fzUxSfkMIju3X8Mo90uDIfc/VLS8ofCt2M6EEDyhU6bp.19t1hAP9If.LX/Us1:17966:0:99999:7:::
-/etc/group:yogurt:x:500:
-</code></pre><blockquote>
-<p>小结：如果创建一个用户时，未指定任何组（主组或附加组），系统会创建一个和用户名相同的组作为用户的Primary Group-主组，而附加组可以有多个，创建用户时指定-G x，y，z即可。如果用户已存在，可以加入附加组，usermod、gpasswd</p>
-</blockquote>
-<h2 id="创建用户-指定选项"><a href="#创建用户-指定选项" class="headerlink" title="创建用户  指定选项"></a>创建用户  指定选项</h2><p>[root@localhost ~]# useradd wang -u 123    //创建用户wang，指定uid<br>[root@localhost ~]# useradd wang -d /aaa    //指定家目录<br>[root@localhost ~]# useradd wang -s /sbin/nologin      //创建用户并指定shell，例如我指定了bash的话，那这个用户就只能从bash登陆<br>[root@localhost ~]# useradd wang -G hr,it,haha     //创建用户，指定附加组  </p>
-<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p>[root@localhost ~]# userdel wang    //删除用户wang，但不删除用户家目录和mail spool<br>[root@localhost ~]# ls -l -d /home/yogurt<br>[root@localhost ~]# ls -l /var/spool/mail/yogurt  </p>
-<p>[root@localhost ~]# userdel -r user1     //删除用户user1，同时删除用户家目录和mail spool  </p>
-<h2 id="用户密码"><a href="#用户密码" class="headerlink" title="用户密码"></a>用户密码</h2><p>管理员root可以给任何用户设置密码<br>[root@localhost ~]# passwd user2  </p>
-<p>而用户只能给自己修改密码<br>[root@localhost ~]# passwd  </p>
-<h2 id="组成员管理"><a href="#组成员管理" class="headerlink" title="组成员管理"></a>组成员管理</h2><blockquote>
-<p>只针对已存在的用户</p>
-</blockquote>
-<p>[root@localhost ~]# usermod -G hr wang  //覆盖原有的附加组  </p>
-<p>[root@localhost ~]# usermod -G ab,cd wang  </p>
-<p>[root@localhost ~]# usermod -aG hr wang    //给hr用户增加新的附加组wang  </p>
-<blockquote>
-<p>但是一般不用这个处理组，用下边这个gpasswd</p>
-</blockquote>
-<p>[root@localhost ~]# gpasswd -a yogurt lueluelue//把用户添加到组<br>[root@localhost ~]# gpasswd -M yogurt,da lueluelue    //将yogurt和da都加入lueluelue组<br>[root@localhost ~]# gpasswd -d yogurt lueluelue   //从组中删除用户  </p>
-<h2 id="其他选项管理"><a href="#其他选项管理" class="headerlink" title="其他选项管理"></a>其他选项管理</h2><p>[root@localhost ~]# usermod -s /sbin/nologin yogurt</p>
-<h1 id="no-shell"><a href="#no-shell" class="headerlink" title="no shell"></a>no shell</h1><p><strong>/sbin/nologin</strong>   用户无法登陆系统，实现管理，仅作为运行进程的用户，访问FTP的用户。  //安全的用户，如果不打算给用户太多权限，就设置为这个shell，以保安全</p>
-<p><strong>/bin/bash</strong><br>登陆系统，实现管理  </p>
-<blockquote>
-<p>shell是用户登录后运行的第一个程序 ，你给它什么，就执行什么 </p>
-</blockquote>
-<p><em>举个栗子：</em><br>vim  /etc/passwd  把yogurt的shell改为/sbin/poweroff(关机命令，通过which poweroff找到命令的位置)，一登陆yogurt时，就会执行关机命令。  </p>
-<p><strong>useradd参照文件</strong><br>有两个文件会影响useradd创建用户。  </p>
-<p>[root@localhost ~]# vim /etc/login.defs<br>[root@localhost ~]# vim /etc/default/useradd<br>通常改SHELL=/sbin/nologin</p>
-<h1 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h1><h2 id="普通用户提权"><a href="#普通用户提权" class="headerlink" title="普通用户提权"></a>普通用户提权</h2><h3 id="法一"><a href="#法一" class="headerlink" title="法一"></a>法一</h3><ul>
-<li>[wangwang@localhost ~]# useradd ab 可能会说你没权限    </li>
-<li>于是[root@localhost ~]# su - root<br>输入密码即可变成root<blockquote>
-<p>需要注意的是 这个是建立在你知道root密码的前提下  </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="法二"><a href="#法二" class="headerlink" title="法二"></a>法二</h3><p>以root身份授权普通用户<br>[root@localhost ~]# vim /etc/sudoers<br><img src="/2019/03/16/Linux——用户管理/6.png" alt=""><br>可以看到wheel组可以使用sodu命令  </p>
-<p>于是把用户添加到wheel组：<br>[root@localhost ~]# useradd yangyang -G wheel<br>可以查看一下:<br>[root@localhost ~]# id yangyang  </p>
-<p>此时yangyang用户就具有了变成管理员的能力，但是每次执行命令都需要sudo。  </p>
-<p>[yangyang@localhost ~]# sudo useradd dawang  </p>
-
+            <h1 id="文档的权限-UGO"><a href="#文档的权限-UGO" class="headerlink" title="文档的权限  UGO"></a>文档的权限  UGO</h1><p>访问文件是需要权限的，要有区分。这里记录的是UGO。<br>什么是UGO?  </p>
+<p>一般权限有三种对象：<br>属主：U<br>属组：G<br>其他人：O<br>基本权限类型：<br>读：r           4<br>写：w           2<br>执行：x         1<br></p>
         </div>
+        <a href="/2019/03/19/Linux——文件的权限/" class="read-more">Read More</a>
     
 
 </div>
@@ -448,6 +383,39 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2019/03/01/Linux——用户管理/">
+                Linux——用户管理
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-01</span>
+            
+            
+                <a href="https://dawangwangwang.github.io/2019/03/01/Linux——用户管理/#disqus_thread" class="comments article-comment-link">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/Linux/">Linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="用户-组基本概念"><a href="#用户-组基本概念" class="headerlink" title="用户/组基本概念"></a>用户/组基本概念</h1><p><img src="/2019/03/01/Linux——用户管理/1.png" alt="">  </p>
+        </div>
+        <a href="/2019/03/01/Linux——用户管理/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2019/02/16/关于抓肉鸡/">
                 关于抓肉鸡
             </a>
@@ -527,40 +495,6 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/02/07/CSRF漏洞/">
-                CSRF漏洞
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-02-07</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/02/07/CSRF漏洞/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/web/">web</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="何为CSRF"><a href="#何为CSRF" class="headerlink" title="何为CSRF"></a>何为CSRF</h1><p><strong>CSRF</strong>（Cross-site request forgery）跨站请求伪造,通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装成受信任用户的请求来利用受信任的网站。与XSS攻击相比，CSRF攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比XSS更具危险性。——来自百度<br>跨站请求伪造就是在另一个网站向另一个网站(本该真正用户请求的网站)发送一个伪造的请求，而接受请求的网站以为该伪造的请求是用户发送来的，故将此请求执行，造成了CSRF攻击。  </p>
-<h1 id="CSRF可以做什么"><a href="#CSRF可以做什么" class="headerlink" title="CSRF可以做什么"></a>CSRF可以做什么</h1><p>你这可以这么理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题包括：个人隐私泄露以及财产安全。<br></p>
-        </div>
-        <a href="/2019/02/07/CSRF漏洞/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -603,7 +537,7 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/2019/03/16/Linux——用户管理/">Linux——用户管理</a>
+                <a class="footer-post" href="/2019/03/19/Linux——文件的权限/">Linux——文件的权限</a>
             </li>
             
             <li>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Linux——文件的权限"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Linux——文件的权限 - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/19/Linux——文件的权限/">
+                Linux——文件的权限
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-19</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/Linux/">Linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="文档的权限-UGO"><a href="#文档的权限-UGO" class="headerlink" title="文档的权限  UGO"></a>文档的权限  UGO</h1><p>访问文件是需要权限的，要有区分。这里记录的是UGO。<br>什么是UGO?  </p>
+<p>一般权限有三种对象：<br>属主：U<br>属组：G<br>其他人：O<br>基本权限类型：<br>读：r           4<br>写：w           2<br>执行：x         1<br>  <a id="more"></a><br> <img src="/2019/03/19/Linux——文件的权限/1.png" alt="图1"></p>
+<p> 三个字母为一组，前三个是档案拥有者u的权限，中间三个是档案所属群组g的权限，最后三个是其他人o的权限<br>【r】 代表可读（read）</p>
+<p>【w】代表可写（write）  </p>
+<p> 【x】代表可执行（execute）<br> 这三个权限的位置不<br>会改变，如果没有权限，就会出现减号[ - ]而已。  </p>
+<p>对于用户所属的组，我们可以通过修改文件属性来修改权限。<br>例如图1中<br>-rwxrwxrwx 1 root root 21 Mar 14 05:57 /var/www/html/1.php  </p>
+<h2 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h2><ul>
+<li>chgrp：改变档案所属群组</li>
+<li>chown：改变档案拥有着</li>
+<li>chmod：改变档案的权限，SUID, SGID, SBIT 等等的特性。<br>1.更改文件属主u，属组g<br><strong>chown</strong><br>[root@localhost ~]# chown wang.yogurt 1.php  //把属主和属组都改了，点的左边是属主，右边是属组，哪个不改就空白，点一定要在<br>[root@localhost ~]# chown wang 1.php   //改属主<br>[root@localhost ~]# chown .hr 1.php   //改属组<br>[root@localhost ~]# chown -R wang.hr dir //把目录的属主和属组改了，里边的文件的属主属组也改了    <strong>R</strong>递归</li>
+</ul>
+<p><strong>chgrp</strong><br>[root@localhost ~]# chgrp hr 1.php  //改文件属组<br>[root@localhost ~]# chgrp -R hr dir  //改目录属组  </p>
+<p>2.更改权限</p>
+<p><em>改变权限，chmod</em>  </p>
+<p>档案权限的改变使用的是 chmod 这个命令，但是，权限的设定方法有两种， 分别可以使用数字或者是<br>符号来迚行权限的变更。  </p>
+<ul>
+<li>数字类型改变档案权限</li>
+</ul>
+<p>Linux 档案的基本权限就有九个，分别是 owner/group/others 三种身份各有自己的<br>read/write/execute 权限，用数字来代表各个权限的话，如下：<br>【r】：4<br>【w】：2<br>【x】：1</p>
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的.  </p>
+<p>owner = rwx = 4+2+1 = 7<br>group = rwx = 4+2+1 = 7<br>others= — = 0+0+0 = 0  </p>
+<p>[root@localhost ~]# chmod 777 1.php  </p>
+<ul>
+<li>符号类型改变档案权限<br>我们用u,g,o来代替三种身份的权限。a代表all全部的身份。  </li>
+</ul>
+<p>[root@localhost ~]# chmod u=rwx,g=rmx,o=rx 1.php   </p>
+<p>[root@localhost ~]# chmod a=- 1.php  //谁都没权限了  </p>
+<p>[root@localhost ~]# chmod u+x 1.php   //给属主增加属性</p>
+<h2 id="权限对档案的重要性"><a href="#权限对档案的重要性" class="headerlink" title="权限对档案的重要性"></a>权限对档案的重要性</h2><ul>
+<li> r (read)：可读取此一档案的实际内容，如读取文本文件的文字内容等；</li>
+<li> w (write)：可以编辑、新增戒者是修改该档案的内容(但不能删除该档案)；</li>
+<li> x (eXecute)：该档案具有可以被系统执行的权限。</li>
+</ul>
+<p>通常Windows底下一个档案是否具有执行的能力取决于扩展名，而在linux中，我们的档案能否被执行要看档案是否有x权限，跟扩展名没关系！  </p>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><p>有一个目录/home/yogurt-zu只能让小组yogurt和root读写执行，其他用户没有权限。  </p>
+<p>于是：<br><img src="/2019/03/19/Linux——文件的权限/3-18.png" alt=""> </p>
+<p><strong>注意</strong><br>只要对目录有w权限，就可以在目录中创建新文件，还可以删除文件，跟对文件的权限无关。  </p>
+<p>文件的话：x权限不能随便给，不知道文件里的代码是否有害。<br>目录的话：w权限不能随便给</p>
+<h1 id="基本权限-FACL"><a href="#基本权限-FACL" class="headerlink" title="基本权限  FACL"></a>基本权限  FACL</h1><blockquote>
+<p>用acl设置权限与ugo不同，不用总改组改用户啥的，直接给谁权限，加上谁就行  </p>
+</blockquote>
+<p><strong>设置/查看</strong>  </p>
+<p>[root@localhost ~]# getfacl 11.php    //查看文件的facl权限  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/2.png" alt="">  </p>
+<p>[root@localhost ~]# setfacl -m u:yogurt:rx 11.php      </p>
+<p>// 为11.php设置一个yogurt用户权限rx  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/3.png" alt=""><br>//可以看到多了mask，代表着该文件里的最高权限,中间部分的三个代表组权限的字母，随着mask变而变  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/4.png" alt="">  </p>
+<p>[root@localhost ~]# setfacl -m g:lueluelue:rx 11.php<br>//设置组权限<br><img src="/2019/03/19/Linux——文件的权限/5.png" alt="">   </p>
+<p>[root@localhost ~]# setfacl -m 0::rx 11.php<br>//设置其他人的权限 </p>
+<p><img src="/2019/03/19/Linux——文件的权限/6.png" alt=""><br>//“+”表示文件有单独的acl权限，要用getfacl来看权限了<br><strong>删除</strong><br>[root@localhost ~]# setfacl -x u:yangyang 11.php<br>//把yangyang用户的facl权限都撤销，所以他变成了others，具有facl权限里的other权限–x  </p>
+<p>[root@localhost ~]# setfacl -b  11.php<br>//删除所有acl权限  </p>
+<h2 id="ACL高级"><a href="#ACL高级" class="headerlink" title="ACL高级"></a>ACL高级</h2><h3 id="mask"><a href="#mask" class="headerlink" title="mask"></a>mask</h3><p>mask可以用来暂时降低用户或组的权限（除属主和其他人）mask代表了最高权限  </p>
+<p>[root@localhost ~]# setfacl -m m::- 11.php<br>//把mask设置为—  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/7.png" alt=""><br>//可以看到组和普通用户的权限都随着mask变成了—  </p>
+<p>此时原本有权限的yogurt变成了other，具有other的权限，那么当我把other的权限也撤销呢？  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/11.png" alt=""><br><img src="/2019/03/19/Linux——文件的权限/8.png" alt="">  </p>
+<p>这时候 yogurt什么权限也没了……<br><img src="/2019/03/19/Linux——文件的权限/10.png" alt="">  </p>
+<blockquote>
+<p>虽然设置了mask为—，但是只是临时行为，一旦有设置acl权限的操作，mask又会变回最高权限值。水涨船高  </p>
+</blockquote>
+<h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p> 通常设置目录的权限后，又在目录中新建了一个文件目录时，acl权限并没有给这个新建的文件目录  </p>
+<p> 所以要设置默认值继承：<br> <img src="/2019/03/19/Linux——文件的权限/12.png" alt="">  </p>
+<p> 继承跟以后有关系，跟当前权限没关系，是以后再有文件的权限。<br> 新产生的文件夹继承了<br> <img src="/2019/03/19/Linux——文件的权限/13.png" alt=""> </p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Linux系统操作/">#Linux系统操作</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/19/Linux——文件的权限/">Linux——文件的权限</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/15/Linux——文件管理/">Linux——文件管理</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/13/Linux——Shell/">Linux——Shell</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/09/逻辑漏洞/">逻辑漏洞</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/web/">web</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
