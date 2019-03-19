@@ -232,6 +232,60 @@
 <h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p> 通常设置目录的权限后，又在目录中新建了一个文件目录时，acl权限并没有给这个新建的文件目录  </p>
 <p> 所以要设置默认值继承：<br> <img src="/2019/03/19/Linux——文件的权限/12.png" alt="">  </p>
 <p> 继承跟以后有关系，跟当前权限没关系，是以后再有文件的权限。<br> 新产生的文件夹继承了<br> <img src="/2019/03/19/Linux——文件的权限/13.png" alt=""> </p>
+<h1 id="高级权限suid、sgid、sticky"><a href="#高级权限suid、sgid、sticky" class="headerlink" title="高级权限suid、sgid、sticky"></a>高级权限suid、sgid、sticky</h1><p> 有些命令也就是可执行文件，并不是谁都有权限执行。<br> <strong>高级权限的类型：</strong><br> suid：4<br> sgid：2<br> sticky：1  粘滞位</p>
+<h2 id="suid"><a href="#suid" class="headerlink" title="suid"></a>suid</h2><p>[yogurt@localhost ~]$ cat /root<br>cat: /root: 权限不够  </p>
+<p>[yogurt@localhost ~]$ which cat<br>/bin/cat</p>
+<p>[yogurt@localhost ~]$ ls -l /bin/cat<br>-rwxr-xr-x. 1 root root 45224 3月  23 2017 /bin/cat</p>
+<p>[root@localhost ~]# ls -l -d /root<br>dr-xr-x—. 3 root root 4096 3月  19 04:59 /root</p>
+<p>可以看到root文件其他用户是无权访问的，那么下边再看一个passwd命令  </p>
+<p>[yogurt@localhost ~]$ passwd<br>更改用户 yogurt 的密码 。<br>为 yogurt 更改 STRESS 密码。<br>（当前）UNIX 密码：<br>普通用户是可以调用passwd命令修改密码的，但是改密码修改的是/etc/shadow文件，我们看一下该文件的权限  </p>
+<p>[yogurt@localhost ~]$ ls -l /etc/shadow<br>———-. 1 root root 899 3月  19 01:27 /etc/shadow<br>可见谁都没权限去修改该文件</p>
+<p>[yogurt@localhost ~]$ which passwd<br>/usr/bin/passwd  </p>
+<p>[yogurt@localhost ~]$ ls -l /usr/bin/passwd<br>-rwsr-xr-x. 1 root root 30768 11月 24 2015 /usr/bin/passwd<br>可以看到root用户的权限是rws，s的意思是任何用户执行该程序的时候，其身份都是该文件的所有者root。  </p>
+<p><strong>普通用户通过suid提权</strong><br>在进程文件（二进制可执行）上增加suid权限：</p>
+<p>[root@localhost ~]# chmod u+s /usr/bin/cat</p>
+<h2 id="sgid-lt-针对目录-gt"><a href="#sgid-lt-针对目录-gt" class="headerlink" title="sgid&lt;针对目录&gt;"></a>sgid&lt;针对目录&gt;</h2><p>sgid设置以后可以使目录下新建的文件具有继承目录属组的权限。  </p>
+<p>在未设置sgid时，新建的文件不会继承目录的属组，修改目录的权限：<br>[root@localhost ~]# chgrp yogurt /var/wahaha</p>
+<p>[root@localhost ~]# chmod g+s /var/wahaha<br>[root@localhost ~]# ls -l -d /var/wahaha<br>drwxr-<code>s</code>r-x. 2 root <code>yogurt</code> 4096 3月  20 00:55 /var/wahaha<br>可以看到属组权限为r-s<br>此时新建文件，文件将会继承目录的属组，为yogurt<br>[root@localhost ~]# touch /var/wahaha/file3</p>
+<p>[root@localhost ~]# ls -l /var/wahaha/file3<br>-rw-r–r–. 1 root <code>yogurt</code> 0 3月  20 00:55 /var/wahaha/file3</p>
+<h2 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h2><p>用户只能删自己的文件&lt;针对目录&gt;<br>设置了该权限以后，一个文件只能被root，文件所有者，目录所有者删除，其他人不行  </p>
+<p>赋予权限：<br><img src="/2019/03/19/Linux——文件的权限/14.png" alt="">  </p>
+<p>我用dawang的用户新建了文件/var/wahaha/dawangfile<br><img src="/2019/03/19/Linux——文件的权限/15.png" alt="">  </p>
+<p>然后我用waha的用户是不能删除dawang创建的文件的<br><img src="/2019/03/19/Linux——文件的权限/16.png" alt="">  </p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>文件</th>
+<th>目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>suid</td>
+<td>以所有者身份执行</td>
+<td></td>
+</tr>
+<tr>
+<td>sgid</td>
+<td>以所有组身份执行（不常用）</td>
+<td>继承属组</td>
+</tr>
+<tr>
+<td>       sticky</td>
+<td></td>
+<td>用户只能删除自己的文件</td>
+</tr>
+</tbody>
+</table>
+<p>777  全局可写  。所以设置成1777   也就是t，来保护文件，只能删除自己的  </p>
+<p><strong>注</strong><br>进行以下操作时  </p>
+<p><img src="/2019/03/19/Linux——文件的权限/17.png" alt=""><br>可以看到t变成了T，s变成了S。<br>因为第三位x被s和t挡住了，并看不见是否具有X权限，所以当没有x权限时，可以看到s，t变成了大写的，用以区分。</p>
+<h1 id="文件属性-（不是权限，在权限之上）"><a href="#文件属性-（不是权限，在权限之上）" class="headerlink" title="文件属性  （不是权限，在权限之上）"></a>文件属性  （不是权限，在权限之上）</h1><h2 id="chattr"><a href="#chattr" class="headerlink" title="chattr"></a>chattr</h2><p>chattr +a file1   //允许追加，一般是日志文件<br>chattr -a file1    //删除属性<br>echo 111&gt;file1     //以覆盖的方式写入<br>echo 111&gt;&gt;file1    //以追加的方式写入，例如日志文件  </p>
+<p>chattr +i file1     //不许修改<br>lsattr  //查看属性<br><img src="/2019/03/19/Linux——文件的权限/18.png" alt="">  </p>
+<p>chattr +A file1         //不会更新访问时间</p>
+<h1 id="umask-进程掩码"><a href="#umask-进程掩码" class="headerlink" title="umask 进程掩码"></a>umask 进程掩码</h1><p>掩码掩码，掩盖  ，新建文件，目录的默认权限会受到umask的影响，umask其实就是表示要减掉的权限<br>[root@localhost ~]# umask<br>0022<br>//2是w<br>查看一下权限<br><img src="/2019/03/19/Linux——文件的权限/19.png" alt=""><br>发现组和其他人权限都少了x,于是明白umask的意思了吧<br>如果我设置umask再大一些：<br>[root@localhost ~]# umask 777或0777（临时）<br>这个时候再新建文件，查看权限：<br><img src="/2019/03/19/Linux——文件的权限/20.png" alt=""><br>可以看到所有权限都被抹去。  </p>
+<p>永久修改shell umask：<br>[root@localhost ~]# vim /etc/profile<br>[root@localhost ~]# source /etc/profile   //立即在当前shell中生效  </p>
 
     </div>
 
