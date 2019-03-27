@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="python——基础"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>python——基础 - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/28/python——基础/">
+                python——基础
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-28</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/Linux/">Linux</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>已经学了那么多语言了，再学python就简单些了，虽然可能个别地方不尽相同，但是一些语法，循环阿，还是差不多的。  </p>
+<h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p>啥是常量，就是一个数或字符串，像5 、 1.23 、 9.25e-3 这样的数，像’This is a string’ 、 “It’s a string!”这样的字符串。他们被称作字面意义上的常量，你按照它们的字面意义使用它们的值。<a id="more"></a>他们只代表他们自己，不会是别的东西，且不能改变它的值。  </p>
+<h1 id="数"><a href="#数" class="headerlink" title="数"></a>数</h1><p>在python中数有三种，整数，浮点数，复数  </p>
+<ul>
+<li>2、3、5</li>
+<li>5.12、51.2E-4是浮点数，E表示10的幂</li>
+<li>(-5+3j)这种是复数<blockquote>
+<p>python中不区分long int类型，默认的整数类型可以任意长。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>字符串是字符的序列，基本上就是一组单词，单词可以是英语或其 它由 Unicode 标准支持的语言，其实这也意味着世界上几乎所有的语言。</p>
+<h1 id="单引号"><a href="#单引号" class="headerlink" title="单引号"></a>单引号</h1><p>你可以用单引号指定字符串，如 ‘I do not want see you’ 。所有的空白，即空格和制表 符都照原样保留。</p>
+<h1 id="双引号"><a href="#双引号" class="headerlink" title="双引号"></a>双引号</h1><p>在双引号中的字符串与单引号中的字符串的使用完全相同，例如 “What’s your name?” 。</p>
+<h1 id="三引号"><a href="#三引号" class="headerlink" title="三引号"></a>三引号</h1><p>利用三引号（’’’or’’’），你可以指示一个多行的字符串。你可以在三引号中自由 的使用单引号和双引号。<br>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">1 &apos;&apos;&apos;</span><br><span class="line">2 This is a multi-line string. This is the first line. </span><br><span class="line">3 This is the second line. </span><br><span class="line">4 &quot;What&apos;s your name?,&quot; I asked. </span><br><span class="line">5 He said &quot;Bond, James Bond.&quot; </span><br><span class="line">6 &apos;&apos;&apos;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"># 转义序列</span><br><span class="line">如果你有一个字符串包含单引号（&apos;）,如何表示？例如What’s your name?  </span><br><span class="line">肯定不能  &apos;What’s your name?&apos;   因为 Python 不知道字 符串的起始和结束位置。  </span><br><span class="line">所以应该将字符串中间的这个单引号指定为不表示字符串的 结束。因此可以表示为   &apos;What\&apos;s your name?&apos;  双引号的话这样 &quot;What&apos;s your name?&quot;  </span><br><span class="line">类似的，双引号里用双引号也必须用转义符，还有，转义符`\\`表示反斜杠  </span><br><span class="line">所以如果想指定两行字符串的话，一是用`&apos;&apos;&apos;`,二是用转义符`\n`表示新的一行的开始(This is the ﬁrst line\nThis is the second line )  </span><br><span class="line">&gt;有一点要说的是，在一个字符串中，在一行末尾的反斜杠仅仅表示下一行的字符串是上一行的继续，但并不增加新的行。例：</span><br><span class="line">1 &quot;This is the first sentence.\ </span><br><span class="line">2 This is the second sentence.&quot;与&quot;This is the ﬁrst sentence. This is the second sentence.&quot;等价</span><br><span class="line"># 自然字符串</span><br><span class="line">如果，你想指定一些不被特殊处理，例如像转义序列，那么，就需要通过在字符 串前面附加 r 或 R 来指定自然字符串。例如，r&apos;Newlines are indicated by \n&apos; </span><br><span class="line">&gt;字符串是不能变的，一旦创建。是好是坏？</span><br><span class="line"># 字符串按字面意思连接</span><br><span class="line">如果你把两个字符串按字面意义相邻放着，他们会被 Python 自动级连。例如，                                       ’What\’s”your name?’ 会被自动转为 &quot;What’s your name?&quot; 。   </span><br><span class="line">记住单引号和双引号是一样的 —— 没有丝毫差异。  </span><br><span class="line">用正则表达式的时候请使用自然字符串。否则，可能会用到许多反斜杠。例如，，后向引用符可 以写成 `&apos;\\1&apos;` 或 r&apos;\1&apos;。</span><br><span class="line"># format方法</span><br><span class="line">有时我们并不想用其他信息来构造字符串。这儿 format() 方法就很有用。  </span><br><span class="line">![](python——基础/1.png)  </span><br><span class="line">结果为：  </span><br><span class="line">![](python——基础/1-1.png)  </span><br><span class="line">&gt;运行原理： 一个字符串能使用确定的格式，随后，可以调用 format 方法来代替这些格式，参数要 与 format 方法的参数保持一致。 观察首次使用 0 的地方，这与 format 方法的第一个参变量 name 相一致。类似地， 第二个格式 1 与 format 方法的第二个参变量 age 相一致.</span><br><span class="line">转为字符串的操作由 format 自动完成，而不需要明确 的转换。用 format 方法的时候，不必处理用过的变量和 vice-versa 就能改变消 息。 </span><br><span class="line"># 变量</span><br><span class="line">我们需要一种既可以储存信 息又可以对它们进行操作的方法。这是为什么要引入变量。你可以使用变量存储任何东西。变量只是你的计算机中 存储信息的一部分内存。与字面意义上的常量不同，你需要一些能够访问这些变量的 方法，因此要给变量命名。  </span><br><span class="line"># 标识符</span><br><span class="line">变量是标识符的例子。标识符是用来标识某样东西的名字。在命名标识符的时 候，你要遵循这些规则：  </span><br><span class="line">- 标识符的第一个字符必须是字母表中的字母（大写或小写）或者一个下划线 （‘_’）。</span><br><span class="line">- 标识符名称的其他部分可以由字母（大写或小写）、下划线（‘_’）或数字（0-9） 组成。</span><br><span class="line">- 标识符名称是对大小写敏感的。例如，myname 和 myName 不是一个标识符。注 意前者中的小写 n 和后者中的大写 N 。</span><br><span class="line">- 有效标识符名称的例子有 i 、 __my_name 、 name_23 和 a1b2_c3 。</span><br><span class="line">- 无效标识符名称的例子有 2things 、 this is spaced out 和 my-name 。</span><br><span class="line"># 数据类型</span><br><span class="line">变量可以有不同类型的值，称之为数据类型。基本数据类型是数字和字符串，这 两种已经讨论过了。在后面，会看到如何用类来创建我们自己的类型。  </span><br><span class="line"># 对象</span><br><span class="line">python将一切在程序中用到的东西都作为对象。Python 是完全面向对象的，在某种意义上，任何东西都被作为对象，包括数字、字符串和函数。  </span><br><span class="line">**例子：使用变量和文字意义上的常量**</span><br></pre></td></tr></table></figure></p>
+<p>1 # Filename : var.py<br>2 i = 5<br>3 print(i)<br>4 i = i + 1<br>5 print(i)<br>6 s = ‘’’This is a multi-line string.<br>7 This is the second line.’’’<br>8 print(s)<br>输出：<br>1 $ python var.py<br>2 5<br>3 6<br>4 This is a multi-line string.<br>5 This is the second line.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注：使用变量时只需要给它们赋一个值。不需要声明或定义数据类型。</span><br><span class="line"># 逻辑行和物理行</span><br><span class="line">物理行是你在编写程序时所看见的。逻辑行是Python看见的单个语句。 Python假 定每个物理行对应一个逻辑行。</span><br><span class="line">如果你想要在一个物理行中使用多于一个逻辑行，那么你需要使用分号（;）来 特别地标明这种用法。分号表示一个逻辑行/语句的结束：</span><br></pre></td></tr></table></figure></p>
+<p>1 i = 5<br>2 print i<br>等于<br>1 i = 5;<br>2 print i;<br>等于<br>i=5;print i;  甚至写成i=5;print i<br>连接的话<br> print \<br> i<br>与如下写法效果相同：<br> print i<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"> # 缩进</span><br><span class="line"> 在 Python 中空白非常重要。实际上，在每行开头的空白很重要。称之为缩进。 在行首的主要的空白（空格键和制表符）用来决定逻辑行缩进的层次，从而来决定语 句分组。 这意味着同一层次的语句必须有相同的缩进。每一组这样的语句称为一个块。  </span><br><span class="line"> **错误的缩进会引发错误！！！**  </span><br><span class="line">  Error! Notice a single space at the start of the line .  </span><br><span class="line">  IndentationError: unexpected inden  </span><br><span class="line">  &gt;Python 总是使用缩进来代表代码块，不再使用括号。</span><br><span class="line"># 操作符</span><br><span class="line">表达式最简单的例子就是2+3，表达式被分解为操作符和操作数。  </span><br><span class="line">![](python——基础/2.png)  </span><br><span class="line">![](python——基础/2-2.png)  </span><br><span class="line">![](python——基础/2-2-2.png)  </span><br><span class="line"></span><br><span class="line">## python位运算符</span><br><span class="line">设变量a=60，b=13，二进制格式如下：  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">a = 0011 1100</span><br><span class="line"></span><br><span class="line">b = 0000 1101  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">a&amp;b = 0000 1100</span><br><span class="line"></span><br><span class="line">a|b = 0011 1101</span><br><span class="line"></span><br><span class="line">a^b = 0011 0001</span><br><span class="line"></span><br><span class="line">~a  = 1100 0011  </span><br><span class="line"></span><br><span class="line">![](python——基础/3.png)  </span><br><span class="line">## python逻辑运算符</span><br><span class="line">![](python——基础/4.png)  </span><br><span class="line">## Python成员运算符</span><br><span class="line">![](python——基础/5.png)  </span><br><span class="line">![](python——基础/5-5.png)  </span><br><span class="line">## python身份运算符</span><br><span class="line">![](python——基础/6.png)   </span><br><span class="line">![](python——基础/6-6.png)  </span><br><span class="line">&gt;is用于判断两个变量引用对象是否为同一个，==用于判断引用变量的值是否相等</span><br><span class="line"></span><br><span class="line">**数学运算和赋值的简便方法：**  </span><br><span class="line">可以将：</span><br><span class="line">1 a = 2; a = a * 3</span><br><span class="line">写成：</span><br><span class="line">1 a = 2; a *= 3  </span><br><span class="line">变量 = 变量 操作符 表达式 变成了 变量 操作符 = 表达式。  </span><br><span class="line">## 优先级</span><br><span class="line">（由低到高）  </span><br><span class="line">![](python——基础/7.png)  </span><br><span class="line"># 控制流</span><br><span class="line">在 Python 中有三种 控制流语句 ——if、for 和 while 。 </span><br><span class="line">## if</span><br></pre></td></tr></table></figure></p>
+<p>#Filename:if.py</p>
+<p>number = 23<br>guess = int(input(‘Enter an integer :’))</p>
+<p>if guess == number:<br>    print(‘Congratulations, you guessed it.’)<br>    print(‘(but you do not win any prizes!)’)<br>elif guess &lt; number:<br>    print(‘No, it is a little higher than that’)<br>else:<br>    print(‘No, it is a little lower than that’)<br>print(‘Done’)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结果为：</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<blockquote>
+<p>python if.py<br>Enter an integer :3<br>No, it is a little higher than that<br>Done</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>python if.py<br>Enter an integer :23<br>Congratulations, you guessed it.<br>(but you do not win any prizes!)<br>Done<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;注意 if 语句在结尾处包含一个冒号 —— 我们通过它告诉 Python 下面跟着一个语 句块。 </span><br><span class="line">在 Python 中没有 switch 语句。你可以使用 if..elif..else 语句来完成同样的工作（在某些场合，使用 字典会更加快捷。）</span><br><span class="line">## while</span><br><span class="line">while 语句有一个可选的 else 从句</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+<h1 id="Filename-while-py"><a href="#Filename-while-py" class="headerlink" title="Filename while.py"></a>Filename while.py</h1><p>number = 23<br>running = True</p>
+<p>while running:<br>    guess = int(input(“Enter an integer:”))</p>
+<pre><code>if guess == number:
+    print(&quot;Congratulation,you guessed it.&quot;)
+    running=False
+elif guess&lt;number:
+    print(&quot;No,it is a little higher.&quot;)
+else:
+    print(&quot;No,it is a little lower.&quot;)
+</code></pre><p>else:<br>    print(“the while loop is over.”)<br>print(“done”)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>python while.py<br>Enter an integer:25<br>No,it is a little lower.<br>Enter an integer:12<br>No,it is a little higher.<br>Enter an integer:23<br>Congratulation,you guessed it.<br>the while loop is over.<br>done<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;记得 while 循环可以有 else 语句</span><br><span class="line"></span><br><span class="line">## for</span><br><span class="line">for..in 是另外一个循环语句，它在一序列的对象上迭代，即逐一使用序列中的每个项目</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>for j in range(1,5):<br>    print(j)<br>else:<br>    print(‘The for loop is over’)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>python for.py<br>1<br>2<br>3<br>4<br>The for loop is over<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; else 部分是可选的。如果包含 else ，它总是在 for 循环结束后执行一次， 除非遇到 break 语句。在 C/C++ 中，如果你想要写 for (int i = 0; i &lt; 5; i++) ，那么用 Python ，你写成 for i in range(0,5) 。你会注意到， Python 的 for 循环更加简单、明白、不易出错.</span><br><span class="line"></span><br><span class="line">## break</span><br><span class="line">break 语句是用来终止循环语句的，即哪怕循环条件没有变为 False 或序列还没有 被完全迭代结束，也停止执行循环语句。 一个重要的注释是，如果你从 for 或 while 循环中终止，任何对应的循环 else 块 将不执行。</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#Filename:break.py<br>while True:<br>    s = (input(‘Enter something:’))<br>    if s == ‘quit’:<br>        break<br>    print(‘Length of the string is’,len(s))<br>print(‘Done’)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">结果：</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>python break.py<br>Enter something:wang<br>Length of the string is 4<br>Enter something:yogurt<br>Length of the string is 6<br>Enter something:I don’t want see you anymore<br>Length of the string is 28<br>Enter something:quit<br>Done<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## continue</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#Filename:continue.py<br>while True:<br>    s = raw_input(‘Enter something:’)<br>    if s == ‘quit’:<br>        break<br>    if len(s)&lt;3:<br>        print(‘Too small’)<br>    continue</p>
+<pre><code>print(&apos;Input is of sufficient length&apos;)
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">结果：</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>python2 continue.py<br>Enter something:j<br>Too small<br>Enter something:abc<br>Input is of sufficient length<br>Enter something:quit<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;continue 语句对于 for 循环也有效。</span><br><span class="line"></span><br><span class="line"># 模块</span><br><span class="line">&gt;模块是python程序架构的一个核心概念</span><br><span class="line">- 模块就好比是工具包，要想使用这个工具包中的工具，就需要导入import这个模块</span><br><span class="line">- 每一个以扩展名py为结尾的python源代码都是一个模块</span><br><span class="line">- 在模块中定义的全局变量、函数都是模块能够提供给外界直接使用的工具  </span><br><span class="line"></span><br><span class="line">**举个栗子叭：**  </span><br><span class="line">我写一个py文件  &quot;这是一个模块鸭.py&quot;里面定义上函数，变量等，然后在另一个文件(测试模板鸭.py)中使用**import**导入这个模块，导入之后，可以使用该模块中的变量或函数，模块名.函数/变量。  </span><br><span class="line"></span><br><span class="line">**例：**  </span><br><span class="line">这是一个模块鸭.py：</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>def sayhi():<br>    print(“Hello,girl!”)</p>
+<p>def saybey():<br>    print(“Goodbey”)</p>
+<p>name=”dawang”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">测试模板鸭.py:</span><br></pre></td></tr></table></figure></p>
+<p>import 这是一个模块鸭<br>print(这是一个模块鸭.sayhi())<br>print(这是一个模块鸭.saybey())<br>print(这是一个模块鸭.name)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">结果：</span><br></pre></td></tr></table></figure></p>
+<p>python 测试模板鸭.py<br>Hello,girl!</p>
+<p>Goodbey</p>
+<p>dawang<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;模块可以让曾经编写过的代码被复用</span><br><span class="line"></span><br><span class="line">**模块命名**  </span><br><span class="line">模块名也是标识符  </span><br><span class="line">名字由字母，下划线，数字组成，不能以数字开头，不能与关键字重名</span><br><span class="line"></span><br><span class="line">**Pyc文件**  </span><br><span class="line">&gt;C是compiled编译过的意思</span><br><span class="line">1. 可以在程序目录看到一个__pycache__目录</span><br><span class="line">2. 目录下会有几个pyc文件，cpython表示python解释器的版本</span><br><span class="line">3. 这个pyc文件是由python解释器将模块的源码转换为字节码。（这样保存字节码是作为一种启动速度的优化）</span><br><span class="line"></span><br><span class="line">_字节码_</span><br><span class="line"></span><br><span class="line">python解释源程序时是分为两个步骤的，首先处理源代码，编译生成一个二进制字节码，再对字节码进行处理，才会生成CPU能够识别的机器码  </span><br><span class="line">有了模块的字节码文件之后，下一次运行程序时，如果上次保存字节码之后没有改过源代码，则会加载pyc文件并跳过编译这个步骤。  </span><br><span class="line">若是重新编译，会自动检车源文件和字节码的时间戳，修改源代码后，下次程序运行时，字节码会自动重新创建。</span><br><span class="line"># 函数</span><br><span class="line">## VarArgs 参数</span><br><span class="line">有时，你或许想定义一个能获取任意个数参数的函数，这可通过使用 * 号来实</span><br><span class="line">现。  </span><br><span class="line"></span><br><span class="line">**例**</span><br></pre></td></tr></table></figure></p>
+<p>def total(init=5,*numbers,**keywords):<br>    count = init<br>    for number in numbers:<br>        count+=number<br>    for key in keywords:<br>        count+=keywords[key]<br>    return count<br>print(total(10,1,2,3,apple=20,orange=30))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">结果为：66  </span><br><span class="line"></span><br><span class="line">当我们定义一个带星的参数，像 *param 时，从那一点后所有的参数被收集为一 个叫做 ’param’ 的列表。（例如这个代码，首先会把10给init，然后1，2，3被收集进一个列表numbers）  </span><br><span class="line">类似地，当我们定义一个带两个星的参数，像 **param 时，从那一点开始的 所有的关键字参数会被收集为一个叫做 ’param’ 的字典。（在例子中apple=20后的所有参数都被收集为一个字典，keywords=&#123;&apos;apple&apos;:20,&apos;orange&apos;:30&#125;）</span><br><span class="line">## DocStrings </span><br><span class="line">Python 有一个很奇妙的特性，称为文档字符串，它通常被简称为 docstrings 。 它会使你的程序文档简单易懂.  </span><br><span class="line">你可以使用 __doc__（注意双下划线）调用 printMax 函数的文档字符串属性（属 于函数的名称）。`函数名.__doc__`  </span><br><span class="line"></span><br><span class="line">python还有很多种函数，回调函数，递归函数，内嵌函数，内置函数，匿名函数……跟其他编程语言差不多  </span><br><span class="line"></span><br><span class="line">## 内置函数</span><br><span class="line">len         求长度  </span><br><span class="line">min         求最大值  </span><br><span class="line">max         求最小值  </span><br><span class="line">sorted      排序  </span><br><span class="line">reversed    反向  </span><br><span class="line">sum         求和  </span><br><span class="line"></span><br><span class="line">**进制转换函数：**  </span><br><span class="line">bin()       转换为二进制  </span><br><span class="line">oct()       转换为八进制  </span><br><span class="line">hex()       转换为十六进制  </span><br><span class="line">ord()       将字符转换为对应的ASCII码值  </span><br><span class="line">chr()       将ASCII码值转换成对应的字符</span><br><span class="line"># 数据结构</span><br><span class="line">数据结构基本上就是 —— 它们是可以处理一些数据的结构。或者说，它们是用 来存储一组相关数据的。 在 Python 中有四种内建的数据结构 —— 列表、元组、字典和集合。  </span><br><span class="line">## 列表</span><br><span class="line">dawang=[&apos;apple&apos;,&apos;orange&apos;,&apos;banana&apos;]  </span><br><span class="line">print(&apos;These are:&apos;,end=&apos; &apos;)//表示以空格结束输出，而不是通常的换行  </span><br><span class="line">dawang.sort()//将列表进行排序  </span><br><span class="line">dawang.append()//给列表对象增加一项  </span><br><span class="line">del dawang[0]//用del语句将其移除，指定哪一项，这里是第一项</span><br><span class="line">## 元组</span><br><span class="line">元组通常用在使语句或用户定义的函数能够安全地采用一组值的时候，即被使用 的元组的值不会改变  </span><br><span class="line"></span><br><span class="line">zoo=(&apos;python1&apos;,&apos;python2&apos;,&apos;python3&apos;)   </span><br><span class="line">&gt;元组和字符串一样，都是不可改变的，不要修改~</span><br><span class="line">print(1,2,3) 和 print((1,2,3)) 意义不同 —— 前一个打印三个数字，而后一个打印出一个元组 （包含三个数）</span><br><span class="line">## 字典</span><br><span class="line">字典是dict类的实例/对象  </span><br><span class="line">&gt;字典类似于你通过联系人名字查找地址和联系人详细情况的地址簿，键必须是唯一的，就像如果有两个 人恰巧同名的话，你无法找到正确的信息。 记住字典中的键/值对是没有顺序的。如果你想要一个特定的顺序，那么你应该 在使用前自己对它们排序。</span><br><span class="line"></span><br><span class="line">shuiguo=&#123;&apos;apple&apos;:20,&apos;banana&apos;:10,&apos;orange&apos;:30&#125;  </span><br><span class="line"></span><br><span class="line">print(shuiguo[&apos;apple&apos;])  </span><br><span class="line">del shuiguo[&apos;banana&apos;]  </span><br><span class="line"></span><br><span class="line">**字典的update**  </span><br><span class="line">temp_list=&#123;&quot;height&quot;:20&#125;  </span><br><span class="line">name_list.update(temp_list)//将temp的字典内容更新到name里，若是被合并的字典中包含已经存在的键值对时，原来的键值对会被覆盖。  </span><br><span class="line"></span><br><span class="line">**清空字典**  </span><br><span class="line">name_list.clear()//&#123;&#125;</span><br><span class="line">## 集合</span><br><span class="line">&gt;集合是没有顺序的简单对象的聚集。当在聚集中一个对象的**存在比其顺序或者出 现的次数重要**时使用集合。</span><br><span class="line">使用集合，可以检查是否是成员，是否是另一个集合的子集，得到两个集合的交 集等等。</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>bri = set([‘brazil’, ‘russia’, ‘india’])<br>‘india’ in bri<br> True<br>‘usa’ in bri<br> False<br>bric = bri.copy()<br>bric.add(‘china’)<br>bric.issuperset(bri)<br>True<br>bri.remove(‘russia’)<br>bri &amp; bric # OR bri.intersection(bric)<br> {‘brazil’, ‘india’}<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p> delimiter=’<strong>*</strong>‘<br> mylist = [‘Brazil’,’Russia’,’India’,’China’]<br> print(delimiter.join(mylist))//用字符把mylist中的字符连上Brazil__<em><strong>Russia</strong></em><strong>India</strong>*__China<br> name=’dawangwang’<br> if name.find(‘wan’)!=-1://find用来找出指定字符串在另一个字符串中的位置，找不到返回-1<br>    print(‘Yes, it contains the string “wan”‘)<br><code>`</code></p>
+<h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><p>列表，元组，字符串都是序列，序列是啥？<br>三种类型的序列 —— 列表、元组和字符串，也有切片操作，切片操 作让我们取出序列的薄片，例如序列的部分。<br><strong>切片</strong><br><img src="/2019/03/28/python——基础/8.png" alt=""></p>
+<p><img src="/2019/03/28/python——基础/9.png" alt="">  </p>
+<blockquote>
+<p>当步长是 2 时，我们得到在位置 0,2,… 的项，当步长是 3 时，得到位置 0,3, </p>
+</blockquote>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Linux系统操作/">#Linux系统操作</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/28/python——基础/">python——基础</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/27/python——基础/">Untitled</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/22/Linux——系统进程/">Linux——系统进程</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/19/Linux——文件的权限/">Linux——文件的权限</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Linux/">Linux</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/web/">web</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
