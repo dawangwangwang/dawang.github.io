@@ -168,10 +168,171 @@
         
 
         <!-- Post Content -->
-        <p>Docker 是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。  </p>
-<p>root@ubuntu:/var/www/html# sudo docker run -i -t ubuntu /bin/bash<br>Unable to find image ‘ubuntu:latest’ locally<br>latest: Pulling from library/ubuntu<br>898c46f3b1a1: Pull complete<br>63366dfa0a50: Pull complete<br>041d4cd74a92: Pull complete<br>6e1bee0f8701: Pull complete<br>Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8<br>Status: Downloaded newer image for ubuntu:latest</p>
-<p>root@f8649a0f1406:/# hostname<br>f8649a0f1406<br>root@f8649a0f1406:/# cat /etc/hosts<br>127.0.0.1    localhost<br>::1    localhost ip6-localhost ip6-loopback<br>fe00::0    ip6-localnet<br>ff00::0    ip6-mcastprefix<br>ff02::1    ip6-allnodes<br>ff02::2    ip6-allrouters<br>172.17.0.2    f8649a0f1406</p>
-<p><strong>获取当前宿主机上存在的容器</strong><br>root@ubuntu:/var/www/html# docker ps -a<br>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                            PORTS               NAMES<br>f8649a0f1406        ubuntu              “/bin/bash”         3 days ago          Exited (127) About a minute ago </p>
+        <h1 id="Dockers简介"><a href="#Dockers简介" class="headerlink" title="Dockers简介"></a>Dockers简介</h1><p>Docker 是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br><a id="more"></a></p>
+<p><strong>什么是容器？</strong><br>一种虚拟化的方案。<br>操作系统级别的虚拟化<br>只能运行相同或相似内核的操作系统<br>依赖于Linux 内核特性：Nampspace和Cgroups（Control Group）</p>
+<p>传统的虚拟机是通过中间层将一台或多台独立的机器虚拟运行在物理硬件之上，而容器是直接运行在操作系统的内核之上的用户空间。因此容器虚拟化也被称为操作系统虚拟化。由于依赖于操作系统的特性，所以容器只能运行于底层操作系统相同或相似的操作系统。</p>
+<p><strong>linux容器技术VS虚拟机</strong><br>虚拟机比容器占用资源多，还要模拟硬件行为，对内存和CPU消耗较大。所以同样配置的服务器，容器技术比虚拟机能够提供更多服务，服务更多用户。</p>
+<p><strong>为何直到dockers出现，容器技术才被关注？</strong><br>容器本身复制，依赖linux内核很多特性，不易安装管理和实现自动化，</p>
+<p><strong>什么是docker？</strong><br>将应用程序自动部署到容器的开源引擎，<br>采用Go语言编写，2013年初，由dotCloud公司发布。<br>基于Apache2.0 开源授权协议发行。<br><strong>docker优点</strong></p>
+<p>提供简单轻量的建模方式 （启动很快）<br>职责的逻辑分离<br>快速高效的开发生命周期<br>鼓励使用面向服务的架构</p>
+<p><strong>docker使用场景</strong><br>1.使用docker容器开发、测试、部署服务<br>2.创建隔离的运行环境<br>3.搭建测试环境<br>4.创建多用户的平台即服务（PaaS）基础设施<br>5.提供软件即服务（SaaS）应用程序<br>6.高性能、超大规模的宿主机部署</p>
+<h1 id="Docker基本组成"><a href="#Docker基本组成" class="headerlink" title="Docker基本组成"></a>Docker基本组成</h1><ul>
+<li>Docker Client 客户端</li>
+<li>Docker Daemon 守护进程</li>
+<li>Docker Image 镜像</li>
+<li>Docker Container 容器</li>
+<li>Docker Registry 仓库</li>
+</ul>
+<h2 id="Docker-客户端-守护进程"><a href="#Docker-客户端-守护进程" class="headerlink" title="Docker 客户端/守护进程"></a>Docker 客户端/守护进程</h2><p>（客户端向服务端也就是守护进程发出请求，守护进程处理完返回结果）<br>C/S架构<br>本地/远程  都可访问服务端</p>
+<h2 id="Docker-Image镜像"><a href="#Docker-Image镜像" class="headerlink" title="Docker Image镜像"></a>Docker Image镜像</h2><p>容器的基石，容器基于镜像启动运行，好比容器源代码，保存用于启动容器的条件，</p>
+<p>docker镜像是一个层叠的只读文件系统，最底端是一个引导文件系统，即—<strong>bootfs</strong>，docker用户基本永远不会与引导文件系统交互。</p>
+<p>第二层是一个<strong>rootfs</strong>文件系统（ubuntu），在docker里，rootfs永远只能是只读状态</p>
+<p><strong>联合加载（union mount）</strong> ,docker的联合加载技术会在rootfs基础之上加载更多文件系统。联合加载将各层文件系统叠加到一起，最终的文件系统包含所有的底层文件和目录，docker将这样的文件系统称为镜像。<br><img src="/2019/04/03/docker基本概念/1.png" alt="1"></p>
+<p>一个镜像可以放在另一个镜像的底部，位于下面的镜像为父镜像 </p>
+<h2 id="Docker-Container-容器"><a href="#Docker-Container-容器" class="headerlink" title="Docker Container 容器"></a>Docker Container 容器</h2><p>通过镜像启动<br>启动和执行阶段<br>写时复制（copy on wirte）</p>
+<h2 id="Docker-Registry-仓库"><a href="#Docker-Registry-仓库" class="headerlink" title="Docker Registry 仓库"></a>Docker Registry 仓库</h2><p>保存用户构建的镜像 </p>
+<p>公有   Docker Hub<br>私有    </p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="docker-hello-world"><a href="#docker-hello-world" class="headerlink" title="docker hello world"></a>docker hello world</h2><h3 id="获取当前宿主机上存在的容器"><a href="#获取当前宿主机上存在的容器" class="headerlink" title="获取当前宿主机上存在的容器"></a>获取当前宿主机上存在的容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/var/www/html# docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                            PORTS               NAMES</span><br><span class="line">f8649a0f1406        ubuntu              &quot;/bin/bash&quot;         3 days ago          Exited (127) About a minute ago</span><br></pre></td></tr></table></figure>
+<h3 id="docker允许在容器中运行应用程序，使用-docker-run-来在容器内运行一个应用程序"><a href="#docker允许在容器中运行应用程序，使用-docker-run-来在容器内运行一个应用程序" class="headerlink" title="docker允许在容器中运行应用程序，使用 docker run 来在容器内运行一个应用程序"></a>docker允许在容器中运行应用程序，使用 <strong>docker run</strong> 来在容器内运行一个应用程序</h3><blockquote>
+<p>run,每次run的时候都会基于镜像新建一个容器，若是已有容器，可以直接启动容器。</p>
+</blockquote>
+<p><code>root@ubuntu:~# docker run ubuntu /bin/echo &quot;hello!&quot;
+hello!</code></p>
+<p>参数解析：</p>
+<ul>
+<li><strong>docker:</strong> Docker 的二进制执行文件。</li>
+<li><strong>run:</strong>与前面的 docker 组合来运行一个容器。</li>
+<li><strong>ubuntu</strong>指定要运行的镜像，Docker首先从本地主机上查找镜像是否存在，如果不存在，Docker 就会从镜像仓库 Docker Hub 下载公共镜像。</li>
+<li><strong>/bin/echo “Hello world”:</strong> 在启动的容器里执行的命令<blockquote>
+<p>以上命令完整的意思可以解释为：Docker 以 ubuntu 镜像创建一个新容器，然后在容器里执行 bin/echo “Hello world”，然后输出结果。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>使用docker run来创建容器时，Docker在后台的操作包括：</strong></p>
+<ul>
+<li>检查本地是否存在指定的镜像，不存在就从公有仓库中下载</li>
+<li>利用镜像创建并启动一个容器</li>
+<li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li>
+<li>从宿主主机的网桥接口中桥接一个虚拟接口到容器中去</li>
+<li>从地址池分配一个IP给容器</li>
+<li>执行用户指定的应用程序</li>
+<li>执行完毕后容器被终止</li>
+</ul>
+<h2 id="运行交互式的容器"><a href="#运行交互式的容器" class="headerlink" title="运行交互式的容器"></a>运行交互式的容器</h2><h3 id="通过docker的两个参数-i-t，让docker运行的容器实现”对话”的能力"><a href="#通过docker的两个参数-i-t，让docker运行的容器实现”对话”的能力" class="headerlink" title="通过docker的两个参数 -i -t，让docker运行的容器实现”对话”的能力"></a>通过docker的两个参数 -i -t，让docker运行的容器实现”对话”的能力</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/var/www/html# sudo docker run -i -t ubuntu /bin/bash</span><br><span class="line">Unable to find image &apos;ubuntu:latest&apos; locally</span><br><span class="line">latest: Pulling from library/ubuntu</span><br><span class="line">898c46f3b1a1: Pull complete </span><br><span class="line">63366dfa0a50: Pull complete </span><br><span class="line">041d4cd74a92: Pull complete </span><br><span class="line">6e1bee0f8701: Pull complete </span><br><span class="line">Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8</span><br><span class="line">Status: Downloaded newer image for ubuntu:latest</span><br><span class="line">root@f8649a0f1406:/#</span><br></pre></td></tr></table></figure>
+<p>参数解析：</p>
+<ul>
+<li><strong>-t:</strong>在新容器内指定一个伪终端或终端。</li>
+<li><strong>-i:</strong>允许你对容器内的标准输入 (STDIN) 进行交互。</li>
+</ul>
+<blockquote>
+<p>此时我们已进入一个 ubuntu系统的容器</p>
+</blockquote>
+<h3 id="我们可以在容器中运行命令cat-proc-version和ls分别查看当前系统版本信息和当前目录下的文件："><a href="#我们可以在容器中运行命令cat-proc-version和ls分别查看当前系统版本信息和当前目录下的文件：" class="headerlink" title="我们可以在容器中运行命令cat /proc/version和ls分别查看当前系统版本信息和当前目录下的文件："></a>我们可以在容器中运行命令cat /proc/version和ls分别查看当前系统版本信息和当前目录下的文件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# cat /proc/version</span><br><span class="line">Linux version 4.4.0-145-generic (buildd@lcy01-amd64-027) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.10) ) #171-Ubuntu SMP Tue Mar 26 12:43:40 UTC 2019</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过运行exit命令或者使用CTRL+D来退出容器</p>
+</blockquote>
+<h2 id="启动容器-后台模式"><a href="#启动容器-后台模式" class="headerlink" title="启动容器(后台模式)"></a>启动容器(后台模式)</h2><h3 id="使用下面这个命令创建一个以进程方式运行的容器"><a href="#使用下面这个命令创建一个以进程方式运行的容器" class="headerlink" title="使用下面这个命令创建一个以进程方式运行的容器"></a>使用下面这个命令创建一个以进程方式运行的容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# docker run -d ubuntu /bin/sh -c &quot;while true;do echo hello world;sleep 1;done&quot;</span><br><span class="line">f8f729bd2d9e74415d5e85e29bcf145335453c066194fc0680f76ee4d661d46a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下边这个一长串字符是容器ID，对每个容器来说都是唯一的，可以通过容器ID 来查看对应容器发生了啥。（首先要用docker ps来确认容器是否在运行）</p>
+</blockquote>
+<h3 id="那么下面来查看容器内的标准输出："><a href="#那么下面来查看容器内的标准输出：" class="headerlink" title="那么下面来查看容器内的标准输出："></a>那么下面来查看容器内的标准输出：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# docker logs f8f729bd2d9e74415d5e85e29bcf145335453c066194fc0680f76ee4d661d46a</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
+<h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><p><strong>docker stop</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# docker stop f8f729bd2d9e74415d5e85e29bcf145335453c066194fc0680f76ee4d661d46a</span><br><span class="line">f8f729bd2d9e74415d5e85e29bcf145335453c066194fc0680f76ee4d661d46a</span><br></pre></td></tr></table></figure>
+<h1 id="docker容器使用"><a href="#docker容器使用" class="headerlink" title="docker容器使用"></a>docker容器使用</h1><h2 id="运行一个web应用"><a href="#运行一个web应用" class="headerlink" title="运行一个web应用"></a>运行一个web应用</h2><p>在docker容器中运行一个 Python Flask 应用来运行一个web应用<br><code>root@ubuntu:~# docker pull training/webapp # 载入镜像</code></p>
+<p><img src="/2019/04/03/docker基本概念/4.png" alt="4"><br><code>root@ubuntu:~# docker run -d -P training/webapp python app.py</code><br><img src="/2019/04/03/docker基本概念/6.png" alt="6"></p>
+<p><strong>参数说明</strong></p>
+<ul>
+<li><strong>-d:</strong>让容器在后台运行。</li>
+<li><strong>-P:</strong>将容器内部使用的网络端口映射到我们使用的主机上。</li>
+</ul>
+<h2 id="查看web应用容器"><a href="#查看web应用容器" class="headerlink" title="查看web应用容器"></a>查看web应用容器</h2><p>docker ps 查看正在运行容器：<br><img src="/2019/04/03/docker基本概念/7.png" alt=""><br>多了端口信息。<br>0.0.0.0:32768-&gt;5000/tcp </p>
+<p>docker开放了5000端口（默认Python Flask 端口）映射到主机端口32768上。</p>
+<p>还可以通过浏览器访问web应用了<br><img src="/2019/04/03/docker基本概念/8.png" alt=""></p>
+<p>还可以通过<strong>-p</strong>来设置不一样的端口:<br><code>root@ubuntu:~# docker run -d -p 5000:5000 training/webapp python app.py</code><br>这时候就是这样了：<br>0.0.0.0:5000-&gt;5000/tcp </p>
+<h2 id="网络端口快捷方式"><a href="#网络端口快捷方式" class="headerlink" title="网络端口快捷方式"></a>网络端口快捷方式</h2><p><strong>docker port</strong><br>使用 <strong>docker port</strong> 可以查看指定 （ID 或者名字）容器的某个确定端口映射到宿主机的端口号。</p>
+<p>docker port 容器ID<br><img src="/2019/04/03/docker基本概念/9.png" alt=""></p>
+<p>docker port 容器名字<br><img src="/2019/04/03/docker基本概念/10.png" alt=""></p>
+<h2 id="查看web应用程序日志"><a href="#查看web应用程序日志" class="headerlink" title="查看web应用程序日志"></a>查看web应用程序日志</h2><p>docker logs ID或名字  可以查看容器内部的标准输出</p>
+<p><img src="/2019/04/03/docker基本概念/11.png" alt=""></p>
+<blockquote>
+<p>可以看到应用程序使用的是 5000 端口并且能够查看到应用程序的访问日志。</p>
+</blockquote>
+<h2 id="查看web应用程序容器的进程"><a href="#查看web应用程序容器的进程" class="headerlink" title="查看web应用程序容器的进程"></a>查看web应用程序容器的进程</h2><p>docker top 查看容器内部运行程序</p>
+<p><img src="/2019/04/03/docker基本概念/12.png" alt=""></p>
+<h2 id="检查web应用程序"><a href="#检查web应用程序" class="headerlink" title="检查web应用程序"></a>检查web应用程序</h2><p>使用 <strong>docker inspect</strong> 来查看 Docker 的底层信息。它会返回一个 JSON 文件记录着 Docker 容器的配置和状态信息。</p>
+<p><code>root@ubuntu:/etc/docker# docker inspect 2c157b47ecf6</code><br><img src="/2019/04/03/docker基本概念/13.png" alt=""></p>
+<h2 id="停止容器-1"><a href="#停止容器-1" class="headerlink" title="停止容器"></a>停止容器</h2><p>docker stop ID或名字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/etc/docker# docker stop 2c157b47ecf6</span><br><span class="line">2c157b47ecf6</span><br></pre></td></tr></table></figure>
+<h2 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h2><p>已经停止的容器—docker start  ID或名字<br>正在运行的容器—docker restart   ID或名字</p>
+<p>docker ps -l 查询最后一次创建的容器<br><img src="/2019/04/03/docker基本概念/14.png" alt=""></p>
+<h2 id="移除容器"><a href="#移除容器" class="headerlink" title="移除容器"></a>移除容器</h2><p>docker rm  ID或名字</p>
+<h1 id="镜像使用"><a href="#镜像使用" class="headerlink" title="镜像使用"></a>镜像使用</h1><blockquote>
+<p>当运行容器时，使用的镜像如果在本地中不存在，docker 就会自动从 docker 镜像仓库中下载，默认是从 Docker Hub 公共镜像源下载。</p>
+</blockquote>
+<h2 id="docker-images-列出本机镜像"><a href="#docker-images-列出本机镜像" class="headerlink" title="docker images 列出本机镜像"></a>docker images 列出本机镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              latest              94e814e2efa8        4 weeks ago         88.9MB</span><br></pre></td></tr></table></figure>
+<p><strong>各个选项说明:</strong></p>
+<ul>
+<li><strong>REPOSITORY：</strong>表示镜像的仓库源</li>
+<li><strong>TAG：</strong>镜像的标签</li>
+<li><strong>IMAGE ID：</strong>镜像ID</li>
+<li><strong>CREATED：</strong>镜像创建时间</li>
+<li><strong>SIZE：</strong>镜像大小</li>
+</ul>
+<p>同一仓库源可以有多个 TAG，代表这个仓库源的不同个版本，如ubuntu仓库源里，有15.10、14.04等多个不同的版本，我们使用 REPOSITORY:TAG 来定义不同的镜像。</p>
+<p>如果要使用版本为15.10的ubuntu系统镜像来运行容器时，命令如下：<br><code>root@ubuntu:~# docker run -t -i ubuntu:15.10  /bin/bash</code></p>
+<p>如果要使用版本为14.04的ubuntu系统镜像来运行容器时，命令如下：<br><code>root@ubuntu:~# docker run -t -i ubuntu:14.04  /bin/bash</code></p>
+<blockquote>
+<p>如果不指定一个镜像的版本标签，例如你只使用 ubuntu，docker 将默认使用 ubuntu:latest 镜像。</p>
+</blockquote>
+<h2 id="如何获取一个新镜像"><a href="#如何获取一个新镜像" class="headerlink" title="如何获取一个新镜像"></a>如何获取一个新镜像</h2><p>在主机上使用一个不存在的镜像时，Docker会自动下载这个镜像，可以用<strong>docker pull</strong>  命令。</p>
+<p><code>root@ubuntu:~# docker pull training/webapp
+  Using default tag: latest
+  latest: Pulling from training/webapp
+  e190868d63f8: Downloading  17.19MB</code></p>
+<blockquote>
+<p>下载完成后，我们可以直接使用这个镜像来运行容器。</p>
+</blockquote>
+<h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以从 Docker Hub 网站来搜索镜像，Docker Hub 网址为： <em><a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a></em><br>也可以使用 docker search 命令来搜索镜像。<br>比如需要一个httpd的镜像，则可以：<br>docker search httpd</p>
+<p><img src="/2019/04/03/docker基本概念/2.png" alt="2"></p>
+<ul>
+<li><p>NAME:镜像仓库源的名称</p>
+</li>
+<li><p>DESCRIPTION:镜像的描述</p>
+</li>
+<li><p>OFFICIAL:是否docker官方发布</p>
+<h2 id="拖取镜像"><a href="#拖取镜像" class="headerlink" title="拖取镜像"></a>拖取镜像</h2><p>使用命令 docker pull 来下载镜像。</p>
+</li>
+</ul>
+<p><code>root@ubuntu:~# docker pull httpd</code><br>下载完以后就可以使用这个镜像。<br><code>root@ubuntu:~# docker run httpd</code></p>
+<p><img src="/2019/04/03/docker基本概念/3.png" alt="3"></p>
+<h2 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h2><p>当我们从docker镜像仓库中下载的镜像不能满足我们的需求时，我们可以<br>1.从已经创建的容器中更新镜像，并且提交这个镜像<br>2.使用 Dockerfile 指令来创建一个新的镜像</p>
+<h2 id="更新镜像"><a href="#更新镜像" class="headerlink" title="更新镜像"></a>更新镜像</h2><p>更新镜像之前需要用镜像创建一个容器，在容器中更新。<br>完成操作后可以exit退出容器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# docker run -t -i ubuntu  /bin/bash</span><br><span class="line">root@f8649a0f1406:/#</span><br><span class="line">root@f8649a0f1406:/# apt-get update</span><br><span class="line">root@f8649a0f1406:/# exit</span><br></pre></td></tr></table></figure>
+<p>可以通过命令 docker commit来提交容器副本。<br><code>docker commit -m=&quot;has update&quot;  -a=&quot;runoob&quot; e218edb10161 runoob/ubuntu:v2</code></p>
+<p>各个参数说明：</p>
+<ul>
+<li><p>-m:提交的描述信息</p>
+</li>
+<li><p>-a:指定镜像作者</p>
+</li>
+<li><p>e218edb10161：容器ID</p>
+</li>
+<li><p>runoob/ubuntu:v2:指定要创建的目标镜像名</p>
+</li>
+</ul>
+<p>我们可以使用 <strong>docker images</strong> 命令来查看新镜像 <strong>runoob/ubuntu:v2</strong>,也可以使用该镜像启动容器。</p>
+<h2 id="设置镜像标签"><a href="#设置镜像标签" class="headerlink" title="设置镜像标签"></a>设置镜像标签</h2><p>我们可以使用<strong>docker tag</strong>命令为镜像添加一个新标签。<br>查看一下镜像信息，可以看到我的ubuntu镜像ID为：94e814e2efa8<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">httpd               latest              d4a07e6ce470        7 days ago          132MB</span><br><span class="line">ubuntu              latest              94e814e2efa8        4 weeks ago         88.9MB</span><br><span class="line">training/webapp     latest              6fae60ef3446        3 years ago         349MB</span><br></pre></td></tr></table></figure></p>
+<p>于是添加一个新标签：<br><code>root@ubuntu:~# docker tag 94e814e2efa8   root/ubuntu:wang</code><br>结果可以看到ID为94e814e2efa8的镜像多了一个标签：<br><img src="/2019/04/03/docker基本概念/5.png" alt="5"></p>
+<h1 id="docker-容器连接"><a href="#docker-容器连接" class="headerlink" title="docker 容器连接"></a>docker 容器连接</h1><p>实现通过端口连接docker容器</p>
+<h2 id="网络端口映射"><a href="#网络端口映射" class="headerlink" title="网络端口映射"></a>网络端口映射</h2><p>创建一个python 应用的容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/etc/docker# docker run -d -P training/webapp python app.py</span><br><span class="line">1064c1ad7f002851adcdc4bc3f7fad7314d9bc03f0051632d1cbea214decfb73</span><br></pre></td></tr></table></figure>
+<p><strong>-P</strong>：是容器内部端口随机映射到主机的高端口。<br><strong>-p :</strong> 是容器内部端口绑定到指定的主机端口。</p>
+<p>docker ps看一下端口5000 绑定32769</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:/etc/docker# docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES</span><br><span class="line">1064c1ad7f00        training/webapp     &quot;python app.py&quot;     12 seconds ago      Up 9 seconds        0.0.0.0:32769-&gt;5000/tcp   cocky_goldstine</span><br></pre></td></tr></table></figure>
+<p>还可以指定容器绑定的网络地址，例如127.0.0.1</p>
+<p><img src="/2019/04/03/docker基本概念/15.png" alt="5"></p>
+<p>上边的都是默认绑定tcp端口可以换端口，例如UDP<br><code>docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py</code></p>
+<h2 id="容器命名"><a href="#容器命名" class="headerlink" title="容器命名"></a>容器命名</h2><p>创建容器的时候，docker自动对他命名，可以用–name标识命名容器。<br><code>docker run -d -P --name wang training/webapp python app.py</code></p>
 
     </div>
 
