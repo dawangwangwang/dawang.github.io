@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Yogurt">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CTFd的搭建"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Yogurt"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>CTFd的搭建 - Yogurt</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
+<header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/04/13/CTFd的搭建/">
+                CTFd的搭建
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-04-13</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/CTF环境搭建/">CTF环境搭建</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>本次搭建是基于ubuntu16.04。</p>
+<p><strong>1.升级源</strong><br><code>sudo apt-get update</code></p>
+<p><strong>2.安装git</strong></p>
+<blockquote>
+<p>因为ctfd的源码和部署好的题目都要通过github传输</p>
+</blockquote>
+<p><code>sudo apt install git</code></p>
+<p><strong>3.安装pip　</strong><br>安装的时候可能会有点慢，可以更改一下源</p>
+<p><code>sudo apt install python-pip</code></p>
+<p><strong>4.安装Flask</strong></p>
+<blockquote>
+<p>CTFd是基于Flask框架建造的</p>
+</blockquote>
+<p><code>sudo pip install Flask</code></p>
+<p><strong>5.下载CTFd</strong></p>
+<p><code>sudo git clone https://github.com/isislab/CTFd.git</code></p>
+<p><strong>6.安装CTFd</strong></p>
+<p><code>cd CTFd</code></p>
+<p> <code>sudo ./prepare.sh</code></p>
+<p><strong>7.运行CTFd</strong></p>
+<p><code>sudo python serve.py</code></p>
+<blockquote>
+<p>不出意外现在可以用本地访问了，但是我们搭建的ctfd不都是要通过外网让别人访问么。所以，还需要进行操作。</p>
+</blockquote>
+<p><strong>8.安装gunicorn并规定映射的端口</strong><br><code>sudo pip install gunicorn</code></p>
+<p><code>sudo gunicorn --bind 0.0.0.0:8000 -w 1  &quot;CTFd:create_app()&quot;</code></p>
+<blockquote>
+<p>这里我定的是8000，端口可以自己随便改，那么现在我就可以通过ip+端口来访问ctfd了。不过现在的ctfd是最基础的页面，还需要进一步的调试。</p>
+</blockquote>
+<p><img src="/2019/04/13/CTFd的搭建/1.png" alt=""></p>
+<blockquote>
+<p>这个命令要在CTFd的目录下执行</p>
+</blockquote>
+<p>但是哇，这样太慢。所以打算弄个nginx+uwsgi的。提高性能。</p>
+<p>执行安装nginx时总是失败，报错：<br><code>E: Sub-process /usr/bin/dpkg returned an error code (1)</code><br>然后解决措施：<br>进入目录：cd /var/lib/dpkg<br>删除文件：sudo mv info info.baksudo<br>重新创建：sudo mkdir info</p>
+<p>然后我安装uwsgi时也报错了！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    for x in it:</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/pip/_internal/download.py&quot;, line 596, in resp_read</span><br><span class="line">    decode_content=False):</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/pip/_vendor/urllib3/response.py&quot;, line 494, in stream</span><br><span class="line">    data = self.read(amt=amt, decode_content=decode_content)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/pip/_vendor/urllib3/response.py&quot;, line 459, in read</span><br><span class="line">    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)</span><br><span class="line">  File &quot;/usr/lib/python2.7/contextlib.py&quot;, line 35, in __exit__</span><br><span class="line">    self.gen.throw(type, value, traceback)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/pip/_vendor/urllib3/response.py&quot;, line 374, in _error_catcher</span><br><span class="line">    raise ReadTimeoutError(self._pool, None, &apos;Read timed out.&apos;)</span><br><span class="line">ReadTimeoutError: HTTPSConnectionPool(host=&apos;files.pythonhosted.org&apos;, port=443): Read timed out.</span><br></pre></td></tr></table></figure>
+<p>然后设置超时时间同时下载：pip –default-timeout=100 install uwsgi</p>
+<p>然后又报错！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Could not install packages due to an EnvironmentError: [Errno 13] Permission denied: &apos;/usr/local/lib/python2.7/dist-packages/uWSGI-2.0.18.dist-info&apos;</span><br><span class="line">Consider using the `--user` option or check the permissions.</span><br></pre></td></tr></table></figure>
+<p>蓝后我在命令前加了sudo。<br><code>sudo pip --default-timeout=100 install uwsgi</code><br>成功下载。</p>
+<h1 id="CTFd的页面美化"><a href="#CTFd的页面美化" class="headerlink" title="CTFd的页面美化"></a>CTFd的页面美化</h1><p>至于首页的广告，我尝试把base.html的部分内容改了，后来导致其他页面都出不来了。  </p>
+<p>可以点击页面的admin然后跳到这个页面，直接添加页面。<br><img src="/2019/04/13/CTFd的搭建/2.png" alt=""></p>
+<p>然后可以通过设置page更改添加页面。<br><img src="/2019/04/13/CTFd的搭建/3.png" alt=""></p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/CTFd/">#CTFd</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
+
+
+    </div>
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    希望每个人都能找到自己的不可替代。
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/19/DDCTF/">DDCTF</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/13/CTFd的搭建/">CTFd的搭建</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/09/掘安杯CTF/">掘安杯CTF</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/04/03/docker基本概念/">docker基本概念</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/CTF环境搭建/">CTF环境搭建</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/报错/">报错</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/docker/">docker</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://plus.google.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:1807801293@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    This is Yogurt
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'klugjotest';
+
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
+
+</html>
