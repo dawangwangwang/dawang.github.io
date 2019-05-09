@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Linux——用户管理"/>
+        <meta property="og:title" content="中间件"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Linux——用户管理 - Yogurt</title>
+    <title>中间件 - Yogurt</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -143,20 +143,20 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2019/03/01/Linux——用户管理/">
-                Linux——用户管理
+            <a href="/2019/04/23/中间件/">
+                中间件
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2019-03-01</span>
+                <span class="date">2019-04-23</span>
             
             
                 <a href="#disqus_thread" class="comments">Comments</a>
             
             
                 <span class="category">
-                    <a href="/categories/Linux/">Linux</a>
+                    <a href="/categories/中间件/">中间件</a>
                 </span>
             
         </div>
@@ -168,84 +168,29 @@
         
 
         <!-- Post Content -->
-        <h1 id="用户-组基本概念"><a href="#用户-组基本概念" class="headerlink" title="用户/组基本概念"></a>用户/组基本概念</h1><p><img src="/2019/03/01/Linux——用户管理/1.png" alt="">  </p>
-<a id="more"></a>
-<p>users  and  groups:  </p>
-<ul>
-<li>系统上每个进程（运行的程序）都是特定用户运行的</li>
-<li>每个文件都是由一个特定的用户拥有</li>
-<li>访问文件和目录是由用户限制的，特定文件是只能特定用户访问（用户访问文件其实是某一个进程在访问，并不是用户）</li>
-<li>与运行的进程相关联的用户确定该进程可访问的文件和目录<h2 id="查看当前登陆的用户信息"><a href="#查看当前登陆的用户信息" class="headerlink" title="查看当前登陆的用户信息"></a>查看当前登陆的用户信息</h2>[root@localhost ~]# id  </li>
-</ul>
-<p><img src="/2019/03/01/Linux——用户管理/2.png" alt=""></p>
-<h2 id="查看文件的owner"><a href="#查看文件的owner" class="headerlink" title="查看文件的owner"></a>查看文件的owner</h2><p>[root@localhost ~]# ls -l /var/www/html<br><img src="/2019/03/01/Linux——用户管理/3.png" alt=""></p>
-<h2 id="查看运行进程的username"><a href="#查看运行进程的username" class="headerlink" title="查看运行进程的username"></a>查看运行进程的username</h2><p>[root@localhost ~]# ps aux |less<br><img src="/2019/03/01/Linux——用户管理/4.png" alt="">  </p>
-<h2 id="和用户组相关的一些文件"><a href="#和用户组相关的一些文件" class="headerlink" title="和用户组相关的一些文件"></a>和用户组相关的一些文件</h2><p><strong>/etc/passwd</strong><br>root:x:0:0:root:/root:/bin/bash<br>x密码占位符<br>//用户信息——用户名：x：uid：gid：描述：HOME：shell<br><strong>/etc/shadow</strong><br>root:$6$tbAERIQbGq/FtNN9$ZdB6KM.HW02JDLqqWc.xoBENWfgBSxiSYoUTz3SCy5/1DfWTaTlUNCqvmRsOdbbOgvZ2UbRIhDi6tEnj2F8gj0:17672:0:99999:7:::<br>//密码信息——$id$salt$encrypted  </p>
-<p><strong>/etc/group</strong><br>root:x:0:<br>组信息  </p>
-<p><strong>加密算法$id</strong>:<br>$1:MD5<br>$5:SHA-256<br>$6:SHA-512  </p>
-<p><strong>系统约定:</strong> centos6<br>uid:0       特权用户<br>uid:1~499   系统用户<br>uid:500+    普通用户  </p>
-<blockquote>
-<p>大多数设备只能root控制，有权力覆盖系统上的普通权限，安装删除软件。</p>
-</blockquote>
-<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><blockquote>
-<p>groupadd,groupdel,useradd,usermod,userdel,passwd,chage</p>
-</blockquote>
-<p>[root@localhost ~]# groupadd wang       //创建wang组<br>[root@localhost ~]# tail /etc/group     //查看组，可以看见刚刚新建的wang组  </p>
-<p><img src="/2019/03/01/Linux——用户管理/5.png" alt="">   </p>
-<p>[root@localhost ~]# groupadd wang -g 520<br>//可以自定义gid 为520<br>//yang:x:520:  </p>
-<p>[root@localhost ~]# groupdel wang    //删除组  </p>
-<h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p>[root@localhost ~]# useradd yogurt<br>[root@localhost ~]# grep ‘yogurt’ /etc/passwd /etc/shadow /etc/group  //过滤yogurt用户的信息 </p>
-<pre><code>/etc/passwd:yogurt:x:500:500::/home/yogurt:/bin/bash
-/etc/shadow:yogurt:$6$G.Bp3shG$2kpG4fswPs4QsSAZicTNe/g5fzUxSfkMIju3X8Mo90uDIfc/VLS8ofCt2M6EEDyhU6bp.19t1hAP9If.LX/Us1:17966:0:99999:7:::
-/etc/group:yogurt:x:500:
-</code></pre><blockquote>
-<p>小结：如果创建一个用户时，未指定任何组（主组或附加组），系统会创建一个和用户名相同的组作为用户的Primary Group-主组，而附加组可以有多个，创建用户时指定-G x，y，z即可。如果用户已存在，可以加入附加组，usermod、gpasswd</p>
-</blockquote>
-<h2 id="创建用户-指定选项"><a href="#创建用户-指定选项" class="headerlink" title="创建用户  指定选项"></a>创建用户  指定选项</h2><p>[root@localhost ~]# useradd wang -u 123    //创建用户wang，指定uid<br>[root@localhost ~]# useradd wang -d /aaa    //指定家目录<br>[root@localhost ~]# useradd wang -s /sbin/nologin      //创建用户并指定shell，例如我指定了bash的话，那这个用户就只能从bash登陆<br>[root@localhost ~]# useradd wang -G hr,it,haha     //创建用户，指定附加组  </p>
-<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><p>[root@localhost ~]# userdel wang    //删除用户wang，但不删除用户家目录和mail spool<br>[root@localhost ~]# ls -l -d /home/yogurt<br>[root@localhost ~]# ls -l /var/spool/mail/yogurt  </p>
-<p>[root@localhost ~]# userdel -r user1     //删除用户user1，同时删除用户家目录和mail spool  </p>
-<h2 id="用户密码"><a href="#用户密码" class="headerlink" title="用户密码"></a>用户密码</h2><p>管理员root可以给任何用户设置密码<br>[root@localhost ~]# passwd user2  </p>
-<p>而用户只能给自己修改密码<br>[root@localhost ~]# passwd  </p>
-<h2 id="组成员管理"><a href="#组成员管理" class="headerlink" title="组成员管理"></a>组成员管理</h2><blockquote>
-<p>只针对已存在的用户</p>
-</blockquote>
-<p>[root@localhost ~]# usermod -G hr wang  //覆盖原有的附加组  </p>
-<p>[root@localhost ~]# usermod -G ab,cd wang  </p>
-<p>[root@localhost ~]# usermod -aG hr wang    //给hr用户增加新的附加组wang  </p>
-<blockquote>
-<p>但是一般不用这个处理组，用下边这个gpasswd</p>
-</blockquote>
-<p>[root@localhost ~]# gpasswd -a yogurt lueluelue//把用户添加到组<br>[root@localhost ~]# gpasswd -M yogurt,da lueluelue    //将yogurt和da都加入lueluelue组<br>[root@localhost ~]# gpasswd -d yogurt lueluelue   //从组中删除用户  </p>
-<h2 id="其他选项管理"><a href="#其他选项管理" class="headerlink" title="其他选项管理"></a>其他选项管理</h2><p>[root@localhost ~]# usermod -s /sbin/nologin yogurt</p>
-<h1 id="no-shell"><a href="#no-shell" class="headerlink" title="no shell"></a>no shell</h1><p><strong>/sbin/nologin</strong>   用户无法登陆系统，实现管理，仅作为运行进程的用户，访问FTP的用户。  //安全的用户，如果不打算给用户太多权限，就设置为这个shell，以保安全</p>
-<p><strong>/bin/bash</strong><br>登陆系统，实现管理  </p>
-<blockquote>
-<p>shell是用户登录后运行的第一个程序 ，你给它什么，就执行什么 </p>
-</blockquote>
-<p><em>举个栗子：</em><br>vim  /etc/passwd  把yogurt的shell改为/sbin/poweroff(关机命令，通过which poweroff找到命令的位置)，一登陆yogurt时，就会执行关机命令。  </p>
-<p><strong>useradd参照文件</strong><br>有两个文件会影响useradd创建用户。  </p>
-<p>[root@localhost ~]# vim /etc/login.defs<br>[root@localhost ~]# vim /etc/default/useradd<br>通常改SHELL=/sbin/nologin</p>
-<h1 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h1><h2 id="普通用户提权"><a href="#普通用户提权" class="headerlink" title="普通用户提权"></a>普通用户提权</h2><h3 id="法一"><a href="#法一" class="headerlink" title="法一"></a>法一</h3><ul>
-<li>[wangwang@localhost ~]# useradd ab 可能会说你没权限    </li>
-<li>于是[root@localhost ~]# su - root<br>输入密码即可变成root<blockquote>
-<p>需要注意的是 这个是建立在你知道root密码的前提下  </p>
-</blockquote>
-</li>
-</ul>
-<h3 id="法二"><a href="#法二" class="headerlink" title="法二"></a>法二</h3><p>以root身份授权普通用户<br>[root@localhost ~]# vim /etc/sudoers<br><img src="/2019/03/01/Linux——用户管理/6.png" alt=""><br>可以看到wheel组可以使用sodu命令  </p>
-<p>于是把用户添加到wheel组：<br>[root@localhost ~]# useradd yangyang -G wheel<br>可以查看一下:<br>[root@localhost ~]# id yangyang  </p>
-<p>此时yangyang用户就具有了变成管理员的能力，但是每次执行命令都需要sudo。  </p>
-<p>[yangyang@localhost ~]# sudo useradd dawang  </p>
+        <h1 id="中间件的定义"><a href="#中间件的定义" class="headerlink" title="中间件的定义"></a>中间件的定义</h1><p>中间件（Middleware）是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。中间件处在操作系统和更高一级应用程序之间。他充当的功能是：将应用程序运行环境与操作系统隔离，从而实现应用程序开发者不必为更多系统问题忧虑，而直接关注该应用程序在解决问题上的能力 。容器就是中间件的一种。<a id="more"></a></p>
+<p>而Web中间件就是提供web应用软件和系统软件连接的软件的一个总称。</p>
+<p>直接理解为中间件是一种能够为一种或多种应用程序合作互通，资源共享，同时还能够为该程序提供相关的服务的软件。<br>中间件在操作系统、网络和数据库之上， 应用软件的下层，总的作用是为处于自己上层的应用软件提供运行与开发的环境，帮助用户灵活、高效地开发和集成复杂的应用软件。（中间件是一类软件的总成，不是单独的一个软件）</p>
+<p>中间件就是程序中可织入的，可重用的，与业务逻辑无关的各种组件。<br>中间件(middleware)是基础软件的一大类，属于可复用软件的范畴。</p>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>数据访问中间件，远程调用中间件，消息中间件，交易中间件，对象中间件。</p>
+<p>一般本地开发小项目或者个人开发一般建议php使用apache、asp使用IIS、jsp使用tomcat。</p>
+<p>大型项目用JBOSS或Webbloigc</p>
+<p>一些示例项目或者小项目常采用jetty</p>
+<p>大项目或者商业项目一般采用：weblgoic/webshere，其他的还有 jboss、glasshfish 等</p>
+<h1 id="Web中间件"><a href="#Web中间件" class="headerlink" title="Web中间件"></a>Web中间件</h1><p>正常情况下一次web访问顺序是：web浏览器——服务器（硬件）——web容器——web应用服务器——数据库服务器</p>
+<p><img src="/2019/04/23/中间件/中间件1.png" alt=""></p>
+<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>Tomcat 是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Java Web 应用服务器(Servlet 容器)。实际上Tomcat 部分是Apache 服务器的扩展，但它是独立运行的，所以当你运行tomcat 时，它实际上作为一个与Apache 独立的进程单独运行的。Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。Tomcat默认使用 8080 号端口。</p>
+<h2 id="Weblogic"><a href="#Weblogic" class="headerlink" title="Weblogic"></a>Weblogic</h2><p>weblogic是美国Oracle公司出品的一个application server，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。企业级的应用服务器。</p>
+<h2 id="Jboss"><a href="#Jboss" class="headerlink" title="Jboss"></a>Jboss</h2><p>Jboss 是一个基于Java EE的开放源代码的应用服务器。 它不但是Servlet容器，而且也是EJB容器，从而受到企业级开发人员的欢迎，从而弥补了Tomcat只是一个Servlet容器的缺憾。JBoss是一个管理EJB的容器和服务器。但JBoss核心服务不包括支持 servlet/JSP 的WEB容器，一般与 Tomcat 或 Jetty 绑定使用。</p>
+<h2 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h2><p>Jetty 是一个开源的servlet容器，它为基于Java的web容器，例如JSP和servlet提供运行环境。Jetty是使用JAVA编写的，它的API以一组JAR包的形式发布。开发人员可以将Jetty容器实例化成一个对象，可以迅速为一些独立运行（stand-alone）的Java应用提供网络和web连接。</p>
+<h2 id="WebSphere"><a href="#WebSphere" class="headerlink" title="WebSphere"></a>WebSphere</h2><p>WebSphere 是 IBM 的软件平台。它包含了编写、运行和监视全天候的工业强度的随需应变 Web 应用程序和跨平台、跨产品解决方案所需要的整个中间件基础设施，如服务器、服务和工具。WebSphere 提供了可靠、灵活和健壮的软件。WebSphere 是一个模块化的平台，基于业界支持的开放标准。可以通过受信任和持久的接口，将现有资产插入 WebSphere，可以继续扩展环境。WebSphere 可以在许多平台上运行，包括 Intel、Linux 和 z/OS。</p>
+<h2 id="Glasshfish"><a href="#Glasshfish" class="headerlink" title="Glasshfish"></a>Glasshfish</h2><p>Glasshfish是一款强健的商业兼容应用服务器，达到产品级质量，可免费用于开发、部署和重新分发。开发者可以免费获得源代码，还可以对代码进行更改</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>中间件，容器，服务器，其实没什么太清的划分，大多数都是包含关系，如果觉得对于这三种有些混淆，也没什么。</p>
 
     </div>
 
     
 
-    
-        <div class="post-tags">
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/Linux系统操作/">#Linux系统操作</a>
-        </div>
     
 
     <!-- Comments -->
