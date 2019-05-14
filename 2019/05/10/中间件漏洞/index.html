@@ -200,7 +200,7 @@
 <p>2、PHPCGI远程代码执行</p>
 <h1 id="IIS漏洞分析"><a href="#IIS漏洞分析" class="headerlink" title="IIS漏洞分析"></a>IIS漏洞分析</h1><h2 id="IIS简介"><a href="#IIS简介" class="headerlink" title="IIS简介"></a>IIS简介</h2><p>IIS（Internet Information Services），意为互联网信息服务。是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。最初是Windows NT版本的可选包，随后内置在Windows 2000、Windows XP Professional和Windows Server 2003一起发行，但在Windows XP Home版本上并没有IIS。IIS是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面，它使得在网络（包括互联网和局域网）上发布信息成了一件很容易的事。</p>
 <p>IIS具有安全脆弱性，一旦出现远程执行漏洞将会很严重。这个漏洞存在于HTTP协议堆栈（HTTP.sys）中，当HTTP.sys没能正确分析经特殊构造的HTTP请求时，该漏洞就会出现。利用该漏洞后攻击者可以在系统账户上下文中执行任意代码，导致IIS服务器所在机器蓝屏或读取其内存中的机密数据。</p>
-<h2 id="PUT漏洞"><a href="#PUT漏洞" class="headerlink" title="PUT漏洞"></a>PUT漏洞</h2><h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>IIS Server在Web服务扩展中开启了WebDAV，配置了可以写入的权限，造成任意文件上传。<br><strong>版本： IIS6.0</strong></p>
+<h2 id="Webdav漏洞"><a href="#Webdav漏洞" class="headerlink" title="Webdav漏洞"></a>Webdav漏洞</h2><h3 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>IIS Server在Web服务扩展中开启了WebDAV功能，开启后可以使用除了get，post以外的一些请求类型，例如put。如果配置不当，配置了可以写入的权限，就会造成任意文件上传。<br><strong>版本： IIS6.0</strong></p>
 <h3 id="漏洞测试"><a href="#漏洞测试" class="headerlink" title="漏洞测试"></a>漏洞测试</h3><p>当测试一个站点是否存在webdav漏洞时，可以先构造一个OPTIONS请求，若返回200，则查看返回头的Allow参数中包含哪些方法（可以请求）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS  /  HTTP/1.1</span><br><span class="line">Host:thief.one</span><br></pre></td></tr></table></figure>
 <p>如果存在PUT方法，则可以尝试写入一个txt文件。</p>
@@ -258,10 +258,10 @@
 <h3 id="漏洞修复-7"><a href="#漏洞修复-7" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><ul>
 <li>在系统上以低权限运行Tomcat应用程序。创建一个专门的 Tomcat服务用户，该用户只能拥有一组最小权限（例如不允许远程登录）。</li>
 <li>增加对于本地和基于证书的身份验证，部署账户锁定机制（对于集中式认证，目录服务也要做相应配置）。在CATALINA_HOME/conf/web.xml文件设置锁定机制和时间超时限制</li>
-<li>针对manager-gui/manager-status/manager-script等目录页面设置最小权限访问限制。</li>
+<li>删除远程部署页面或针对manager-gui/manager-status/manager-script等目录页面设置最小权限访问限制。</li>
 </ul>
 <p>4）后台管理避免弱口令。</p>
-<h1 id="JBoss漏洞分析"><a href="#JBoss漏洞分析" class="headerlink" title="JBoss漏洞分析"></a>JBoss漏洞分析</h1><h2 id="JBoss简介"><a href="#JBoss简介" class="headerlink" title="JBoss简介"></a>JBoss简介</h2><pre><code>jBoss是一个基于J2EE的开发源代码的应用服务器。 JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。
+<h1 id="JBoss漏洞分析"><a href="#JBoss漏洞分析" class="headerlink" title="JBoss漏洞分析"></a>JBoss漏洞分析</h1><h2 id="JBoss简介"><a href="#JBoss简介" class="headerlink" title="JBoss简介"></a>JBoss简介</h2><pre><code>jBoss是一个基于J2EE的开发源代码的应用服务器。 与tomcat类似的是jboss也有远程部署平台，但是不需要登陆。JBoss代码遵循LGPL许可，可以在任何商业应用中免费使用。JBoss是一个管理EJB的容器和服务器，支持EJB1.1、EJB 2.0和EJB3的规范。但JBoss核心服务不包括支持servlet/JSP的WEB容器，一般与Tomcat或Jetty绑定使用。
 </code></pre><h2 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h2><p>Java序列化，是把Java对象转化为字节序列的过程。而反序列化则是把字节序列恢复为java对象的过程。在转变的过程中，如果程序员过滤不严格就可以导致恶意构造代码的实现。</p>
 <p>启动jboss后，攻击机访问靶机服务（8080），若访问/invoker/readonly  返回500，说明此页面有反序列化漏洞。</p>
 <h3 id="漏洞修复-8"><a href="#漏洞修复-8" class="headerlink" title="漏洞修复"></a>漏洞修复</h3><p>升级到JBOSS AS7版本临时解决方案：</p>
@@ -270,7 +270,14 @@
 <li>用于对httpinvoker组件进行访问控制。</li>
 </ul>
 <h2 id="war后门文件部署-1"><a href="#war后门文件部署-1" class="headerlink" title="war后门文件部署"></a>war后门文件部署</h2><h3 id="漏洞成因-9"><a href="#漏洞成因-9" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>jboss后台管理页面存在弱口令，通过爆破可以获得账户密码登陆。然后可以在后台上传后门的war包。</p>
-<h1 id="WebLogic漏洞分析"><a href="#WebLogic漏洞分析" class="headerlink" title="WebLogic漏洞分析"></a>WebLogic漏洞分析</h1><h2 id="WebLogic简介"><a href="#WebLogic简介" class="headerlink" title="WebLogic简介"></a>WebLogic简介</h2><p>WebLogic是美国Oracle公司出品的一个applicationserver，确切的说是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<h3 id="JBoss漏洞防护"><a href="#JBoss漏洞防护" class="headerlink" title="JBoss漏洞防护"></a>JBoss漏洞防护</h3><ul>
+<li>开启jmx-console密码认证</li>
+<li>删除jmx-console.war与web-console.war</li>
+</ul>
+<h1 id="WebLogic漏洞分析"><a href="#WebLogic漏洞分析" class="headerlink" title="WebLogic漏洞分析"></a>WebLogic漏洞分析</h1><h2 id="WebLogic简介"><a href="#WebLogic简介" class="headerlink" title="WebLogic简介"></a>WebLogic简介</h2><p>WebLogic是一个基于JAVAEE架构的中间件，WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。安装weblogic后默认会监听7001端口。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+<p><strong>默认后台地址</strong><br><a href="http://localhost:7001/console/login/loginForm.jsp" target="_blank" rel="noopener">http://localhost:7001/console/login/loginForm.jsp</a></p>
+<p><strong>常用账号密码</strong><br>用户名密码都为：weblogic、system、portaladmin、guest</p>
+<p>要想尽量避免远程部署漏洞，删除远程部署页面</p>
 <h2 id="反序列化漏洞-1"><a href="#反序列化漏洞-1" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h2><h3 id="漏洞成因-10"><a href="#漏洞成因-10" class="headerlink" title="漏洞成因"></a>漏洞成因</h3><p>上面已经说过序列化和反序列化了，就是把java对象转化为字节序列或字节序列转化为java对象的过程。而程序员过滤代码不严格就造成了伤害。</p>
 <h3 id="修复-1"><a href="#修复-1" class="headerlink" title="修复"></a>修复</h3><p>对访问wls-wsat的资源进行访问控制。</p>
 <h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><p>Weblogic 中存在一个SSRF漏洞，利用该漏洞可以发送任意HTTP请求，进而攻击内网中redis、fastcgi等脆弱组件。</p>
