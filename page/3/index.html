@@ -146,6 +146,40 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2019/02/07/CSRF漏洞/">
+                CSRF漏洞
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-02-07</span>
+            
+            
+                <a href="https://dawangwangwang.github.io/2019/02/07/CSRF漏洞/#disqus_thread" class="comments article-comment-link">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/web/">web</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h1 id="何为CSRF"><a href="#何为CSRF" class="headerlink" title="何为CSRF"></a>何为CSRF</h1><p><strong>CSRF</strong>（Cross-site request forgery）跨站请求伪造,通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装成受信任用户的请求来利用受信任的网站。与XSS攻击相比，CSRF攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比XSS更具危险性。——来自百度<br>跨站请求伪造就是在另一个网站向另一个网站(本该真正用户请求的网站)发送一个伪造的请求，而接受请求的网站以为该伪造的请求是用户发送来的，故将此请求执行，造成了CSRF攻击。  </p>
+<h1 id="CSRF可以做什么"><a href="#CSRF可以做什么" class="headerlink" title="CSRF可以做什么"></a>CSRF可以做什么</h1><p>你这可以这么理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题包括：个人隐私泄露以及财产安全。<br></p>
+        </div>
+        <a href="/2019/02/07/CSRF漏洞/" class="read-more">Read More</a>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2019/02/07/HEXO报错-TypeError-Cannot-read-property-replace-of-undefined/">
                 HEXO报错:TypeError: Cannot read property 'replace' of undefined
             </a>
@@ -464,43 +498,6 @@ HTML 被设计用来显示数据</code><br></p>
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2018/10/21/BugkuCTF/">
-                BugkuCTF
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2018-10-21</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2018/10/21/BugkuCTF/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/web/">web</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>emmmm…这是做的Bugku中自己整理的几道题。在此记录一下。</p>
-<h1 id="1-经典的本地文件包含漏洞-php伪协议的结合应用"><a href="#1-经典的本地文件包含漏洞-php伪协议的结合应用" class="headerlink" title="1.经典的本地文件包含漏洞+php伪协议的结合应用"></a>1.经典的本地文件包含漏洞+php伪协议的结合应用</h1><p><img src="/2018/10/21/BugkuCTF/one.png" alt="如图"></p>
-<h5 id="注意到url地址-http-120-24-86-145-8005-post-index-php-file-show-php"><a href="#注意到url地址-http-120-24-86-145-8005-post-index-php-file-show-php" class="headerlink" title="注意到url地址  http://120.24.86.145:8005/post/index.php?file=show.php"></a>注意到url地址  <a href="http://120.24.86.145:8005/post/index.php?file=show.php" target="_blank" rel="noopener">http://120.24.86.145:8005/post/index.php?file=show.php</a></h5><p>这是一个典型的文件包含漏洞，（file关键字是提示，其实也是CTF的套路）。<br>用到了php的封装协议：  </p>
-<p><a href="http://php.net/manual/zh/wrappers.php.php" target="_blank" rel="noopener">http://php.net/manual/zh/wrappers.php.php</a></p>
-<h5 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h5><p> <a href="http://120.24.86.145:8005/post/index.php?file=php://filter/read=convert.base64-encode/resource=index.php" target="_blank" rel="noopener">http://120.24.86.145:8005/post/index.php?file=php://filter/read=convert.base64-encode/resource=index.php</a><br></p>
-        </div>
-        <a href="/2018/10/21/BugkuCTF/" class="read-more">Read More</a>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
@@ -543,6 +540,10 @@ HTML 被设计用来显示数据</code><br></p>
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/05/15/缓存中间件/">缓存中间件</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/05/10/中间件漏洞/">中间件漏洞</a>
             </li>
             
@@ -552,10 +553,6 @@ HTML 被设计用来显示数据</code><br></p>
             
             <li>
                 <a class="footer-post" href="/2019/04/19/DDCTF/">DDCTF</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/04/13/CTFd的搭建/">CTFd的搭建</a>
             </li>
             
         </ul>
@@ -577,7 +574,7 @@ HTML 被设计用来显示数据</code><br></p>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/docker/">docker</a>
+            <a class="footer-post" href="/categories/随笔/">随笔</a>
         </li>
         
         <li>

@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Yogurt"/>
+        <meta property="og:title" content="缓存中间件"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>CTF - Yogurt</title>
+    <title>缓存中间件 - Yogurt</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -125,9 +125,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -136,52 +134,111 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#CTF</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2018/10/21/BugkuCTF/">
-        <span class="archive-date">
-            Oct 2018
-        </span>
-        BugkuCTF
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/05/15/缓存中间件/">
+                缓存中间件
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-05-15</span>
+            
+            
+                <a href="#disqus_thread" class="comments">Comments</a>
+            
+            
+                <span class="category">
+                    <a href="/categories/中间件/">中间件</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>缓存中间件比较常见的是MemCached和Redis。<br><a id="more"></a><br>Redis和Memcache都是将数据存放在内存中，都是内存数据库。</p>
+<h1 id="MemCached"><a href="#MemCached" class="headerlink" title="MemCached"></a>MemCached</h1><p><strong>介绍</strong><br>MemCached是一种基于内存的简洁的key-value存储系统，用来存储小块的任意数据（字符串，对象等）。便于快速开发，减轻开发难度，解决大数据量缓存的问题。</p>
+<p><strong>工作原理</strong><br>主要通过缓存数据库查询结果，减少数据库访问次数，来提高动态web应用的速度。（数据库被访问的次数减少了，web应用自然就快了撒）</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p><strong>介绍</strong><br>Redis是Remote Dictionary Server(远程数据服务)的缩写，由意大利人antirez(Salvatore Sanfilippo)开发的一款内存高速缓存数据库，该软件使用C语言编写，它的数据模型为key-value。</p>
+<p>Redis是开源免费的<br>redis与其他key-value缓存产品相比的特点：</p>
+<ul>
+<li><p>redis支持数据的持久化，可以把内存中数据保存在磁盘中，重启可以再次加载并使用。（一边运行，一边把数据往硬盘中备份一份，防止断电等情况导致数据丢失，等断电情况恢复之后，Redis再把硬盘中的数据恢复到内存中）</p>
+</li>
+<li><p>redis支持string，list，set，zset，hash等数据结构的存储。</p>
+</li>
+<li>redis支持数据的备份，即master-slave模式的数据备份。</li>
+<li>Redis单个value的最大限制是1GB，memcached只能保存1MB的数据。</li>
+</ul>
+<h1 id="MemCached和Redis区别"><a href="#MemCached和Redis区别" class="headerlink" title="MemCached和Redis区别"></a>MemCached和Redis区别</h1><ul>
+<li>两者都是内存数据库，但是memcached还可以缓存图片、视频等。</li>
+<li>Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，hash等数据结构的存储</li>
+<li>虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘（所以渐渐地，缓存中的数据都是常用的，因此可以达到减少访问数据库的目的）</li>
+<li>分布式集群部署：<br>a、memcache集群节点间的数据是独立的，不能相互通讯，但可以利用magent开源软件解决 ;<br>b、Redis高可用的，可以做一主多从，主从之间进行数据同步。 当Master宕机后，通过选举算法(Paxos、Raft)从slave中选举出新Master继续对外提供服务，主机恢复后以slave的身份重新加入</li>
+<li>存储数据安全：memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化） </li>
+<li>灾难恢复：memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复</li>
+</ul>
+<h1 id="为啥要用Redis这些缓存中间件？"><a href="#为啥要用Redis这些缓存中间件？" class="headerlink" title="为啥要用Redis这些缓存中间件？"></a>为啥要用Redis这些缓存中间件？</h1><p>上边也说了挺多的，缓存中间件，也就是那些缓存数据库到底干啥的？</p>
+<h2 id="持久化数据库缺点"><a href="#持久化数据库缺点" class="headerlink" title="持久化数据库缺点"></a>持久化数据库缺点</h2><ul>
+<li>存储在部署数据库的硬盘上</li>
+</ul>
+<p>平时使用的数据库是关系型数据库（Mysql，Oracle等），通常通过数据驱动来链接数据库进行增删改查，我们平时使用和创建的数据库都存在mysql目录下data文件夹。</p>
+<ul>
+<li>访问速度</li>
+</ul>
+<p>一个网站想运行得快，服务器读写效率一定要高，还有一些其他硬件的原因，但这些都好解决。<br> 服务器处理数据速度与数据库处理数据的速度有很大关系，所以要是能提高数据库处理的能力是不是会更好。</p>
+<p>提高数据库处理速度可以优化sql语句，但这样治标不治本，并没有减少数据库被访问的次数，为数据库减轻压力。如果网站访问量大，数据库处理起来还是会很慢。甚至不堪重负</p>
+<p>此时就要使用高并发处理、负载均衡和分布式数据库了。但是，这些会花费很大的人力、资金。</p>
+<h1 id="关于缓存"><a href="#关于缓存" class="headerlink" title="关于缓存"></a>关于缓存</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>缓存就是在内存中存储的数据的备份，当数据本身没有本质变化时，为了避免数据库查询直接连接数据库增加数据库负担，选择从内存中读取数据，这样会大大降低数据库的读写次数，并且从内存中直接读取数据比从数据库查询快的多。</p>
+<h2 id="缓存形式"><a href="#缓存形式" class="headerlink" title="缓存形式"></a>缓存形式</h2><ul>
+<li>页面缓存（smarty静态化技术）</li>
+</ul>
+<p>页面缓存经常用在CMS（content manage system）内存管理系统里面</p>
+<ul>
+<li>数据缓存</li>
+</ul>
+<p>常用在页面的具体数据里面</p>
+<h1 id="Redis是如何实现中间件的？"><a href="#Redis是如何实现中间件的？" class="headerlink" title="Redis是如何实现中间件的？"></a>Redis是如何实现中间件的？</h1><p>redis的作用是缓存数据，但不是数据库，不能替代MySQL或其他数据库。但是从redis中读写数据更快，Redis作为中间件，服务把数据存入Redis中，要注意的是redis中缓存的数据一定要跟数据库同步。否则将失去意义。</p>
+<p>从redis中查询数据查不到了，就去数据库里查，并保持结果到Redis里。</p>
+<p><strong>关于从Redis中读取数据</strong><br>        Redis是使用关键字读写键值的，如果多个团队使用同一个Redis服务，可能会关键字冲突。<br>        1.每个团队用不同的关键字前缀，wang_user,wang_pass<br>        2.每个团队使用不同的database，同一个database要key不同，不同database可以key相同。另外，每个database都是独立的存储空间，可以在redis.conf中配置，默认16个，select 1-select15.</p>
+<p>实际生产环境至少部署主从redis服务器， 对于大数据量的服务要部署redis分布式集群(Codis,阿里redis集群或redis sentinel)。</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+    <div class="comments">
+        
+<div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-            
-                <div class="archive-post">
-    <a href="/2018/11/21/LCTF签到题/">
-        <span class="archive-date">
-            Nov 2018
-        </span>
-        LCTF签到题
-    </a>
+
+
+
+    </div>
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2018/11/22/Jarvis-OJ-Web题部分记录 /">
-        <span class="archive-date">
-            Nov 2018
-        </span>
-        Jarvis OJ  Web题部分记录
-    </a>
-</div>
-            
-                <div class="archive-post">
-    <a href="/2018/11/25/NCTF2018/">
-        <span class="archive-date">
-            Nov 2018
-        </span>
-        NCTF2018
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 
@@ -321,7 +378,7 @@
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
