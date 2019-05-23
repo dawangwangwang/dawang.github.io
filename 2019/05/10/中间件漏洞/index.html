@@ -333,9 +333,12 @@
 <p>然后<br>设置Work Home Dir为<code>/u01/oracle/user_projects/domains/base_domain/servers/AdminServer/tmp/_WL_internal/com.oracle.webservices.wls.ws-testclient-app-wls/4mcj4y/war/css</code>。将目录设置为ws_utc应用的静态文件css目录，访问这个目录是无需权限.</p>
 <p>然后点 安全-&gt;添加  然后上传webshell<br><img src="/2019/05/10/中间件漏洞/文件上传-2.png" alt=""></p>
 <p>可以看到我上传的东西<br><img src="/2019/05/10/中间件漏洞/文件上传-3.png" alt=""></p>
-<p>上传一个xx.jsp 然后查看返回的数据包，里面有时间戳<br><img src="/2019/05/10/中间件漏洞/文件上传-6.png" alt=""><br>然后访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://your-ip:7001/ws_utc/css/config/keystore/[时间戳]_[文件名]</span><br></pre></td></tr></table></figure></p>
+<p>上传一个xx.jsp 然后查看返回的数据包，里面有时间戳<br><img src="/2019/05/10/中间件漏洞/文件上传-6.png" alt=""><br>然后访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://your-ip:7001/ws_utc/css/config/keystore/[时间戳]_[文件名]</span><br></pre></td></tr></table></figure></p>
 <p>我的是：<br><a href="http://ip:7001/ws_utc/css/config/keystore/1558512499012_wang.jsp" target="_blank" rel="noopener">http://ip:7001/ws_utc/css/config/keystore/1558512499012_wang.jsp</a><br>访问以后执行webshell<br><img src="/2019/05/10/中间件漏洞/文件上传-5.png" alt=""></p>
 <p><img src="/2019/05/10/中间件漏洞/文件上传-6.png" alt=""></p>
+<blockquote>
+<p>漏洞需要满足：1）需要知道部署应用的web目录；2）ws_utc/config.do在开发模式下无需认证，在生产模式下需要认证。具体可见Oracle® Fusion Middleware Administering Web Services</p>
+</blockquote>
 <h3 id="修复-3"><a href="#修复-3" class="headerlink" title="修复"></a>修复</h3><p>方案1：</p>
 <p>使用Oracle官方通告中的补丁链接：</p>
 <p><a href="http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/security-advisory/cpujul2018-4258247.html</a></p>
