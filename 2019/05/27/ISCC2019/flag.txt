@@ -1,0 +1,51 @@
+web：
+
+web1    flag{996_ICU}
+web2    flag{8311873e241ccad54463eaa5d4efc1e9}  
+web3    flag{48822a8a86bfe05ce92a518d98d137812}
+web4	flag{7he_rea1_f1@g_15_4ere}
+web5  	flag{1SCC_2OI9}
+web6   	flag{cfd61b8a7397fa7c10b2ae548f5bfaef}
+
+re：
+
+answer to everything  ISCC{80ee2a3fe31da904c596d993f7f1de4827c1450a}
+rev01    _just_need_to_get_what_is_needed_.
+rev02 flag{ST0RING_STAT1C_PA55WORDS_1N_FIL3S_1S_N0T_S3CUR3}
+dig   ISCC{base64_rot13__uu}
+简单python  ISCC{simple_pyc}
+200：FLAG{I_LOVE_FONZY}
+Rev04-300：http://ISCC2019{url_seems_rotten_with}ctf.com
+
+misc：
+
+misc1   ISCC{N0_0ne_can_st0p_y0u}
+misc2   9102_cCsI
+misc3   FLAG{ISCC KEYBOARD CIPHER}
+misc4   flag{DugUpADiamondADeepDarkMine}
+misc5碎纸机   Flag={ISCC_is_so_interesting_!}
+Welcome	flag{ISCC_WELCOME}
+无法运行的exe	IScC_2019
+他们能在一起吗？	ISCC{S0rrY_W3_4R3_Ju5T_Fr1END}
+最危险的地方就是最安全的地方   15cC9012
+解密成绩单 ISCC{Y0u_F0UnD_ThE_P4SSW0RD!}
+High起来！ PrEtTy_1ScC9012_gO0d
+
+
+mobile   1234567836275184
+
+
+pwn：
+pwn  flag{f530c5ef-3a8a-4271-91f7-3c5ebd87fbe4}
+pwn2     flag{2c9c6bd8-c285-43b7-ac8a-f74eb9a7cb2f}
+
+web2  payload  ?value[0]=375&value[1]=307&value[2]=364&value[3]=355&value[4]=304&value[5]=365&value[6]=357&value[7]=351&value[8]=340&value[9]=367&value[10]=351&value[11]=329&value[12]=339&value[13]=323&value[14]=323&value[15]=306&value[16]=304&value[17]=305&value[18]=313&password=0x91d
+
+
+
+能在一起？：
+UEFTUyU3QjBLX0lfTDBWM19ZMHUlMjElN0Q=
+
+PASS{0K_I_L0V3_Y0u!}
+
+提交不对，把图片下载分析一下，发现一个txt，于是改后缀名zip，里面的txt需要密码，把0K_I_L0V3_Y0u!输入得到flag
