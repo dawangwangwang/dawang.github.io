@@ -1,691 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="Yogurt">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="Yogurt"/>
-    
-
-    <!--Open Graph Description-->
-    
-        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Yogurt"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="website" />
-    
-
-    <!--Page Cover-->
-    
-
-    <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>Yogurt</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Google Analytics -->
-    
-
-
-</head>
-
-
-<body>
-
-<div class="bg-gradient"></div>
-<div class="bg-pattern"></div>
-
-<!-- Menu -->
-<!--Menu Links and Overlay-->
-<div class="menu-bg">
-    <div class="menu-container">
-        <ul>
-            
-            <li class="menu-item">
-                <a href="/">
-                    Home
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/archives">
-                    Archives
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/about.html">
-                    About
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/tags">
-                    Tags
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/categories">
-                    Categories
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
-<!--Hamburger Icon-->
-<nav>
-    <a href="#menu"></a>
-</nav>
-
-<div class="container">
-
-    <!-- Main Content -->
-    <div class="row">
-    <div class="col-sm-12">
-
-        <!--Title and Logo-->
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
-<header>
-    <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
-        
-            <h1 id="main-title" class="title">Yogurt</h1>
-        
-    </div>
-</header>
-
-        <section class="main">
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/09/08/PHP代码审计/">
-                PHP代码审计
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-09-08</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/09/08/PHP代码审计/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/代码安全/">代码安全</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><pre><code>代码审计，是对应用程序源代码进行系统性检查的工作。为了找到并且修复应用程序在开发阶段存在的一些漏洞或者程序逻辑错误，避免程序漏洞被非法利用给企业带来不必要的风险。
-</code></pre><h1 id="输入验证和输出显示"><a href="#输入验证和输出显示" class="headerlink" title="输入验证和输出显示"></a>输入验证和输出显示</h1><pre><code>大多数这种漏洞形成是因为未对输入数据进行安全验证或未对输出数据进行安全处理。严格的数据验证方式:
-</code></pre><p>1.对数据进行精确匹配<br>2.接受白名单的数据<br>3.拒绝黑名单的数据<br>4.对匹配黑名单的数据进行编码</p>
-<h2 id="在PHP中可以由用户输入的变量要注意检查："><a href="#在PHP中可以由用户输入的变量要注意检查：" class="headerlink" title="在PHP中可以由用户输入的变量要注意检查："></a>在PHP中可以由用户输入的变量要注意检查：</h2><ul>
-<li>$_SERVER</li>
-<li>$_GET</li>
-<li>$_POST</li>
-<li>$_COOKIE</li>
-<li>$_REQUEST</li>
-<li>$_FILES</li>
-<li>$_ENV</li>
-<li>$_HTTP_COOKIE_VARS</li>
-<li>$_HTTP_ENV_VARS</li>
-<li>$_HTTP_GET_VARS</li>
-<li>$_HTTP_POST_VARS</li>
-<li>$_HTTP_SERVER_VARS<h2 id="命令注入"><a href="#命令注入" class="headerlink" title="命令注入"></a>命令注入</h2>  PHP执行系统命令函数有：system、exec、passthru、shell_exec、popen、proc_open…</li>
-</ul>
-<p>可以在全部程序文件中搜索看看有木有用到这些函数，确定函数的参数是否会因为外部提交而改变，检查函数里的参数是否经过安全处理。<br>|方法|：<br>    1.使用自定义函数或函数库替代外部命令功能<br>    2.使用escapeshellarg函数来处理命令参数<br>    3.使用safe_mode_exec_dir指定可执行文件的路径</p>
-<h2 id="跨站脚本"><a href="#跨站脚本" class="headerlink" title="跨站脚本"></a>跨站脚本</h2><p>反射型跨站就是用户提交的数据被接受处理，直接显示在页面上（客户端）；存储型跨站就是用户提交的数据被处理以后存储在数据库里，然后又被从数据库里读取出来显示到页面上。<br>输出函数常用 ：echo,print,printf,vprintf,&lt;%=$test%&gt;</p>
-<p>对于反射型跨站，应当注意被用户提交的数据是否立即显示，是否经过安全检查<br>对于存储型跨站，检查数据在输入后入库，然后又显示的这个过程中，数据是否经过安全检查</p>
-<p>|方法|：<br>1.若输入的数据只包含字母数字，应当阻止<br>2.对输入的数据严格匹配，例如邮件的格式，电话的格式。<br>3.对输出进行html编码，例如：<br>    &lt;  &lt;<br>    &gt;  &gt;<br>    ……</p>
-<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><p>PHP中可能出现文件包含的函数：include,include_once,require,require_once,show_source,highlight_file,readfile,file_get_contents,fopen</p>
-<p>|方法|：</p>
-<ul>
-<li>对输入的数据进行严格匹配，例如文件下只有a.php和b.php，’wenjian/‘.$_POST[‘file’].’.php’那么提交的数据只能是a或b。</li>
-<li>过滤参数中的/ 、 ..等</li>
-</ul>
-<h2 id="代码注入"><a href="#代码注入" class="headerlink" title="代码注入"></a>代码注入</h2><p>PHP可能出现代码注入的函数：eval,preg_replace,assert,call_user_func，call_user_func_array，create_function</p>
-<p>密切关注程序中使用这些函数的地方，检查提交的变量是否用户可控的。有木有输入验证防范方法：精确匹配输入数据，白名单过滤可执行的函数。</p>
-<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>sql注入操作数据库，目光放在sql语句上，insert、delete、update、select，查看传递大的参数是否是用户可控的，有木有做安全处理。</p>
-<p>|方法|：<br>    参数化查询</p>
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><p>PHP的用于文件管理的函数如果输入变量可以由用户控制，程序中也没有验证，可能会成为高危漏洞，很严重<br> 例如函数：copy、rmdir、unlink、delete、fwrite、chmod、fgetc、file_get_contents、file_put_contents<br>要对这些函数注意一些</p>
-<p>|方法|：<br>提交数据严格匹配<br>限定可操作的目录</p>
-<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>PHP上传文件常用函数move_uploaded_file</p>
-<p>|方法|：</p>
-<ul>
-<li>使用白名单检验文件后缀</li>
-<li>按时间算法生成文件名</li>
-<li>上传的脚本文件不可执行</li>
-<li>注意%00截断</li>
-</ul>
-<h2 id="变量覆盖"><a href="#变量覆盖" class="headerlink" title="变量覆盖"></a>变量覆盖</h2><p>PHP变量覆盖：<br>1.遍历初始化变量<br>    foreach($_GET as $key=&gt;$value)<br>    $$key=$value</p>
-<p>2.函数覆盖变量<br>parse_str,mb_parse_str,import_request_variables<br>Register_globals=ON时，GET方式提交变量会直接覆盖</p>
-<p>|方法|：</p>
-<ul>
-<li>Register_globals=OFF</li>
-<li>避免使用这些函数来获取变量</li>
-</ul>
-
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/05/27/ISCC2019/">
-                ISCC2019（线上赛5月）
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-05-27</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/05/27/ISCC2019/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/CTF/">CTF</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>emmmm……总的说比去年做的的好了一些，但由于做题太少加上专业知识还不是那么足够，总结一下：菜。<br></p>
-        </div>
-        <a href="/2019/05/27/ISCC2019/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/">
-                Django debug page XSS漏洞(CVE-2017-12794)分析
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-05-24</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/漏洞分析/">漏洞分析</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Python下有许多款不同的 Web 框架。Django是重量级选手中最有代表性的一位。许多成功的网站和APP都基于Django，它是一个开放源代码的Web应用框架。也是CMS（内容管理系统）软件。由Python编写，采用了MVC的框架模式。<br></p>
-        </div>
-        <a href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/05/15/缓存中间件/">
-                缓存中间件
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-05-15</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/05/15/缓存中间件/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/中间件/">中间件</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>缓存中间件比较常见的是MemCached和Redis。<br></p>
-        </div>
-        <a href="/2019/05/15/缓存中间件/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/05/10/中间件漏洞/">
-                中间件漏洞
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-05-10</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/05/10/中间件漏洞/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/中间件/">中间件</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>中间件漏洞可以说是最容易被web管理员忽视的漏洞，因为这不是程序代码上的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的。<br></p>
-        </div>
-        <a href="/2019/05/10/中间件漏洞/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/04/23/中间件/">
-                中间件
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-23</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/04/23/中间件/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/中间件/">中间件</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="中间件的定义"><a href="#中间件的定义" class="headerlink" title="中间件的定义"></a>中间件的定义</h1><p>中间件（Middleware）是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。中间件处在操作系统和更高一级应用程序之间。他充当的功能是：将应用程序运行环境与操作系统隔离，从而实现应用程序开发者不必为更多系统问题忧虑，而直接关注该应用程序在解决问题上的能力 。容器就是中间件的一种。</p>
-        </div>
-        <a href="/2019/04/23/中间件/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/04/19/DDCTF/">
-                DDCTF
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-19</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/04/19/DDCTF/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/CTF/">CTF</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="第一题：滴"><a href="#第一题：滴" class="headerlink" title="第一题：滴~"></a>第一题：滴~</h2><p>这题进来就一个图片还有两行flag.jpg，可以观察到地址栏中jpg=后边的是base64编码，解两次base64然后十六进制转换得到是flag.jpg。</p>
-        </div>
-        <a href="/2019/04/19/DDCTF/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/04/13/CTFd的搭建/">
-                CTFd的搭建
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-13</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/04/13/CTFd的搭建/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/CTF环境搭建/">CTF环境搭建</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <p>本次搭建是基于ubuntu16.04。</p>
-<p><strong>1.升级源</strong><br><code>sudo apt-get update</code><br></p>
-        </div>
-        <a href="/2019/04/13/CTFd的搭建/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/04/09/掘安杯CTF/">
-                掘安杯CTF
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-09</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/04/09/掘安杯CTF/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/CTF/">CTF</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="签到题-flag到底在哪里！"><a href="#签到题-flag到底在哪里！" class="headerlink" title="签到题  flag到底在哪里！"></a>签到题  flag到底在哪里！</h2><p><img src="/2019/04/09/掘安杯CTF/3.png" alt="1"><br>打开这样，点击链接跳到一个404.php<br><img src="/2019/04/09/掘安杯CTF/4.png" alt="1"><br></p>
-        </div>
-        <a href="/2019/04/09/掘安杯CTF/" class="read-more">Read More</a>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2019/04/03/docker基本概念/">
-                docker基本概念
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-03</span>
-            
-            
-                <a href="https://dawangwangwang.github.io/2019/04/03/docker基本概念/#disqus_thread" class="comments article-comment-link">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/docker/">docker</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h1 id="Dockers简介"><a href="#Dockers简介" class="headerlink" title="Dockers简介"></a>Dockers简介</h1><p>Docker 是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br></p>
-        </div>
-        <a href="/2019/04/03/docker基本概念/" class="read-more">Read More</a>
-    
-
-</div>
-            
-        </section>
-    </div>
-</div>
-
-
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="wrap-pagination">
-                <a class="disabled" href="/">
-                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                </a>
-                <a class="" href="/page/2/">
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-
-
-</div>
-
-<!-- Footer -->
-<div class="push"></div>
-
-<footer class="footer-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
-                <h2>About</h2>
-                <p>
-                    希望每个人都能找到自己的不可替代。
-                </p>
-            </div>
-            
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-            
-            <li>
-                <a class="footer-post" href="/2019/09/08/PHP代码审计/">PHP代码审计</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/27/ISCC2019/">ISCC2019（线上赛5月）</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/">Django debug page XSS漏洞(C</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/15/缓存中间件/">缓存中间件</a>
-            </li>
-            
-        </ul>
-    </div>
-
-
-
-            
-<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
-    <h2>Categories</h2>
-    <ul>
-        
-        <li>
-            <a class="footer-post" href="/categories/随笔/">随笔</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/漏洞分析/">漏洞分析</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/报错/">报错</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/CTF环境搭建/">CTF环境搭建</a>
-        </li>
-        
-    </ul>
-</div>
-
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <ul class="list-inline footer-social-icons">
-                    
-                    <li class="list-inline-item">
-                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://plus.google.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="mailto:1807801293@qq.com">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="footer-copyright">
-                    This is Yogurt
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- After footer scripts -->
-
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-<!-- Tween Max -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
-
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Custom JavaScript -->
-<script src="/js/main.js"></script>
-
-<!-- Disqus Comments -->
-
-<script type="text/javascript">
-    var disqus_shortname = 'klugjotest';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
-
-</html>
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Yogurt</title><meta name="description" content="向来拿不起,也放不下。QQ:1807801293"><meta name="author" content="Yogurt"><meta name="copyright" content="Yogurt"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Yogurt"><meta name="twitter:description" content="向来拿不起,也放不下。QQ:1807801293"><meta name="twitter:image" content="https://dawangwangwang.github.io/img/avatar.png"><meta property="og:type" content="website"><meta property="og:title" content="Yogurt"><meta property="og:url" content="https://dawangwangwang.github.io/"><meta property="og:site_name" content="Yogurt"><meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293"><meta property="og:image" content="https://dawangwangwang.github.io/img/avatar.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://dawangwangwang.github.io/"><link rel="preload" href="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg" as="image"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: true,
+  isPost: false
+  
+}</script></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Yogurt</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">20</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">11</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div></div><div id="body-wrap"><nav class="full_page" id="nav" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg)"><div id="site-info"><div id="site-title"><span class="blogtitle">Yogurt</span></div><div id="site-sub-title"><span class="subtitle"></span></div><div id="site-social-icons"><a class="social-icon" href="https://github.com/jerryc127" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="mailto:xxxxxxxx@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div><div class="scroll-down"><i class="fa fa-angle-down scroll-down-effects"></i></div></nav><main id="content-outer"><div class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/2019/09/08/PHP代码审计/" title="PHP代码审计"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PHP代码审计"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/09/08/PHP代码审计/" title="PHP代码审计">PHP代码审计</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-09-07</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/代码安全/">代码安全</a></span><div class="content">前言**代码审计，是对应用程序源代码进行系统性检查的工作。为了找到并且修复应用程序在开发阶段存在的一些漏洞或者程序逻辑错误，避免程序漏洞被非法利用给企业带来不必要的风险。**
+
+输入验证和输出显示大多数这种漏洞形成是因为未对输入数据进行安全验证或未对输出数据进行安全处理。严格的数据验证方式:
+1.对 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/2019/05/27/ISCC2019/" title="ISCC2019（线上赛5月）"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ISCC2019（线上赛5月）"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/05/27/ISCC2019/" title="ISCC2019（线上赛5月）">ISCC2019（线上赛5月）</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-26</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span><div class="content">emmmm……总的说比去年做的的好了一些，但由于做题太少加上专业知识还不是那么足够，总结一下：菜。
+Webweb1web1进来是代码审计：
+Code1234567891011121314151617&lt;?phperror_reporting(0);require &apos;flag.php&a ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/" title="Django debug page XSS漏洞(CVE-2017-12794)分析"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Django debug page XSS漏洞(CVE-2017-12794)分析"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/" title="Django debug page XSS漏洞(CVE-2017-12794)分析">Django debug page XSS漏洞(CVE-2017-12794)分析</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-23</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/漏洞分析/">漏洞分析</a></span><div class="content">简介Python下有许多款不同的 Web 框架。Django是重量级选手中最有代表性的一位。许多成功的网站和APP都基于Django，它是一个开放源代码的Web应用框架。也是CMS（内容管理系统）软件。由Python编写，采用了MVC的框架模式。Django 发布了新版本1.11.5，修复了500页 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/2019/05/15/缓存中间件/" title="缓存中间件"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="缓存中间件"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/05/15/缓存中间件/" title="缓存中间件">缓存中间件</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-14</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/中间件/">中间件</a></span><div class="content">缓存中间件比较常见的是MemCached和Redis。Redis和Memcache都是将数据存放在内存中，都是内存数据库。
+MemCached介绍MemCached是一种基于内存的简洁的key-value存储系统，用来存储小块的任意数据（字符串，对象等）。便于快速开发，减轻开发难度，解决大数据量缓存 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/2019/05/10/中间件漏洞/" title="中间件漏洞"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中间件漏洞"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/05/10/中间件漏洞/" title="中间件漏洞">中间件漏洞</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-05-09</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/中间件/">中间件</a></span><div class="content">中间件漏洞可以说是最容易被web管理员忽视的漏洞，因为这不是程序代码上的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的。
+中间件、容器、服务器中间件、容器、服务器、webserver等概念其实挺相似。
+web服务器web服务器用于提供http服务，向客户端返回信息，可以处理http协议， ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/2019/04/23/中间件/" title="中间件"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中间件"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/04/23/中间件/" title="中间件">中间件</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-22</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/中间件/">中间件</a></span><div class="content">中间件的定义中间件（Middleware）是提供系统软件和应用软件之间连接的软件，以便于软件各部件之间的沟通。中间件处在操作系统和更高一级应用程序之间。他充当的功能是：将应用程序运行环境与操作系统隔离，从而实现应用程序开发者不必为更多系统问题忧虑，而直接关注该应用程序在解决问题上的能力 。容器就是中 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/2019/04/19/DDCTF/" title="DDCTF"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DDCTF"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/04/19/DDCTF/" title="DDCTF">DDCTF</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-19</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span><div class="content">web第一题：滴~这题进来就一个图片还有两行flag.jpg，可以观察到地址栏中jpg=后边的是base64编码，解两次base64然后十六进制转换得到是flag.jpg。然后想到把index.php先十六进制再base64两次得到TmprMlpUWTBOalUzT0RKbE56QTJPRGN3放入 ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/2019/04/13/CTFd的搭建/" title="CTFd的搭建"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTFd的搭建"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/04/13/CTFd的搭建/" title="CTFd的搭建">CTFd的搭建</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-12</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CTF环境搭建/">CTF环境搭建</a></span><div class="content">本次搭建是基于ubuntu16.04。
+1.升级源sudo apt-get update2.安装git
+
+因为ctfd的源码和部署好的题目都要通过github传输
+
+sudo apt install git
+3.安装pip　安装的时候可能会有点慢，可以更改一下源
+sudo apt install p ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover left_radius"><a href="/2019/04/09/掘安杯CTF/" title="掘安杯CTF"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="掘安杯CTF"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/04/09/掘安杯CTF/" title="掘安杯CTF">掘安杯CTF</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-08</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/CTF/">CTF</a></span><div class="content">web签到题  flag到底在哪里！打开这样，点击链接跳到一个404.php点击链接的过程抓包，然后go。得到flag的base64，解密即答案。  
+jactf{jasafe110qweasdzxc}  
+下载下载打开就让我下载了个flag.txt,结果里边说flag不在这儿。于是想是否可以下载f ...</div></div></div><div class="recent-post-item article-container"><div class="post_cover right_radius"><a href="/2019/04/03/docker基本概念/" title="docker基本概念"><img class="post_bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="docker基本概念"></a></div><div class="recent-post-info">  <a class="article-title" href="/2019/04/03/docker基本概念/" title="docker基本概念">docker基本概念</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-03</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/docker/">docker</a></span><div class="content">Dockers简介Docker 是一个开源的应用容器引擎，可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
+什么是容器？一种虚拟化的方案。操作系统级别的虚拟化只能运行相同或相似内核的操作系统依赖于Linux 内核特性：Na ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-fw fa-chevron-right" aria-hidden="true"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"><div class="author-info__name">Yogurt</div><div class="author-info__description">向来拿不起,也放不下。QQ:1807801293</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">36</div></a></div><div class="card-info-data-item is-center">      <a href="/tags/"><div class="headline">Tags</div><div class="length_num">20</div></a></div><div class="card-info-data-item is-center">     <a href="/categories/"><div class="headline">Categories</div><div class="length_num">11</div></a></div></div><div class="card-info-bookmark is-center"><a class="bookmark button--primary button--animated" id="bookmark-it" href="javascript:;" title="Add to bookmark" target="_self"><i class="fa fa-bookmark" aria-hidden="true"></i><span>Add to bookmark</span></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/jerryc127" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a><a class="social-icon" href="mailto:xxxxxxxx@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a><a class="social-icon" href="/atom.xml" target="_blank"><i class="fa fa-rss" aria-hidden="true"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fa fa-bullhorn card-announcement-animation" aria-hidden="true"></i><span>Announcement</span></div><div class="announcement_content">感謝訪問本站，若喜歡請收藏 ^_^</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fa fa-history" aria-hidden="true"></i><span>Recent Post</span></div><div class="aside-recent-item"> <div class="aside-recent-post"><a href="/2019/09/08/PHP代码审计/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="PHP代码审计" alt="PHP代码审计"></div><div class="aside-post-title"><div class="aside-post_title" href="/2019/09/08/PHP代码审计/" title="PHP代码审计">PHP代码审计</div><time class="aside-post_meta post-meta__date">2019-09-07</time></div></a></div><div class="aside-recent-post"><a href="/2019/05/27/ISCC2019/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="ISCC2019（线上赛5月）" alt="ISCC2019（线上赛5月）"></div><div class="aside-post-title"><div class="aside-post_title" href="/2019/05/27/ISCC2019/" title="ISCC2019（线上赛5月）">ISCC2019（线上赛5月）</div><time class="aside-post_meta post-meta__date">2019-05-26</time></div></a></div><div class="aside-recent-post"><a href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Django debug page XSS漏洞(CVE-2017-12794)分析" alt="Django debug page XSS漏洞(CVE-2017-12794)分析"></div><div class="aside-post-title"><div class="aside-post_title" href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/" title="Django debug page XSS漏洞(CVE-2017-12794)分析">Django debug page XSS漏洞(CVE-2017-12794)分析</div><time class="aside-post_meta post-meta__date">2019-05-23</time></div></a></div><div class="aside-recent-post"><a href="/2019/05/15/缓存中间件/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="缓存中间件" alt="缓存中间件"></div><div class="aside-post-title"><div class="aside-post_title" href="/2019/05/15/缓存中间件/" title="缓存中间件">缓存中间件</div><time class="aside-post_meta post-meta__date">2019-05-14</time></div></a></div><div class="aside-recent-post"><a href="/2019/05/10/中间件漏洞/"><div class="aside-post-cover"><img class="aside-post-bg lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="this.onerror=null;this.src='/img/404.jpg'" title="中间件漏洞" alt="中间件漏洞"></div><div class="aside-post-title"><div class="aside-post_title" href="/2019/05/10/中间件漏洞/" title="中间件漏洞">中间件漏洞</div><time class="aside-post_meta post-meta__date">2019-05-09</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fa fa-folder-open" aria-hidden="true"></i><span>Categories</span></div><ul class="aside-category-item">       <li class="aside-category-list"><a class="aside-category-list_link" href="/categories/CTF/"><span class="aside-category-list_name">CTF</span><span class="aside-category-list_length">4</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/CTF环境搭建/"><span class="aside-category-list_name">CTF环境搭建</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/Linux/"><span class="aside-category-list_name">Linux</span><span class="aside-category-list_length">5</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/docker/"><span class="aside-category-list_name">docker</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/python/"><span class="aside-category-list_name">python</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/web/"><span class="aside-category-list_name">web</span><span class="aside-category-list_length">16</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/中间件/"><span class="aside-category-list_name">中间件</span><span class="aside-category-list_length">3</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/代码安全/"><span class="aside-category-list_name">代码安全</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/报错/"><span class="aside-category-list_name">报错</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/漏洞分析/"><span class="aside-category-list_name">漏洞分析</span><span class="aside-category-list_length">1</span></a></li><li class="aside-category-list"><a class="aside-category-list_link" href="/categories/随笔/"><span class="aside-category-list_name">随笔</span><span class="aside-category-list_length">1</span></a></li></ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/CTF/" style="font-size: 21.33px; color: #99a4b2">CTF</a> <a href="/tags/CTFd/" style="font-size: 16px; color: #999">CTFd</a> <a href="/tags/Django/" style="font-size: 16px; color: #999">Django</a> <a href="/tags/HEXO/" style="font-size: 16px; color: #999">HEXO</a> <a href="/tags/Linux系统操作/" style="font-size: 24px; color: #99a9bf">Linux系统操作</a> <a href="/tags/PHP/" style="font-size: 18.67px; color: #999ea6">PHP</a> <a href="/tags/SQL/" style="font-size: 16px; color: #999">SQL</a> <a href="/tags/XSS/" style="font-size: 16px; color: #999">XSS</a> <a href="/tags/docker/" style="font-size: 16px; color: #999">docker</a> <a href="/tags/python基础/" style="font-size: 16px; color: #999">python基础</a> <a href="/tags/web漏洞/" style="font-size: 18.67px; color: #999ea6">web漏洞</a> <a href="/tags/wp/" style="font-size: 21.33px; color: #99a4b2">wp</a> <a href="/tags/代码审计/" style="font-size: 16px; color: #999">代码审计</a> <a href="/tags/密码学/" style="font-size: 16px; color: #999">密码学</a> <a href="/tags/工具/" style="font-size: 16px; color: #999">工具</a> <a href="/tags/抓鸡/" style="font-size: 16px; color: #999">抓鸡</a> <a href="/tags/浏览器安全/" style="font-size: 16px; color: #999">浏览器安全</a> <a href="/tags/漏洞/" style="font-size: 16px; color: #999">漏洞</a> <a href="/tags/理论知识/" style="font-size: 16px; color: #999">理论知识</a> <a href="/tags/逻辑漏洞/" style="font-size: 16px; color: #999">逻辑漏洞</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fa fa-archive" aria-hidden="true"></i><span>Archives</span></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/"><span class="archive-list-date">2019年09月</span><span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><span class="archive-list-date">2019年05月</span><span class="archive-list-count">4</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><span class="archive-list-date">2019年04月</span><span class="archive-list-count">5</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><span class="archive-list-date">2019年03月</span><span class="archive-list-count">11</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><span class="archive-list-date">2019年02月</span><span class="archive-list-count">4</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/"><span class="archive-list-date">2018年12月</span><span class="archive-list-count">1</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/"><span class="archive-list-date">2018年11月</span><span class="archive-list-count">7</span></a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><span class="archive-list-date">2018年10月</span><span class="archive-list-count">2</span></a></li><li class="archive-list-item"><a class="archive-list-link-more" href="/archives">More</a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fa fa-line-chart" aria-hidden="true"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">36</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">Run time :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" start_date="6/7/2018 00:00:00">     </div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Yogurt</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var typed = new Typed(".subtitle", {
+strings: '今日事&#44;今日畢,Never put off till tomorrow what you can do today'.split(","),
+startDelay: 300,
+typeSpeed: 100,
+loop: true,
+backSpeed: 50
+});</script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>

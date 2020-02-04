@@ -1,389 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>掘安杯CTF | Yogurt</title><meta name="description" content="掘安杯CTF"><meta name="keywords" content="wp"><meta name="author" content="Yogurt"><meta name="copyright" content="Yogurt"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="掘安杯CTF"><meta name="twitter:description" content="掘安杯CTF"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="掘安杯CTF"><meta property="og:url" content="https://dawangwangwang.github.io/2019/04/09/掘安杯CTF/"><meta property="og:site_name" content="Yogurt"><meta property="og:description" content="掘安杯CTF"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-<!-- Head tag -->
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-        <meta name="description" content="向来拿不起,也放不下。QQ:1807801293">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="Yogurt">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="掘安杯CTF"/>
-    
-
-    <!--Open Graph Description-->
-    
-        <meta property="og:description" content="向来拿不起,也放不下。QQ:1807801293" />
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Yogurt"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="article" />
-    
-
-    <!--Page Cover-->
-    
-
-    <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>掘安杯CTF - Yogurt</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Google Analytics -->
-    
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
 
 
-</head>
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
 
-
-<body>
-
-<div class="bg-gradient"></div>
-<div class="bg-pattern"></div>
-
-<!-- Menu -->
-<!--Menu Links and Overlay-->
-<div class="menu-bg">
-    <div class="menu-container">
-        <ul>
-            
-            <li class="menu-item">
-                <a href="/">
-                    Home
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/archives">
-                    Archives
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/about.html">
-                    About
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/tags">
-                    Tags
-                </a>
-            </li>
-            
-            <li class="menu-item">
-                <a href="/categories">
-                    Categories
-                </a>
-            </li>
-            
-        </ul>
-    </div>
-</div>
-
-<!--Hamburger Icon-->
-<nav>
-    <a href="#menu"></a>
-</nav>
-
-<div class="container">
-
-    <!-- Main Content -->
-    <div class="row">
-    <div class="col-sm-12">
-
-        <!--Title and Logo-->
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=990 height=86 src="//music.163.com/outchain/player?type=2&id=1299711624&auto=1&height=66"></iframe>
-<header>
-    <div class="logo">
-        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
-        
-    </div>
-</header>
-
-        <section class="main">
-            
-<div class="post">
-
-    <div class="post-header">
-        <h1 class="title">
-            <a href="/2019/04/09/掘安杯CTF/">
-                掘安杯CTF
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-04-09</span>
-            
-            
-                <a href="#disqus_thread" class="comments">Comments</a>
-            
-            
-                <span class="category">
-                    <a href="/categories/CTF/">CTF</a>
-                </span>
-            
-        </div>
-    </div>
-
-    <div class="content">
-
-        <!-- Gallery -->
-        
-
-        <!-- Post Content -->
-        <h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="签到题-flag到底在哪里！"><a href="#签到题-flag到底在哪里！" class="headerlink" title="签到题  flag到底在哪里！"></a>签到题  flag到底在哪里！</h2><p><img src="/2019/04/09/掘安杯CTF/3.png" alt="1"><br>打开这样，点击链接跳到一个404.php<br><img src="/2019/04/09/掘安杯CTF/4.png" alt="1"><br><a id="more"></a><br>点击链接的过程抓包，然后go。得到flag的base64，解密即答案。<br><img src="/2019/04/09/掘安杯CTF/2.png" alt="1">  </p>
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://dawangwangwang.github.io/2019/04/09/掘安杯CTF/"><link rel="prev" title="CTFd的搭建" href="https://dawangwangwang.github.io/2019/04/13/CTFd的搭建/"><link rel="next" title="docker基本概念" href="https://dawangwangwang.github.io/2019/04/03/docker基本概念/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Yogurt</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">36</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">20</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">11</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#web"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">web</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#签到题-flag到底在哪里！"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">签到题  flag到底在哪里！</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#下载下载"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">下载下载</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#Crypto"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">Crypto</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Crypto签到"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">Crypto签到</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#贝斯家族三英战群魔！"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">贝斯家族三英战群魔！</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#罗马帝国的奠基者"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">罗马帝国的奠基者</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#misc"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">misc</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#该死的温柔"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">该死的温柔</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#你对我的网站做了什么？"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">你对我的网站做了什么？</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#这是什么玩意儿"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">这是什么玩意儿</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#so-easy"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">so_easy</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#小梳子，我只爱你一个人"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">小梳子，我只爱你一个人</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#web"><span class="toc-number">1.</span> <span class="toc-text">web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#签到题-flag到底在哪里！"><span class="toc-number">1.1.</span> <span class="toc-text">签到题  flag到底在哪里！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载下载"><span class="toc-number">1.2.</span> <span class="toc-text">下载下载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto签到"><span class="toc-number">2.1.</span> <span class="toc-text">Crypto签到</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贝斯家族三英战群魔！"><span class="toc-number">2.2.</span> <span class="toc-text">贝斯家族三英战群魔！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#罗马帝国的奠基者"><span class="toc-number">2.3.</span> <span class="toc-text">罗马帝国的奠基者</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#misc"><span class="toc-number">3.</span> <span class="toc-text">misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#该死的温柔"><span class="toc-number">3.1.</span> <span class="toc-text">该死的温柔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#你对我的网站做了什么？"><span class="toc-number">3.2.</span> <span class="toc-text">你对我的网站做了什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#这是什么玩意儿"><span class="toc-number">3.3.</span> <span class="toc-text">这是什么玩意儿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#so-easy"><span class="toc-number">3.4.</span> <span class="toc-text">so_easy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小梳子，我只爱你一个人"><span class="toc-number">3.5.</span> <span class="toc-text">小梳子，我只爱你一个人</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">掘安杯CTF</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> Created 2019-04-08<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> Updated 2019-04-09</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/CTF/">CTF</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>Post View:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="签到题-flag到底在哪里！"><a href="#签到题-flag到底在哪里！" class="headerlink" title="签到题  flag到底在哪里！"></a>签到题  flag到底在哪里！</h2><p><a href="/2019/04/09/掘安杯CTF/3.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/3.png" alt="1" title="1"></a><br>打开这样，点击链接跳到一个404.php<br><a href="/2019/04/09/掘安杯CTF/4.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/4.png" alt="1" title="1"></a><br><a id="more"></a><br>点击链接的过程抓包，然后go。得到flag的base64，解密即答案。<br><a href="/2019/04/09/掘安杯CTF/2.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/2.png" alt="1" title="1"></a>  </p>
 <p>jactf{jasafe110qweasdzxc}  </p>
-<h2 id="下载下载"><a href="#下载下载" class="headerlink" title="下载下载"></a>下载下载</h2><p>打开就让我下载了个flag.txt,结果里边说flag不在这儿。<br>于是想是否可以下载flag.php呢，<br><img src="/2019/04/09/掘安杯CTF/5.png" alt="1"><br>下载后文件有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$key=&quot;MyCTF&quot;;</span><br><span class="line">$flag=&quot;o6lziae0xtaqoqCtmWqcaZuZfrd5pbI=&quot;;//encrypt($flag,$key)</span><br></pre></td></tr></table></figure></p>
-<p>于是在脚本中添加一条<code>echo decrypt($flag,$key);</code><br>运行脚本<br><img src="/2019/04/09/掘安杯CTF/6.png" alt="1"> </p>
+<h2 id="下载下载"><a href="#下载下载" class="headerlink" title="下载下载"></a>下载下载</h2><p>打开就让我下载了个flag.txt,结果里边说flag不在这儿。<br>于是想是否可以下载flag.php呢，<br><a href="/2019/04/09/掘安杯CTF/5.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/5.png" alt="1" title="1"></a><br>下载后文件有<br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$key=&quot;MyCTF&quot;;</span><br><span class="line">$flag=&quot;o6lziae0xtaqoqCtmWqcaZuZfrd5pbI=&quot;;//encrypt($flag,$key)</span><br></pre></td></tr></table></figure></div></p>
+<p>于是在脚本中添加一条<code>echo decrypt($flag,$key);</code><br>运行脚本<br><a href="/2019/04/09/掘安杯CTF/6.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/6.png" alt="1" title="1"></a> </p>
 <h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Crypto签到"><a href="#Crypto签到" class="headerlink" title="Crypto签到"></a>Crypto签到</h2><p>开文一个密文：6A616374667B6865785F69735F656173797D<br><strong>解题方法一：</strong><br>将字符放入base16解密网站解密，得flag。<br><strong>解题方法二：</strong><br>十六进制转字符串脚本，   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import binascii</span><br><span class="line">print binascii.a2b_hex(&quot;6A616374667B6865785F69735F656173797D&quot;)</span><br></pre></td></tr></table></figure>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import binascii</span><br><span class="line">print binascii.a2b_hex(&quot;6A616374667B6865785F69735F656173797D&quot;)</span><br></pre></td></tr></table></figure></div>
 <p>最后结果为：<br>jactf{hex_is_easy}  </p>
-<h2 id="贝斯家族三英战群魔！"><a href="#贝斯家族三英战群魔！" class="headerlink" title="贝斯家族三英战群魔！"></a>贝斯家族三英战群魔！</h2><p>给了个文本：<br><img src="/2019/04/09/掘安杯CTF/1.png" alt="1"><br>贝斯家族三英让我们想起了base16，base32，base64.<br>于是将该文本base16，base32，base64依次解密四次。得到结果。<br>解密方法可以到解密网站解密，也可以脚本解密。<br>脚本如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import base64</span><br><span class="line">flag= &quot;&quot;</span><br><span class="line">while 1:</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b16decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b32decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b64decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br></pre></td></tr></table></figure>
+<h2 id="贝斯家族三英战群魔！"><a href="#贝斯家族三英战群魔！" class="headerlink" title="贝斯家族三英战群魔！"></a>贝斯家族三英战群魔！</h2><p>给了个文本：<br><a href="/2019/04/09/掘安杯CTF/1.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/1.png" alt="1" title="1"></a><br>贝斯家族三英让我们想起了base16，base32，base64.<br>于是将该文本base16，base32，base64依次解密四次。得到结果。<br>解密方法可以到解密网站解密，也可以脚本解密。<br>脚本如下：  </p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#coding:utf-8</span><br><span class="line">import base64</span><br><span class="line">flag= &quot;&quot;</span><br><span class="line">while 1:</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b16decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b32decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br><span class="line">  try:</span><br><span class="line">    flag= base64.b64decode(flag)</span><br><span class="line">  except:</span><br><span class="line">    print (flag)</span><br><span class="line">    break</span><br></pre></td></tr></table></figure></div>
 <p>jactf{4(b64_32_16)}  </p>
-<h2 id="罗马帝国的奠基者"><a href="#罗马帝国的奠基者" class="headerlink" title="罗马帝国的奠基者"></a>罗马帝国的奠基者</h2><p>一看题目就觉得是凯撒密码有关，百度一搜果然是凯撒。 这题300分白瞎了。<br><strong>题目叙述为：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一段密文：</span><br><span class="line">h^_o`[pZi^i`</span><br><span class="line">格式是：jactf&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="罗马帝国的奠基者"><a href="#罗马帝国的奠基者" class="headerlink" title="罗马帝国的奠基者"></a>罗马帝国的奠基者</h2><p>一看题目就觉得是凯撒密码有关，百度一搜果然是凯撒。 这题300分白瞎了。<br><strong>题目叙述为：</strong><br><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一段密文：</span><br><span class="line">h^_o`[pZi^i`</span><br><span class="line">格式是：jactf&#123;&#125;</span><br></pre></td></tr></table></figure></div></p>
 <p> 仔细观察字符，h  ^   _    o   `  的ASCII码分别为  104、94、95、111、96<br>再看j   a     c   t   f      的ASCII码分别为 106、97、99、116、102<br>从第一个字符开始，相差2，第二个字符相差3，后面依次4、5……  于是脚本吧。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;h^_o`[pZi^i`&quot;</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">j=2</span><br><span class="line"></span><br><span class="line">for i in range(len(str)):</span><br><span class="line">	flag += chr(ord(str[i])+j)</span><br><span class="line">	j = j+1</span><br><span class="line">print (flag)</span><br></pre></td></tr></table></figure>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;h^_o`[pZi^i`&quot;</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">j=2</span><br><span class="line"></span><br><span class="line">for i in range(len(str)):</span><br><span class="line">	flag += chr(ord(str[i])+j)</span><br><span class="line">	j = j+1</span><br><span class="line">print (flag)</span><br></pre></td></tr></table></figure></div>
 <p> jactf{bxcsium}</p>
 <h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="该死的温柔"><a href="#该死的温柔" class="headerlink" title="该死的温柔"></a>该死的温柔</h2><p>可以发现该死和guess谐音，有个隐写工具OutGuess，它是一种通用的隐写工具，可以插入将隐藏信息存入数据源的冗余位<br>Kail终端命令输入：<br><code>git clone https://github.com/crorvick/outguess</code><br>安装包随即下载到文件夹。双击打开文件夹，右键点击空白区域终端打开。</p>
-<p>随后输入以下命令  进行安装<br><code>./configure&amp;&amp; make &amp;&amp; make install</code><br>右键图片查看属性，发现备注有个guess<br><img src="/2019/04/09/掘安杯CTF/8.png" alt="1"> </p>
+<p>随后输入以下命令  进行安装<br><code>./configure&amp;&amp; make &amp;&amp; make install</code><br>右键图片查看属性，发现备注有个guess<br><a href="/2019/04/09/掘安杯CTF/8.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/8.png" alt="1" title="1"></a> </p>
 <p>这就是要工具解密的密码</p>
 <p>然后构造命令：<br><code>root@kali:~/outguess# outguess -k &quot;guess&quot; -r &#39;/root/桌面/flag.jpg&#39; ctf.txt</code></p>
 <p>其中guess是密码，-r是解密指令，ctf.txt是输出ctf.txt文件</p>
 <p>打开ctf.txt文件，就可以显示flag了  </p>
-<p><img src="/2019/04/09/掘安杯CTF/7.png" alt="1"> </p>
-<h2 id="你对我的网站做了什么？"><a href="#你对我的网站做了什么？" class="headerlink" title="你对我的网站做了什么？"></a>你对我的网站做了什么？</h2><p>分析流量包，打开shell.pcap。  查看HTTP流量包。<br>在一个post请求中发现了catflag。<br><img src="/2019/04/09/掘安杯CTF/10.png" alt="1"></p>
-<p>再往下 在它的返回包看见一段加密字符。<br><img src="/2019/04/09/掘安杯CTF/11.png" alt="1"></p>
-<p>于是追踪一下tcp流发现一段加密代码<br><img src="/2019/04/09/掘安杯CTF/12.png" alt="1"></p>
-<p>于是写代码 反过来解密。得到flag。<br><img src="/2019/04/09/掘安杯CTF/9.png" alt="1"></p>
-<h2 id="这是什么玩意儿"><a href="#这是什么玩意儿" class="headerlink" title="这是什么玩意儿"></a>这是什么玩意儿</h2><p>简单，见过的一眼就能看出来。<br>先是一堆数字字母跟=的组合，是Quoted-Printable编码。解密网址<br><a href="http://www.mxcz.net/tools/quotedprintable.aspx" target="_blank" rel="noopener">http://www.mxcz.net/tools/quotedprintable.aspx</a><br><img src="/2019/04/09/掘安杯CTF/13.png" alt="1"></p>
-<p>得到了佛语，所以进行与佛论禅解密。<br><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br><img src="/2019/04/09/掘安杯CTF/14.png" alt="1"><br>然后得到了社会主义核心价值观编码，接着解密。<br><a href="http://www.nicetool.net/app/core_values.html" target="_blank" rel="noopener">http://www.nicetool.net/app/core_values.html</a></p>
-<p><img src="/2019/04/09/掘安杯CTF/15.png" alt="1"><br>得到flag。</p>
+<p><a href="/2019/04/09/掘安杯CTF/7.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/7.png" alt="1" title="1"></a> </p>
+<h2 id="你对我的网站做了什么？"><a href="#你对我的网站做了什么？" class="headerlink" title="你对我的网站做了什么？"></a>你对我的网站做了什么？</h2><p>分析流量包，打开shell.pcap。  查看HTTP流量包。<br>在一个post请求中发现了catflag。<br><a href="/2019/04/09/掘安杯CTF/10.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/10.png" alt="1" title="1"></a></p>
+<p>再往下 在它的返回包看见一段加密字符。<br><a href="/2019/04/09/掘安杯CTF/11.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/11.png" alt="1" title="1"></a></p>
+<p>于是追踪一下tcp流发现一段加密代码<br><a href="/2019/04/09/掘安杯CTF/12.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/12.png" alt="1" title="1"></a></p>
+<p>于是写代码 反过来解密。得到flag。<br><a href="/2019/04/09/掘安杯CTF/9.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/9.png" alt="1" title="1"></a></p>
+<h2 id="这是什么玩意儿"><a href="#这是什么玩意儿" class="headerlink" title="这是什么玩意儿"></a>这是什么玩意儿</h2><p>简单，见过的一眼就能看出来。<br>先是一堆数字字母跟=的组合，是Quoted-Printable编码。解密网址<br><a href="http://www.mxcz.net/tools/quotedprintable.aspx" target="_blank" rel="noopener">http://www.mxcz.net/tools/quotedprintable.aspx</a><br><a href="/2019/04/09/掘安杯CTF/13.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/13.png" alt="1" title="1"></a></p>
+<p>得到了佛语，所以进行与佛论禅解密。<br><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br><a href="/2019/04/09/掘安杯CTF/14.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/14.png" alt="1" title="1"></a><br>然后得到了社会主义核心价值观编码，接着解密。<br><a href="http://www.nicetool.net/app/core_values.html" target="_blank" rel="noopener">http://www.nicetool.net/app/core_values.html</a></p>
+<p><a href="/2019/04/09/掘安杯CTF/15.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/15.png" alt="1" title="1"></a><br>得到flag。</p>
 <h2 id="so-easy"><a href="#so-easy" class="headerlink" title="so_easy"></a>so_easy</h2><p>给了我一个exe，但是无法运行，于是查看十六进制，发现是编码，像base，依次试了几个常见的之后发现这是base58！！<br>解就完了！<br><code>http://ctf.ssleye.com/base58w.html</code><br>解出来是这样：<br>data:image/bmp;base64,Qk0eEQAAAAAAAD4AAAAoAAAAtAAAALQAAAABAAEAAAAAAOAQAAAAAAAAAAAAAAIAAAAAAAAAAAAAAP///wD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD/////////////////////////////8AD//wAAAA/w8AAP//D//w/w8P8PAA//8AD//wAAAA/w8AAP//D//w/w8P8PAA//8AD//wAAAA/w8AAP//D//w/w8P8PAA//8AD//wAAAA/w8AAP//D//w/w8P8PAA//8AD//w///w//8PAAD/D/AP8A8PAPAP//8AD//w///w//8PAAD/D/AP8A8PAPAP//8AD//w///w//8PAAD/D/AP8A8PAPAP//8AD//w///w//8PAAD/D/AP8A8PAPAP//8AD//w8ADw//AP//8PD/8A8PDwD/8P//8AD//w8ADw//AP//8PD/8A8PDwD/8P//8AD//w8ADw//AP//8PD/8A8PDwD/8P//8AD//w8ADw//AP//8PD/8A8PDwD/8P//8AD//w8ADw//APDwDwD//wAA8A8AD///8AD//w8ADw//APDwDwD//wAA8A8AD///8AD//w8ADw//APDwDwD//wAA8A8AD///8AD//w8ADw//APDwDwD//wAA8A8AD///8AD//w8ADw8AAA8PAPD/////AAAPAA//8AD//w8ADw8AAA8PAPD/////AAAPAA//8AD//w8ADw8AAA8PAPD/////AAAPAA//8AD//…………<br>可以看到这是图片，还是base64加密过的。</p>
 <p>于是base64转图片<br><code>http://imgbase64.duoshitong.com/</code></p>
 <p>得到二维码，扫之，即flag。</p>
-<h2 id="小梳子，我只爱你一个人"><a href="#小梳子，我只爱你一个人" class="headerlink" title="小梳子，我只爱你一个人"></a>小梳子，我只爱你一个人</h2><p>破解wifi密码，已知wifi密码是手机号，前六位是138364，利用工具自己做一个字典。直接爆破。<br>使用kali的字典生成工具crunch来生成字典，<br><img src="/2019/04/09/掘安杯CTF/18.png" alt="1"></p>
+<h2 id="小梳子，我只爱你一个人"><a href="#小梳子，我只爱你一个人" class="headerlink" title="小梳子，我只爱你一个人"></a>小梳子，我只爱你一个人</h2><p>破解wifi密码，已知wifi密码是手机号，前六位是138364，利用工具自己做一个字典。直接爆破。<br>使用kali的字典生成工具crunch来生成字典，<br><a href="/2019/04/09/掘安杯CTF/18.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/18.png" alt="1" title="1"></a></p>
 <blockquote>
-<p>11代表字典最小和最大位都是11位，%代表数字，-o为输出路径<br>字典做好开始爆破<br><img src="/2019/04/09/掘安杯CTF/17.png" alt="1"><br>输入1</p>
+<p>11代表字典最小和最大位都是11位，%代表数字，-o为输出路径<br>字典做好开始爆破<br><a href="/2019/04/09/掘安杯CTF/17.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/17.png" alt="1" title="1"></a><br>输入1</p>
 </blockquote>
-<p><img src="/2019/04/09/掘安杯CTF/16.png" alt="1"></p>
+<p><a href="/2019/04/09/掘安杯CTF/16.png" data-fancybox="group" data-caption="1" class="fancybox"><img src="/2019/04/09/掘安杯CTF/16.png" alt="1" title="1"></a></p>
 <blockquote>
 <p>Keyfound表示找到密码了，所以flag为：jactf{13836458932}</p>
 </blockquote>
-
-    </div>
-
-    
-
-    
-        <div class="post-tags">
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/wp/">#wp</a>
-        </div>
-    
-
-    <!-- Comments -->
-    
-    <div class="comments">
-        
-<div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-
-
-
-    </div>
-    
-
-</div>
-        </section>
-
-    </div>
-</div>
-
-
-</div>
-
-<!-- Footer -->
-<div class="push"></div>
-
-<footer class="footer-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
-                <h2>About</h2>
-                <p>
-                    希望每个人都能找到自己的不可替代。
-                </p>
-            </div>
-            
-    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
-        <h2>Recent Posts</h2>
-        <ul>
-            
-            <li>
-                <a class="footer-post" href="/2019/09/08/PHP代码审计/">PHP代码审计</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/27/ISCC2019/">ISCC2019（线上赛5月）</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/24/Django-debug-page-XSS漏洞-CVE-2017-12794-分析/">Django debug page XSS漏洞(C</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/05/15/缓存中间件/">缓存中间件</a>
-            </li>
-            
-        </ul>
-    </div>
-
-
-
-            
-<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
-    <h2>Categories</h2>
-    <ul>
-        
-        <li>
-            <a class="footer-post" href="/categories/随笔/">随笔</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/漏洞分析/">漏洞分析</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/报错/">报错</a>
-        </li>
-        
-        <li>
-            <a class="footer-post" href="/categories/CTF环境搭建/">CTF环境搭建</a>
-        </li>
-        
-    </ul>
-</div>
-
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <ul class="list-inline footer-social-icons">
-                    
-                    <li class="list-inline-item">
-                        <a href="https://github.com/klugjo/hexo-theme-alpha-dust">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="https://plus.google.com/">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                    
-                    
-                    <li class="list-inline-item">
-                        <a href="mailto:1807801293@qq.com">
-                            <span class="footer-icon-container">
-                                <i class="fa fa-envelope-o"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                    
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="footer-copyright">
-                    This is Yogurt
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- After footer scripts -->
-
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-<!-- Tween Max -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
-
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Custom JavaScript -->
-<script src="/js/main.js"></script>
-
-<!-- Disqus Comments -->
-
-<script type="text/javascript">
-    var disqus_shortname = 'klugjotest';
-
-    (function(){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
-
-</html>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Yogurt</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://dawangwangwang.github.io/2019/04/09/掘安杯CTF/">https://dawangwangwang.github.io/2019/04/09/掘安杯CTF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/wp/">wp    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2019/04/13/CTFd的搭建/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>CTFd的搭建</span></div></a></div><div class="next-post pull_right"><a href="/2019/04/03/docker基本概念/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>docker基本概念</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> Recommend</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/04/19/DDCTF/" title="DDCTF"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-04-19</div><div class="relatedPosts_title">DDCTF</div></div></a></div><div class="relatedPosts_item"><a href="/2019/05/27/ISCC2019/" title="ISCC2019（线上赛5月）"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-26</div><div class="relatedPosts_title">ISCC2019（线上赛5月）</div></div></a></div><div class="relatedPosts_item"><a href="/2019/03/31/嘉韦思杯/" title="嘉韦思杯线上赛"><img class="relatedPosts_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-03-31</div><div class="relatedPosts_title">嘉韦思杯线上赛</div></div></a></div></div><div class="clear_both"></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Yogurt</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async></script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body></html>
